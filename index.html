@@ -9,165 +9,130 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-:root { --primary: #ff6a00; --primary-d: #e05e00; --pg: rgba(255,106,0,.3); --bg: #0b0c0f; --bg2: #13161c; --bg3: #1a1e28; --bg4: #1f2430; --tx: #f0f2f5; --tx2: #9aa2b5; --tx3: #6b7388; --bd: #282e3a; --r: 12px; --r2: 20px; --fnt: 'Inter', system-ui, sans-serif; --grd: linear-gradient(135deg, #ff6a00, #ff8c38); --grd2: linear-gradient(135deg, #ff6a00, #f7971e, #ffb347); }
-body { font-family: var(--fnt); background: var(--bg); color: var(--tx); min-height: 100vh; overflow-x: hidden; line-height: 1.6; }
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-thumb { background: var(--bd); border-radius: 10px; }
-input, textarea, select { background: var(--bg3); color: var(--tx); border: 1px solid var(--bd); border-radius: var(--r); padding: 10px 14px; font-size: .92rem; width: 100%; transition: .2s; font-family: inherit; outline: none; }
-input:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--pg); }
-button { cursor: pointer; background: none; border: none; color: inherit; font-family: inherit; outline: none; }
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 20px; border-radius: var(--r); font-weight: 600; font-size: .88rem; transition: .25s; border: 1px solid transparent; }
-.btn-primary { background: var(--grd); color: #fff; box-shadow: 0 4px 16px var(--pg); }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px var(--pg); }
-.btn-secondary { background: var(--bg3); color: var(--tx); border-color: var(--bd); }
-.btn-secondary:hover { border-color: var(--primary); }
-.btn-ghost { background: transparent; color: var(--tx2); }
-.btn-ghost:hover { background: var(--bg3); color: var(--tx); }
-.btn-sm { padding: 6px 14px; font-size: .78rem; }
-.btn-lg { padding: 14px 30px; font-size: 1rem; }
-.btn-danger { background: #dc2626; color: #fff; }
-.btn-success { background: #16a34a; color: #fff; }
-.hidden { display: none !important; }
-.flex { display: flex; }
-.flex-center { align-items: center; justify-content: center; }
-.flex-between { align-items: center; justify-content: space-between; }
-.gap-2 { gap: 8px; }
-.gap-3 { gap: 12px; }
-.gap-4 { gap: 16px; }
-.tc { text-align: center; }
-.tg { background: var(--grd2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.tm { color: var(--tx2); }
-.ts { font-size: .85rem; }
-.txs { font-size: .75rem; }
-.mb-2 { margin-bottom: 8px; }
-.mb-3 { margin-bottom: 12px; }
-.mb-4 { margin-bottom: 16px; }
-.mt-2 { margin-top: 8px; }
-.mt-3 { margin-top: 12px; }
-.mt-4 { margin-top: 16px; }
-.fw6 { font-weight: 600; }
-.fw7 { font-weight: 700; }
-.fw8 { font-weight: 800; }
-.w-100 { width: 100%; }
-.card { background: var(--bg2); border: 1px solid var(--bd); border-radius: var(--r2); padding: 20px; transition: .25s; }
-.card:hover { border-color: rgba(255,106,0,.2); }
-.badge { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 100px; font-size: .68rem; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; }
-.badge-premium { background: var(--grd); color: #fff; }
-.badge-free { background: var(--bg3); color: var(--tx2); border: 1px solid var(--bd); }
-.badge-admin { background: #7c3aed; color: #fff; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
-.fi { animation: fadeIn .35s ease; }
-.si { animation: slideIn .3s ease; }
-
-/* HEADER */
-.hdr { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(11,12,15,.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,.04); padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; }
-.hdr .logo { font-size: 1.2rem; font-weight: 800; letter-spacing: -.5px; cursor: pointer; user-select: none; }
-.hdr .logo span { color: var(--primary); }
-.hr { display: flex; align-items: center; gap: 10px; }
-
-/* SIDEBAR */
-.sb { position: fixed; top: 54px; left: 0; bottom: 0; width: 220px; background: rgba(11,12,15,.96); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-right: 1px solid rgba(255,255,255,.04); padding: 10px 0; overflow-y: auto; z-index: 900; transition: .3s; }
-.sb::-webkit-scrollbar { width: 3px; }
-.sb h3 { font-size: .65rem; text-transform: uppercase; letter-spacing: 1.2px; color: var(--tx3); padding: 8px 14px 4px; font-weight: 600; }
-.si { display: flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: var(--r); color: var(--tx2); font-size: .85rem; transition: .2s; cursor: pointer; margin: 1px 6px; }
-.si:hover { background: var(--bg3); color: var(--tx); }
-.si.active { background: rgba(255,106,0,.12); color: var(--primary); }
-.si i { width: 18px; text-align: center; font-size: .9rem; }
-.of { background: linear-gradient(135deg, rgba(255,106,0,.06), rgba(124,58,237,.06)); border: 1px solid rgba(255,106,0,.12); border-radius: var(--r); padding: 10px 14px; margin: 6px 12px; font-size: .78rem; }
-.of .nm { font-weight: 700; font-size: .85rem; }
-.of .ph { color: var(--tx2); font-size: .72rem; }
-
-/* MAIN */
-.mn { margin-left: 220px; margin-top: 54px; padding: 20px; min-height: calc(100vh - 54px); }
-
-/* CHAT */
-.cw { max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; min-height: calc(100vh - 100px); }
-.cm { flex: 1; overflow-y: auto; padding: 12px 0; display: flex; flex-direction: column; gap: 12px; }
-.msg { max-width: 80%; padding: 12px 16px; border-radius: var(--r2); animation: fadeIn .3s ease; font-size: .92rem; line-height: 1.65; }
-.msg.usr { align-self: flex-end; background: var(--grd); color: #fff; border-bottom-right-radius: 4px; }
-.msg.ai { align-self: flex-start; background: var(--bg3); border: 1px solid var(--bd); border-bottom-left-radius: 4px; }
-.msg .ti { font-size: .65rem; color: rgba(255,255,255,.45); margin-top: 4px; }
-.msg.ai .ti { color: var(--tx3); }
-.ci { display: flex; gap: 10px; padding: 10px 0; border-top: 1px solid var(--bd); }
-.ci textarea { flex: 1; border-radius: var(--r2); padding: 12px 16px; min-height: 48px; max-height: 120px; background: var(--bg3); }
-.ci .btn { border-radius: var(--r2); padding: 12px 18px; }
-.ti2 { align-self: flex-start; background: var(--bg3); border: 1px solid var(--bd); border-radius: var(--r2); padding: 12px 16px; animation: fadeIn .3s ease; display: flex; gap: 5px; }
-.ti2 span { width: 7px; height: 7px; border-radius: 50%; background: var(--tx3); animation: blink 1.2s infinite; }
-.ti2 span:nth-child(2) { animation-delay: .2s; } .ti2 span:nth-child(3) { animation-delay: .4s; }
-
-/* WELCOME */
-.wel { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 30px 20px; }
-.wel .wi { font-size: 4rem; margin-bottom: 14px; }
-.wel h1 { font-size: 2rem; font-weight: 800; margin-bottom: 6px; }
-.wel p { color: var(--tx2); max-width: 460px; margin-bottom: 20px; }
-.ws { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 520px; }
-.ws .btn { font-size: .8rem; padding: 7px 14px; }
-
-/* GRID */
-.gr { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
-.gc { background: var(--bg2); border: 1px solid var(--bd); border-radius: var(--r2); padding: 18px; transition: .25s; cursor: pointer; }
-.gc:hover { border-color: var(--primary); transform: translateY(-3px); }
-.gc .gi { font-size: 1.8rem; margin-bottom: 10px; }
-.gc h3 { font-size: .95rem; font-weight: 700; margin-bottom: 3px; }
-.gc p { font-size: .8rem; color: var(--tx2); }
-
-/* ADMIN GRID */
-.ag { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 16px; }
-.sb2 { background: var(--bg2); border: 1px solid var(--bd); border-radius: var(--r2); padding: 18px; text-align: center; }
-.sb2 .nm2 { font-size: 2rem; font-weight: 800; background: var(--grd2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.sb2 .lb { color: var(--tx2); font-size: .82rem; margin-top: 3px; }
-.tr { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--bd); }
-.tr:last-child { border-bottom: none; }
-.tgl { position: relative; width: 42px; height: 22px; background: var(--bg3); border-radius: 100px; border: 1px solid var(--bd); cursor: pointer; transition: .2s; flex-shrink: 0; }
-.tgl.on { background: var(--primary); border-color: var(--primary); }
-.tgl::after { content: ''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: .2s; }
-.tgl.on::after { left: 22px; }
-.pb { background: var(--bg); border: 2px dashed var(--bd); border-radius: var(--r); padding: 10px 14px; font-family: monospace; font-size: 1rem; letter-spacing: 3px; text-align: center; color: var(--primary); user-select: all; margin: 8px 0; }
-
-/* MODAL */
-.mo { position: fixed; inset: 0; background: rgba(0,0,0,.7); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); z-index: 99998; display: flex; align-items: center; justify-content: center; animation: fadeIn .25s ease; }
-.mb { background: var(--bg2); border: 1px solid var(--bd); border-radius: var(--r2); padding: 28px; max-width: 420px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,.6); animation: fadeIn .3s ease; }
-.mb h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 14px; }
-
-/* TOAST */
-#tc { position: fixed; top: 16px; right: 16px; z-index: 99999; display: flex; flex-direction: column; gap: 8px; max-width: 360px; }
-.tt { padding: 12px 18px; border-radius: var(--r); background: var(--bg4); border: 1px solid var(--bd); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 8px 32px rgba(0,0,0,.5); animation: slideIn .3s ease; display: flex; align-items: center; gap: 10px; font-size: .85rem; }
-.tt-s { border-left: 4px solid #16a34a; }
-.tt-e { border-left: 4px solid #dc2626; }
-.tt-i { border-left: 4px solid var(--primary); }
-
-/* PREMIUM FEATURES */
-.pg2 { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; margin: 16px 0; }
-.pi { background: var(--bg3); border: 1px solid var(--bd); border-radius: var(--r); padding: 14px; text-align: center; transition: .2s; }
-.pi:hover { border-color: var(--primary); transform: translateY(-2px); }
-.pi i { font-size: 1.6rem; color: var(--primary); margin-bottom: 6px; }
-
-/* MODEL CHIP */
-.mc { display: inline-block; padding: 5px 12px; border-radius: 100px; font-size: .75rem; background: var(--bg3); border: 1px solid var(--bd); cursor: pointer; transition: .2s; color: var(--tx2); }
-.mc.on, .mc:hover { border-color: var(--primary); color: var(--primary); background: rgba(255,106,0,.08); }
-
-/* UPDATE BANNER */
-.ub { background: linear-gradient(135deg, rgba(255,106,0,.1), rgba(124,58,237,.1)); border: 1px solid rgba(255,106,0,.2); border-radius: var(--r); padding: 8px 14px; display: flex; align-items: center; gap: 10px; font-size: .82rem; margin-bottom: 14px; animation: fadeIn .4s ease; }
-.ub i { color: var(--primary); }
-.ub .btn { margin-left: auto; font-size: .72rem; padding: 4px 10px; }
-code { background: rgba(255,106,0,.1); padding: 1px 5px; border-radius: 4px; font-size: .85rem; }
-pre { background: #0d1117; border-radius: var(--r); padding: 12px; overflow-x: auto; margin: 6px 0; border: 1px solid var(--bd); }
-
-/* RESPONSIVE */
-@media(max-width: 768px) {
-  .sb { left: -230px; width: 230px; }
-  .sb.open { left: 0; }
-  .mn { margin-left: 0; padding: 14px; }
-  .mbtn { display: flex !important; }
-  .gr { grid-template-columns: 1fr; }
-  .ag { grid-template-columns: 1fr; }
-  .msg { max-width: 92%; }
-  .wel h1 { font-size: 1.4rem; }
-}
-.mbtn { display: none; }
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#ff6a00;--primary-d:#e05e00;--pg:rgba(255,106,0,.3);--bg:#0b0c0f;--bg2:#13161c;--bg3:#1a1e28;--bg4:#1f2430;--tx:#f0f2f5;--tx2:#9aa2b5;--tx3:#6b7388;--bd:#282e3a;--r:12px;--r2:20px;--fnt:'Inter',system-ui,sans-serif;--grd:linear-gradient(135deg,#ff6a00,#ff8c38);--grd2:linear-gradient(135deg,#ff6a00,#f7971e,#ffb347)}
+body{font-family:var(--fnt);background:var(--bg);color:var(--tx);min-height:100vh;overflow-x:hidden;line-height:1.6}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-thumb{background:var(--bd);border-radius:10px}
+input,textarea,select{background:var(--bg3);color:var(--tx);border:1px solid var(--bd);border-radius:var(--r);padding:10px 14px;font-size:.92rem;width:100%;transition:.2s;font-family:inherit;outline:none}
+input:focus,textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--pg)}
+button{cursor:pointer;background:none;border:none;color:inherit;font-family:inherit;outline:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 20px;border-radius:var(--r);font-weight:600;font-size:.88rem;transition:.25s;border:1px solid transparent}
+.btn-primary{background:var(--grd);color:#fff;box-shadow:0 4px 16px var(--pg)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px var(--pg)}
+.btn-secondary{background:var(--bg3);color:var(--tx);border-color:var(--bd)}
+.btn-secondary:hover{border-color:var(--primary)}
+.btn-ghost{background:transparent;color:var(--tx2)}
+.btn-ghost:hover{background:var(--bg3);color:var(--tx)}
+.btn-sm{padding:6px 14px;font-size:.78rem}
+.btn-lg{padding:14px 30px;font-size:1rem}
+.btn-danger{background:#dc2626;color:#fff}
+.btn-success{background:#16a34a;color:#fff}
+.hidden{display:none!important}
+.flex{display:flex}
+.flex-center{align-items:center;justify-content:center}
+.flex-between{align-items:center;justify-content:space-between}
+.gap-2{gap:8px}
+.gap-3{gap:12px}
+.gap-4{gap:16px}
+.tc{text-align:center}
+.tg{background:var(--grd2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.tm{color:var(--tx2)}
+.ts{font-size:.85rem}
+.txs{font-size:.75rem}
+.mb-2{margin-bottom:8px}
+.mb-3{margin-bottom:12px}
+.mb-4{margin-bottom:16px}
+.mt-2{margin-top:8px}
+.mt-3{margin-top:12px}
+.mt-4{margin-top:16px}
+.fw6{font-weight:600}
+.fw7{font-weight:700}
+.fw8{font-weight:800}
+.w-100{width:100%}
+.card{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r2);padding:20px;transition:.25s}
+.card:hover{border-color:rgba(255,106,0,.2)}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:100px;font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.badge-premium{background:var(--grd);color:#fff}
+.badge-free{background:var(--bg3);color:var(--tx2);border:1px solid var(--bd)}
+.badge-admin{background:#7c3aed;color:#fff}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.fi{animation:fadeIn .35s ease}
+.si{animation:slideIn .3s ease}
+.hdr{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(11,12,15,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.04);padding:10px 20px;display:flex;align-items:center;justify-content:space-between}
+.hdr .logo{font-size:1.2rem;font-weight:800;letter-spacing:-.5px;cursor:pointer;user-select:none}
+.hdr .logo span{color:var(--primary)}
+.hr{display:flex;align-items:center;gap:10px}
+.sb{position:fixed;top:54px;left:0;bottom:0;width:220px;background:rgba(11,12,15,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-right:1px solid rgba(255,255,255,.04);padding:10px 0;overflow-y:auto;z-index:900;transition:.3s}
+.sb::-webkit-scrollbar{width:3px}
+.sb h3{font-size:.65rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--tx3);padding:8px 14px 4px;font-weight:600}
+.si{display:flex;align-items:center;gap:10px;padding:8px 14px;border-radius:var(--r);color:var(--tx2);font-size:.85rem;transition:.2s;cursor:pointer;margin:1px 6px}
+.si:hover{background:var(--bg3);color:var(--tx)}
+.si.active{background:rgba(255,106,0,.12);color:var(--primary)}
+.si i{width:18px;text-align:center;font-size:.9rem}
+.of{background:linear-gradient(135deg,rgba(255,106,0,.06),rgba(124,58,237,.06));border:1px solid rgba(255,106,0,.12);border-radius:var(--r);padding:10px 14px;margin:6px 12px;font-size:.78rem}
+.of .nm{font-weight:700;font-size:.85rem}
+.of .ph{color:var(--tx2);font-size:.72rem}
+.mn{margin-left:220px;margin-top:54px;padding:20px;min-height:calc(100vh - 54px)}
+.cw{max-width:820px;margin:0 auto;display:flex;flex-direction:column;min-height:calc(100vh - 100px)}
+.cm{flex:1;overflow-y:auto;padding:12px 0;display:flex;flex-direction:column;gap:12px}
+.msg{max-width:80%;padding:12px 16px;border-radius:var(--r2);animation:fadeIn .3s ease;font-size:.92rem;line-height:1.65}
+.msg.usr{align-self:flex-end;background:var(--grd);color:#fff;border-bottom-right-radius:4px}
+.msg.ai{align-self:flex-start;background:var(--bg3);border:1px solid var(--bd);border-bottom-left-radius:4px}
+.msg .ti{font-size:.65rem;color:rgba(255,255,255,.45);margin-top:4px}
+.msg.ai .ti{color:var(--tx3)}
+.ci{display:flex;gap:10px;padding:10px 0;border-top:1px solid var(--bd)}
+.ci textarea{flex:1;border-radius:var(--r2);padding:12px 16px;min-height:48px;max-height:120px;background:var(--bg3)}
+.ci .btn{border-radius:var(--r2);padding:12px 18px}
+.ti2{align-self:flex-start;background:var(--bg3);border:1px solid var(--bd);border-radius:var(--r2);padding:12px 16px;animation:fadeIn .3s ease;display:flex;gap:5px}
+.ti2 span{width:7px;height:7px;border-radius:50%;background:var(--tx3);animation:blink 1.2s infinite}
+.ti2 span:nth-child(2){animation-delay:.2s}.ti2 span:nth-child(3){animation-delay:.4s}
+.wel{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px 20px}
+.wel .wi{font-size:4rem;margin-bottom:14px}
+.wel h1{font-size:2rem;font-weight:800;margin-bottom:6px}
+.wel p{color:var(--tx2);max-width:460px;margin-bottom:20px}
+.ws{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px}
+.ws .btn{font-size:.8rem;padding:7px 14px}
+.gr{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.gc{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r2);padding:18px;transition:.25s;cursor:pointer}
+.gc:hover{border-color:var(--primary);transform:translateY(-3px)}
+.gc .gi{font-size:1.8rem;margin-bottom:10px}
+.gc h3{font-size:.95rem;font-weight:700;margin-bottom:3px}
+.gc p{font-size:.8rem;color:var(--tx2)}
+.ag{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px}
+.sb2{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r2);padding:18px;text-align:center}
+.sb2 .nm2{font-size:2rem;font-weight:800;background:var(--grd2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sb2 .lb{color:var(--tx2);font-size:.82rem;margin-top:3px}
+.tr{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bd)}
+.tr:last-child{border-bottom:none}
+.tgl{position:relative;width:42px;height:22px;background:var(--bg3);border-radius:100px;border:1px solid var(--bd);cursor:pointer;transition:.2s;flex-shrink:0}
+.tgl.on{background:var(--primary);border-color:var(--primary)}
+.tgl::after{content:'';position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:.2s}
+.tgl.on::after{left:22px}
+.pb{background:var(--bg);border:2px dashed var(--bd);border-radius:var(--r);padding:10px 14px;font-family:monospace;font-size:1rem;letter-spacing:3px;text-align:center;color:var(--primary);user-select:all;margin:8px 0}
+.mo{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:99998;display:flex;align-items:center;justify-content:center;animation:fadeIn .25s ease}
+.mb{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r2);padding:28px;max-width:420px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,.6);animation:fadeIn .3s ease}
+.mb h2{font-size:1.2rem;font-weight:700;margin-bottom:14px}
+#tc{position:fixed;top:16px;right:16px;z-index:99999;display:flex;flex-direction:column;gap:8px;max-width:360px}
+.tt{padding:12px 18px;border-radius:var(--r);background:var(--bg4);border:1px solid var(--bd);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 8px 32px rgba(0,0,0,.5);animation:slideIn .3s ease;display:flex;align-items:center;gap:10px;font-size:.85rem}
+.tt-s{border-left:4px solid #16a34a}
+.tt-e{border-left:4px solid #dc2626}
+.tt-i{border-left:4px solid var(--primary)}
+.pg2{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin:16px 0}
+.pi{background:var(--bg3);border:1px solid var(--bd);border-radius:var(--r);padding:14px;text-align:center;transition:.2s}
+.pi:hover{border-color:var(--primary);transform:translateY(-2px)}
+.pi i{font-size:1.6rem;color:var(--primary);margin-bottom:6px}
+.mc{display:inline-block;padding:5px 12px;border-radius:100px;font-size:.75rem;background:var(--bg3);border:1px solid var(--bd);cursor:pointer;transition:.2s;color:var(--tx2)}
+.mc.on,.mc:hover{border-color:var(--primary);color:var(--primary);background:rgba(255,106,0,.08)}
+.ub{background:linear-gradient(135deg,rgba(255,106,0,.1),rgba(124,58,237,.1));border:1px solid rgba(255,106,0,.2);border-radius:var(--r);padding:8px 14px;display:flex;align-items:center;gap:10px;font-size:.82rem;margin-bottom:14px;animation:fadeIn .4s ease}
+.ub i{color:var(--primary)}
+.ub .btn{margin-left:auto;font-size:.72rem;padding:4px 10px}
+code{background:rgba(255,106,0,.1);padding:1px 5px;border-radius:4px;font-size:.85rem}
+pre{background:#0d1117;border-radius:var(--r);padding:12px;overflow-x:auto;margin:6px 0;border:1px solid var(--bd)}
+@media(max-width:768px){.sb{left:-230px;width:230px}.sb.open{left:0}.mn{margin-left:0;padding:14px}.mbtn{display:flex!important}.gr{grid-template-columns:1fr}.ag{grid-template-columns:1fr}.msg{max-width:92%}.wel h1{font-size:1.4rem}}
+.mbtn{display:none}
 </style>
 </head>
 <body>
@@ -177,15 +142,15 @@ pre { background: #0d1117; border-radius: var(--r); padding: 12px; overflow-x: a
 <!-- PIN MODAL -->
 <div id="pinMo" class="mo">
 <div class="mb tc">
-<i class="fas fa-shield-alt" style="font-size: 3rem; color: var(--primary); margin-bottom: 10px;"></i>
+<i class="fas fa-shield-alt" style="font-size:3rem;color:var(--primary);margin-bottom:10px"></i>
 <h2>🔐 Secure Access</h2>
 <p class="txs tm mb-3">Enter PIN to access ZEUS AI. Default PIN: <strong>123456</strong></p>
-<input type="password" id="pinIn" placeholder="Enter PIN" maxlength="6" style="text-align: center; font-size: 1.2rem; letter-spacing: 6px; margin-bottom: 10px;" />
-<div class="flex gap-3" style="justify-content: center;">
+<input type="password" id="pinIn" placeholder="Enter PIN" maxlength="6" style="text-align:center;font-size:1.2rem;letter-spacing:6px;margin-bottom:10px" />
+<div class="flex gap-3" style="justify-content:center">
 <button class="btn btn-primary" onclick="vPIN()"><i class="fas fa-check"></i> Unlock</button>
 <button class="btn btn-secondary" onclick="sPIN()"><i class="fas fa-key"></i> Set New PIN</button>
 </div>
-<p id="pinErr" class="txs mt-2" style="color: #dc2626; min-height: 18px;"></p>
+<p id="pinErr" class="txs mt-2" style="color:#dc2626;min-height:18px"></p>
 </div>
 </div>
 
@@ -193,11 +158,11 @@ pre { background: #0d1117; border-radius: var(--r); padding: 12px; overflow-x: a
 <header class="hdr">
 <div class="flex-center gap-3">
 <button class="mbtn btn btn-ghost" onclick="togSb()"><i class="fas fa-bars"></i></button>
-<div class="logo" id="logoEl" title="Double-click for Admin">⚡ <span>ZEUS</span> AI <span style="font-size: .6rem; background: var(--grd); padding: 2px 7px; border-radius: 100px; color: #fff; font-weight: 600; margin-left: 4px;">v7</span></div>
+<div class="logo" id="logoEl" title="Double-click for Admin">⚡ <span>ZEUS</span> AI <span style="font-size:.6rem;background:var(--grd);padding:2px 7px;border-radius:100px;color:#fff;font-weight:600;margin-left:4px">v7</span></div>
 </div>
 <div class="hr">
 <span id="rb" class="badge badge-free"><i class="fas fa-user"></i> Free</span>
-<span style="color: var(--tx3); font-size: .8rem;" id="hu">user</span>
+<span style="color:var(--tx3);font-size:.8rem" id="hu">user</span>
 <button class="btn btn-ghost btn-sm" onclick="go('settings')"><i class="fas fa-cog"></i></button>
 </div>
 </header>
@@ -209,7 +174,7 @@ pre { background: #0d1117; border-radius: var(--r); padding: 12px; overflow-x: a
 <div class="si" onclick="go('dashboard')"><i class="fas fa-th-large"></i> Dashboard</div>
 <div class="si" onclick="go('agents')"><i class="fas fa-robot"></i> AI Agents</div></div>
 <div><h3>Tools</h3>
-<div class="si" onclick="go('vision')"><i class="fas fa-eye"></i> Vision AI <span class="badge badge-premium" style="margin-left: auto;">NEW</span></div>
+<div class="si" onclick="go('vision')"><i class="fas fa-eye"></i> Vision AI <span class="badge badge-premium" style="margin-left:auto">NEW</span></div>
 <div class="si" onclick="go('voice')"><i class="fas fa-microphone"></i> Voice AI</div>
 <div class="si" onclick="go('search')"><i class="fas fa-globe"></i> Search AI</div>
 <div class="si" onclick="go('coding')"><i class="fas fa-code"></i> Coding</div>
@@ -217,10 +182,10 @@ pre { background: #0d1117; border-radius: var(--r); padding: 12px; overflow-x: a
 <div class="si" onclick="go('promptgen')"><i class="fas fa-paint-brush"></i> Image Prompts</div>
 <div class="si" onclick="go('gaming')"><i class="fas fa-gamepad"></i> Gaming Mode</div></div>
 <div><h3>Library</h3>
-<div class="si" onclick="go('library')"><i class="fas fa-book"></i> Prompt Library <span class="badge badge-free" style="margin-left: auto;">100+</span></div>
+<div class="si" onclick="go('library')"><i class="fas fa-book"></i> Prompt Library <span class="badge badge-free" style="margin-left:auto">100+</span></div>
 <div class="si" onclick="go('academy')"><i class="fas fa-graduation-cap"></i> Dev Academy</div></div>
 <div><h3>Premium</h3>
-<div class="si" onclick="go('premium')" style="background: rgba(255,106,0,.08); color: var(--primary);"><i class="fas fa-crown"></i> Upgrade</div></div>
+<div class="si" onclick="go('premium')" style="background:rgba(255,106,0,.08);color:var(--primary)"><i class="fas fa-crown"></i> Upgrade</div></div>
 <div><h3>Workspace</h3>
 <div class="si" onclick="go('workspace')"><i class="fas fa-folder"></i> Workspace</div>
 <div class="si" onclick="go('memory')"><i class="fas fa-brain"></i> Memory</div></div>
@@ -234,7 +199,7 @@ pre { background: #0d1117; border-radius: var(--r); padding: 12px; overflow-x: a
 </div>
 </nav>
 
-<!-- MAIN CONTENT -->
+<!-- MAIN -->
 <main class="mn" id="mn">
 
 <!-- PAGE: CHAT -->
@@ -266,7 +231,7 @@ pre { background: #0d1117; border-radius: var(--r); padding: 12px; overflow-x: a
 
 <!-- PAGE: DASHBOARD -->
 <div id="p-dashboard" class="page hidden">
-<h2 class="fw7 mb-4" style="font-size: 1.3rem;">🔮 Premium Dashboard</h2>
+<h2 class="fw7 mb-4" style="font-size:1.3rem">🔮 Premium Dashboard</h2>
 <div class="gr">
 <div class="gc" onclick="go('chat')"><div class="gi">💬</div><h3>Smart Chat</h3><p>Intelligent conversations</p><span class="btn btn-sm btn-primary mt-2">Open →</span></div>
 <div class="gc" onclick="go('vision')"><div class="gi">👁️</div><h3>Vision AI</h3><p>Analyze images, read text</p><span class="btn btn-sm btn-primary mt-2">Try →</span></div>
@@ -281,33 +246,33 @@ pre { background: #0d1117; border-radius: var(--r); padding: 12px; overflow-x: a
 
 <!-- PAGE: VISION -->
 <div id="p-vision" class="page hidden">
-<h2 class="fw7 mb-4" style="font-size: 1.3rem;">👁️ Vision AI</h2>
+<h2 class="fw7 mb-4" style="font-size:1.3rem">👁️ Vision AI</h2>
 <div class="card"><h3 class="fw6 mb-3">Analyze Any Image</h3>
 <p class="tm mb-3">Upload an image — ZEUS describes it, reads text, identifies objects.</p>
 <input type="file" id="vf" accept="image/*" class="mb-3" onchange="document.getElementById('vi').src=URL.createObjectURL(this.files[0]);document.getElementById('vp').classList.remove('hidden')" />
-<div id="vp" class="hidden mb-3"><img id="vi" style="max-height: 250px; border-radius: var(--r);" /></div>
+<div id="vp" class="hidden mb-3"><img id="vi" style="max-height:250px;border-radius:var(--r)" /></div>
 <button class="btn btn-primary" onclick="anVis()"><i class="fas fa-search"></i> Analyze Image</button>
-<div id="vr" class="mt-3" style="background: var(--bg); border-radius: var(--r); padding: 14px; min-height: 40px;"></div>
+<div id="vr" class="mt-3" style="background:var(--bg);border-radius:var(--r);padding:14px;min-height:40px"></div>
 </div>
 </div>
 
 <!-- PAGE: VOICE -->
 <div id="p-voice" class="page hidden">
-<h2 class="fw7 mb-4" style="font-size: 1.3rem;">🎤 Voice AI</h2>
+<h2 class="fw7 mb-4" style="font-size:1.3rem">🎤 Voice AI</h2>
 <div class="card"><h3 class="fw6 mb-3">Voice-Powered AI</h3>
 <p class="tm mb-3">Speak naturally and ZEUS responds. Click to start recording.</p>
 <button class="btn btn-primary btn-lg" id="vb" onclick="togV()"><i class="fas fa-microphone"></i> 🎙️ Start Recording</button>
-<div id="vr2" class="mt-3" style="background: var(--bg); border-radius: var(--r); padding: 14px; min-height: 40px;"></div>
+<div id="vr2" class="mt-3" style="background:var(--bg);border-radius:var(--r);padding:14px;min-height:40px"></div>
 </div>
 </div>
 
 <!-- PAGE: SEARCH -->
 <div id="p-search" class="page hidden">
-<h2 class="fw7 mb-4" style="font-size: 1.3rem;">🌐 Search AI</h2>
+<h2 class="fw7 mb-4" style="font-size:1.3rem">🌐 Search AI</h2>
 <div class="card mb-4"><p class="tm mb-3">Ask ZEUS to search the web for news, information, and more.</p>
-<div class="flex gap-3"><input type="text" id="sq" placeholder="Search anything..." style="flex: 1;" onkeydown="if(event.key==='Enter')doSch()" />
+<div class="flex gap-3"><input type="text" id="sq" placeholder="Search anything..." style="flex:1" onkeydown="if(event.key==='Enter')doSch()" />
 <button class="btn btn-primary" onclick="doSch()"><i class="fas fa-search"></i> Search</button></div></div>
-<div class="gr" style="grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));">
+<div class="gr" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr))">
 <div class="gc" onclick="qs('latest technology news 2026')"><h3>📰 Tech News</h3></div>
 <div class="gc" onclick="qs('latest AI breakthroughs')"><h3>🤖 AI News</h3></div>
 <div class="gc" onclick="qs('Nigeria news today')"><h3>🇳🇬 Nigeria News</h3></div>
@@ -318,8 +283,8 @@ pre { background: #0d1117; border-radius: var(--r); padding: 12px; overflow-x: a
 
 <!-- PAGE: CODING -->
 <div id="p-coding" class="page hidden">
-<h2 class="fw7 mb-4" style="font-size: 1.3rem;">💻 Coding Assistant</h2>
-<div class="gr" style="grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));">
+<h2 class="fw7 mb-4" style="font-size:1.3rem">💻 Coding Assistant</h2>
+<div class="gr" style="grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
 <div class="gc" onclick="qa('Write Python code for ')"><div class="gi">🐍</div><h3>Python</h3><p>Write, debug, optimize</p><span class="btn btn-sm btn-primary mt-2">Generate →</span></div>
 <div class="gc" onclick="qa('Build a React component for ')"><div class="gi">⚛️</div><h3>React</h3><p>Components, hooks, apps</p><span class="btn btn-sm btn-primary mt-2">Generate →</span></div>
 <div class="gc" onclick="qa('Create HTML/CSS for ')"><div class="gi">🌐</div><h3>HTML/CSS</h3><p>Responsive websites</p><span class="btn btn-sm btn-primary mt-2">Generate →</span></div>
@@ -331,41 +296,41 @@ pre { background: #0d1117; border-radius: var(--r); padding: 12px; overflow-x: a
 
 <!-- PAGE: DOCUMENTS -->
 <div id="p-docs" class="page hidden">
-<h2 class="fw7 mb-4" style="font-size: 1.3rem;">📄 Document AI</h2>
+<h2 class="fw7 mb-4" style="font-size:1.3rem">📄 Document AI</h2>
 <div class="card"><h3 class="fw6 mb-3">Analyze Documents</h3>
 <p class="tm mb-3">Paste text from PDFs, DOCX, or TXT files. ZEUS summarizes, translates, or analyzes.</p>
 <textarea id="dt" placeholder="Paste document text here..." rows="6" class="mb-3"></textarea>
-<div class="flex gap-3" style="flex-wrap: wrap;">
+<div class="flex gap-3" style="flex-wrap:wrap">
 <button class="btn btn-primary" onclick="docA('summarize')"><i class="fas fa-compress-alt"></i> Summarize</button>
 <button class="btn btn-secondary" onclick="docA('translate')"><i class="fas fa-language"></i> Translate</button>
 <button class="btn btn-secondary" onclick="docA('analyze')"><i class="fas fa-search"></i> Analyze</button>
 </div>
-<div id="dr" class="mt-3" style="background: var(--bg); border-radius: var(--r); padding: 14px; min-height: 40px;"></div>
+<div id="dr" class="mt-3" style="background:var(--bg);border-radius:var(--r);padding:14px;min-height:40px"></div>
 </div>
 </div>
 
 <!-- PAGE: IMAGE PROMPTS -->
 <div id="p-promptgen" class="page hidden">
-<h2 class="fw7 mb-4" style="font-size: 1.3rem;">🎨 Image Prompt Generator</h2>
+<h2 class="fw7 mb-4" style="font-size:1.3rem">🎨 Image Prompt Generator</h2>
 <div class="card"><h3 class="fw6 mb-3">Generate Premium Image Prompts</h3>
 <p class="tm mb-3">Describe what you want and ZEUS creates detailed image prompts for any AI image generator.</p>
 <input type="text" id="ps" placeholder="e.g., a futuristic city at sunset with neon lights" class="mb-3" />
-<div class="flex gap-3" style="flex-wrap: wrap;">
+<div class="flex gap-3" style="flex-wrap:wrap">
 <button class="btn btn-primary" onclick="genP()"><i class="fas fa-wand-magic-sparkles"></i> Generate Prompt</button>
 <button class="btn btn-secondary" onclick="randEx()"><i class="fas fa-dice"></i> Try Example</button>
 </div>
 <div id="pr" class="mt-3 hidden">
 <div class="flex-between mb-2"><span class="fw6">✨ Generated Prompt</span><button class="btn btn-sm btn-ghost" onclick="copyP()"><i class="fas fa-copy"></i> Copy</button></div>
-<div id="po" style="background: var(--bg); border-radius: var(--r); padding: 14px;"></div>
+<div id="po" style="background:var(--bg);border-radius:var(--r);padding:14px"></div>
 </div>
 </div>
 </div>
 
 <!-- PAGE: GAMING -->
 <div id="p-gaming" class="page hidden">
-<h2 class="fw7 mb-4" style="font-size: 1.3rem;">🎮 Gaming Mode</h2>
+<h2 class="fw7 mb-4" style="font-size:1.3rem">🎮 Gaming Mode</h2>
 <p class="tm mb-4">Your dedicated gaming assistant. Tips, strategies, news, and performance optimization.</p>
-<div class="gr" style="grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));">
+<div class="gr" style="grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
 <div class="gc" onclick="qa('Give me Free Fire advanced tips tricks and best sensitivity settings')"><div class="gi">🔥</div><h3>Free Fire</h3><p>Sensitivity, tips, rank push</p><span class="btn btn-sm btn-primary mt-2">Get Tips →</span></div>
 <div class="gc" onclick="qa('Give me PUBG Mobile pro tips and map guides')"><div class="gi">💥</div><h3>PUBG Mobile</h3><p>Strategies, map guides</p><span class="btn btn-sm btn-primary mt-2">Get Tips →</span></div>
 <div class="gc" onclick="qa('Give me COD Mobile best loadouts perks and ranked tips')"><div class="gi">🔫</div><h3>COD Mobile</h3><p>Loadouts, perks, tips</p><span class="btn btn-sm btn-primary mt-2">Get Tips →</span></div>
@@ -377,9 +342,9 @@ pre { background: #0d1117; border-radius: var(--r); padding: 12px; overflow-x: a
 
 <!-- PAGE: AGENTS -->
 <div id="p-agents" class="page hidden">
-<h2 class="fw7 mb-4" style="font-size: 1.3rem;">🤖 AI Agents</h2>
+<h2 class="fw7 mb-4" style="font-size:1.3rem">🤖 AI Agents</h2>
 <p class="tm mb-4">Custom AI agents with unique personalities. Click to activate and they'll respond in chat.</p>
-<div class="gr" style="grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));">
+<div class="gr" style="grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
 <div class="gc" onclick="actAgent('teacher')"><div class="gi">👨‍🏫</div><h3>Teacher</h3><p>Learn any subject step by step</p><span class="btn btn-sm btn-primary mt-2">Activate →</span></div>
 <div class="gc" onclick="actAgent('fitness')"><div class="gi">🏋️</div><h3>Fitness Coach</h3><p>Workout plans, diet tips</p><span class="btn btn-sm btn-primary mt-2">Activate →</span></div>
 <div class="gc" onclick="actAgent('business')"><div class="gi">💼</div><h3>Business Advisor</h3><p>Startup tips, strategy</p><span class="btn btn-sm btn-primary mt-2">Activate →</span></div>
@@ -391,15 +356,15 @@ pre { background: #0d1117; border-radius: var(--r); padding: 12px; overflow-x: a
 
 <!-- PAGE: PREMIUM -->
 <div id="p-premium" class="page hidden">
-<h2 class="fw8 mb-4 tc" style="font-size: 1.5rem;"><span class="tg">👑 ZEUS AI Premium</span></h2>
-<div class="card" style="max-width: 600px; margin: 0 auto; border: 1px solid rgba(255,106,0,.25); background: linear-gradient(135deg, rgba(255,106,0,.06), rgba(255,179,71,.03));">
-<div style="font-size: 3.5rem; margin-bottom: 10px; text-align: center;">👑</div>
-<h3 class="fw7 tc mb-3" style="font-size: 1.15rem;">Unlock Premium</h3>
+<h2 class="fw8 mb-4 tc" style="font-size:1.5rem"><span class="tg">👑 ZEUS AI Premium</span></h2>
+<div class="card" style="max-width:600px;margin:0 auto;border:1px solid rgba(255,106,0,.25);background:linear-gradient(135deg,rgba(255,106,0,.06),rgba(255,179,71,.03))">
+<div style="font-size:3.5rem;margin-bottom:10px;text-align:center">👑</div>
+<h3 class="fw7 tc mb-3" style="font-size:1.15rem">Unlock Premium</h3>
 <p class="tm tc mb-4">Get access to exclusive premium features, priority support, and advanced tools.</p>
 <div id="ps2" class="mb-4 tc">
 <span id="pb2" class="badge badge-free mb-3"><i class="fas fa-user"></i> Free User</span>
-<div id="pu" class="hidden" style="background: rgba(22,163,74,.1); border: 1px solid rgba(22,163,74,.3); border-radius: var(--r); padding: 14px; text-align: center;">
-<i class="fas fa-check-circle" style="color: #16a34a; font-size: 1.5rem;"></i>
+<div id="pu" class="hidden" style="background:rgba(22,163,74,.1);border:1px solid rgba(22,163,74,.3);border-radius:var(--r);padding:14px;text-align:center">
+<i class="fas fa-check-circle" style="color:#16a34a;font-size:1.5rem"></i>
 <h4 class="fw7 mt-2">✅ PREMIUM UNLOCKED!</h4>
 <p class="txs tm">You have full access to all premium features. Enjoy! ⚡</p>
 </div>
@@ -414,18 +379,18 @@ pre { background: #0d1117; border-radius: var(--r); padding: 12px; overflow-x: a
 </div>
 <hr />
 <h4 class="fw6 mb-3 tc">💳 Payment Details</h4>
-<div style="font-size: 1.8rem; font-weight: 900;" class="tg tc mb-2">₦<span id="pp">8,000</span></div>
+<div style="font-size:1.8rem;font-weight:900" class="tg tc mb-2">₦<span id="pp">8,000</span></div>
 <p class="txs tm tc mb-3">One-time payment • Lifetime access</p>
-<div class="card mb-3" style="background: var(--bg);">
+<div class="card mb-3" style="background:var(--bg)">
 <p class="txs fw5">📱 Bank Transfer / Opay</p>
-<p class="fw7 mt-2" style="font-size: 1.1rem; letter-spacing: 2px; font-family: monospace;" id="pa">9066760078</p>
+<p class="fw7 mt-2" style="font-size:1.1rem;letter-spacing:2px;font-family:monospace" id="pa">9066760078</p>
 <p class="txs tm">Bank: <strong id="pb3">Opay</strong></p>
 <p class="txs tm">Name: <strong id="pan">Christana Godwin Okon</strong></p>
 </div>
 <p class="txs tm mb-3 tc">After payment, send screenshot to <strong id="pph">+234 906 676 0078</strong> on WhatsApp.</p>
 <hr />
 <h4 class="fw6 mb-3 tc">🔑 Already have a Premium Code?</h4>
-<div class="flex gap-3"><input type="text" id="pci" placeholder="Enter premium code" style="flex: 1;" /><button class="btn btn-primary" onclick="redCode()"><i class="fas fa-check"></i> Unlock</button></div>
+<div class="flex gap-3"><input type="text" id="pci" placeholder="Enter premium code" style="flex:1" /><button class="btn btn-primary" onclick="redCode()"><i class="fas fa-check"></i> Unlock</button></div>
 <hr />
 <a class="btn btn-primary btn-lg w-100" id="pwa" href="https://wa.me/2349066760078?text=I%27ve%20paid%20for%20ZEUS%20AI%20Premium" target="_blank"><i class="fab fa-whatsapp"></i> Send to WhatsApp</a>
 </div>
@@ -433,14 +398,14 @@ pre { background: #0d1117; border-radius: var(--r); padding: 12px; overflow-x: a
 
 <!-- PAGE: LIBRARY -->
 <div id="p-library" class="page hidden">
-<h2 class="fw7 mb-4" style="font-size: 1.3rem;">📚 Prompt Library</h2>
+<h2 class="fw7 mb-4" style="font-size:1.3rem">📚 Prompt Library</h2>
 <p class="tm mb-4">Click any prompt to use instantly in chat.</p>
 <div class="gr" id="lg"></div>
 </div>
 
 <!-- PAGE: ACADEMY -->
 <div id="p-academy" class="page hidden">
-<h2 class="fw7 mb-4" style="font-size: 1.3rem;">🎓 ZEUS Dev Academy</h2>
+<h2 class="fw7 mb-4" style="font-size:1.3rem">🎓 ZEUS Dev Academy</h2>
 <p class="tm mb-4">Free degree-level curriculum for young developers — by ZEUS (Godwin Emmanuel Victory)</p>
 <div class="gr">
 <div class="gc" onclick="qa('Teach me full web development from basics to advanced step by step')"><div class="gi">🌐</div><h3>Web Development</h3><p>HTML → CSS → JS → React → Node</p></div>
@@ -456,40 +421,40 @@ pre { background: #0d1117; border-radius: var(--r); padding: 12px; overflow-x: a
 
 <!-- PAGE: WORKSPACE -->
 <div id="p-workspace" class="page hidden">
-<h2 class="fw7 mb-4" style="font-size: 1.3rem;">📁 Workspace</h2>
+<h2 class="fw7 mb-4" style="font-size:1.3rem">📁 Workspace</h2>
 <div class="card"><h3 class="fw6 mb-3">Your Workspace</h3>
 <p class="tm mb-3">Organize projects, notes, tasks, and bookmarks.</p>
-<div class="flex gap-3" style="flex-wrap: wrap;">
+<div class="flex gap-3" style="flex-wrap:wrap">
 <button class="btn btn-primary" onclick="qa('Create a detailed study plan for learning programming in 3 months')"><i class="fas fa-clipboard-list"></i> Study Plan</button>
 <button class="btn btn-secondary" onclick="qa('Create a task list for my software project')"><i class="fas fa-check-double"></i> Task List</button>
 <button class="btn btn-secondary" onclick="qa('Help me organize my notes on ')"><i class="fas fa-pen"></i> Smart Notes</button>
 </div>
-<div id="wc" class="mt-4"><div class="card" style="background: var(--bg); text-align: center; padding: 30px;"><i class="fas fa-folder-open" style="font-size: 3rem; color: var(--tx3);"></i><p class="tm mt-2">Your workspace items will appear here.</p></div></div>
+<div id="wc" class="mt-4"><div class="card" style="background:var(--bg);text-align:center;padding:30px"><i class="fas fa-folder-open" style="font-size:3rem;color:var(--tx3)"></i><p class="tm mt-2">Your workspace items will appear here.</p></div></div>
 </div>
 </div>
 
 <!-- PAGE: MEMORY -->
 <div id="p-memory" class="page hidden">
-<h2 class="fw7 mb-4" style="font-size: 1.3rem;">🧠 Memory</h2>
+<h2 class="fw7 mb-4" style="font-size:1.3rem">🧠 Memory</h2>
 <div class="card">
 <div class="flex-between mb-3"><span class="fw6">Enable Memory</span><div class="tgl" id="mt" onclick="togMem()"></div></div>
 <p class="txs tm mb-3">ZEUS remembers your preferences and conversations.</p>
 <hr /><h4 class="fw6 mb-2 mt-3">Saved Memories</h4>
 <p class="txs tm mb-3">Conversations & preferences stored</p>
-<div id="mc2" class="fw8 mb-3" style="font-size: 1.5rem;">0 items</div>
+<div id="mc2" class="fw8 mb-3" style="font-size:1.5rem">0 items</div>
 <button class="btn btn-primary" onclick="qa('What do you remember about me? Tell me everything.')"><i class="fas fa-brain"></i> Ask ZEUS What I Remember</button>
 </div>
 </div>
 
 <!-- PAGE: SETTINGS -->
 <div id="p-settings" class="page hidden">
-<h2 class="fw7 mb-4" style="font-size: 1.3rem;">⚙️ Settings</h2>
+<h2 class="fw7 mb-4" style="font-size:1.3rem">⚙️ Settings</h2>
 <div class="card mb-4"><h4 class="fw6 mb-3">Appearance</h4>
 <div class="tr"><span><i class="fas fa-moon"></i> Dark Theme</span><div class="tgl on"></div></div>
 <div class="flex-between mt-2"><span class="txs">Accent Color</span>
-<div class="flex gap-2"><span style="width: 26px; height: 26px; border-radius: 50%; background: #ff6a00; border: 2px solid #fff; cursor: pointer;"></span>
-<span style="width: 26px; height: 26px; border-radius: 50%; background: #7c3aed; cursor: pointer;"></span>
-<span style="width: 26px; height: 26px; border-radius: 50%; background: #16a34a; cursor: pointer;"></span></div></div>
+<div class="flex gap-2"><span style="width:26px;height:26px;border-radius:50%;background:#ff6a00;border:2px solid #fff;cursor:pointer"></span>
+<span style="width:26px;height:26px;border-radius:50%;background:#7c3aed;cursor:pointer"></span>
+<span style="width:26px;height:26px;border-radius:50%;background:#16a34a;cursor:pointer"></span></div></div>
 </div>
 <div class="card mb-4"><h4 class="fw6 mb-3">Communication</h4>
 <div class="tr"><span><i class="fas fa-volume-up"></i> Voice Output</span><div class="tgl"></div></div>
@@ -520,7 +485,7 @@ pre { background: #0d1117; border-radius: var(--r); padding: 12px; overflow-x: a
 
 <!-- PAGE: ADMIN -->
 <div id="p-admin" class="page hidden">
-<h2 class="fw7 mb-4" style="font-size: 1.3rem;">🛡️ Admin Panel</h2>
+<h2 class="fw7 mb-4" style="font-size:1.3rem">🛡️ Admin Panel</h2>
 
 <div class="ub" id="ub">
 <i class="fas fa-sync-alt"></i>
@@ -528,7 +493,7 @@ pre { background: #0d1117; border-radius: var(--r); padding: 12px; overflow-x: a
 <button class="btn btn-sm btn-primary" onclick="forceUp()"><i class="fas fa-cloud-upload-alt"></i> Force Update</button>
 </div>
 
-<div class="gr mb-4" style="grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));">
+<div class="gr mb-4" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr))">
 <div class="sb2"><div class="nm2" id="au">1</div><div class="lb">Users</div></div>
 <div class="sb2"><div class="nm2" id="ac">0</div><div class="lb">Conversations</div></div>
 <div class="sb2"><div class="nm2" id="am">0</div><div class="lb">Messages</div></div>
@@ -537,11 +502,10 @@ pre { background: #0d1117; border-radius: var(--r); padding: 12px; overflow-x: a
 
 <div class="ag">
 
-<!-- Premium Management -->
 <div class="card">
 <h3 class="fw6 mb-3"><i class="fas fa-key"></i> Premium Management</h3>
 <p class="txs tm mb-3">Generate codes and manage premium users.</p>
-<div class="flex gap-3 mb-3" style="flex-wrap: wrap;">
+<div class="flex gap-3 mb-3" style="flex-wrap:wrap">
 <button class="btn btn-primary" onclick="genPC()"><i class="fas fa-key"></i> Generate Code</button>
 <button class="btn btn-secondary" onclick="vPU()"><i class="fas fa-list"></i> View Users</button>
 </div>
@@ -552,11 +516,10 @@ pre { background: #0d1117; border-radius: var(--r); padding: 12px; overflow-x: a
 </div>
 <div id="pub" class="mt-3 hidden">
 <h4 class="fw6 txs mb-2">Premium Users</h4>
-<div id="pud" style="background: var(--bg); border-radius: var(--r); padding: 12px; min-height: 30px;"><p class="txs tm">None yet.</p></div>
+<div id="pud" style="background:var(--bg);border-radius:var(--r);padding:12px;min-height:30px"><p class="txs tm">None yet.</p></div>
 </div>
 </div>
 
-<!-- Creator Editor -->
 <div class="card">
 <h3 class="fw6 mb-3"><i class="fas fa-user-edit"></i> Creator Info Editor</h3>
 <p class="txs tm mb-3">Edit owner details. Bot talks about these when asked "Who is ZEUS?"</p>
@@ -579,10 +542,9 @@ pre { background: #0d1117; border-radius: var(--r); padding: 12px; overflow-x: a
 <div class="mb-2"><label class="txs tm">Account Name</label><input type="text" id="e17" value="Christana Godwin Okon" /></div>
 <div class="mb-2"><label class="txs tm">Bank</label><input type="text" id="e18" value="Opay" /></div>
 <button class="btn btn-primary w-100 mt-2" onclick="saveCR()"><i class="fas fa-save"></i> Save Creator Info</button>
-<p id="cfb" class="txs tc mt-2" style="color: #16a34a; min-height: 20px;"></p>
+<p id="cfb" class="txs tc mt-2" style="color:#16a34a;min-height:20px"></p>
 </div>
 
-<!-- Bot Controls -->
 <div class="card">
 <h3 class="fw6 mb-3"><i class="fas fa-toggle-on"></i> Bot Controls</h3>
 <p class="txs tm mb-3">Enable/disable features. Takes effect immediately.</p>
@@ -600,29 +562,27 @@ pre { background: #0d1117; border-radius: var(--r); padding: 12px; overflow-x: a
 <div class="tr"><span><i class="fas fa-graduation-cap"></i> Dev Academy</span><div class="tgl on" data-f="academy" onclick="togF(this)"></div></div>
 </div>
 
-<!-- PIN & Security -->
 <div class="card">
 <h3 class="fw6 mb-3"><i class="fas fa-lock"></i> PIN & Security</h3>
 <p class="txs tm mb-3">System PIN and owner verification.</p>
 <div class="mb-3"><label class="txs tm">System PIN</label>
-<div class="flex gap-2 mt-1"><input type="text" id="apd" readonly value="123456" style="font-family: monospace; letter-spacing: 3px; text-align: center;" />
+<div class="flex gap-2 mt-1"><input type="text" id="apd" readonly value="123456" style="font-family:monospace;letter-spacing:3px;text-align:center" />
 <button class="btn btn-sm btn-secondary" onclick="resetPIN()"><i class="fas fa-redo"></i> Reset</button></div></div>
 <div class="mb-3"><label class="txs tm">Owner Verification Code</label>
-<div class="pb" style="font-size: .85rem;">ZEUS-OWNER-<span id="ocv">A7X9K2</span></div>
+<div class="pb" style="font-size:.85rem">ZEUS-OWNER-<span id="ocv">A7X9K2</span></div>
 <p class="txs tm mt-1">Show this to prove you're the verified owner.</p></div>
 <button class="btn btn-secondary w-100" onclick="regenOC()"><i class="fas fa-sync"></i> Regenerate Code</button>
 </div>
 
-<!-- Analytics -->
 <div class="card">
 <h3 class="fw6 mb-3"><i class="fas fa-chart-bar"></i> Analytics</h3>
 <p class="txs tm mb-3" id="sysS">✅ All systems operational.</p>
-<div class="flex gap-3" style="flex-wrap: wrap;">
+<div class="flex gap-3" style="flex-wrap:wrap">
 <button class="btn btn-secondary" onclick="vStats()"><i class="fas fa-chart-pie"></i> View Stats</button>
 <button class="btn btn-danger" onclick="clrAll()"><i class="fas fa-trash-alt"></i> Clear All Data</button>
 </div>
 <div id="stb" class="mt-3 hidden">
-<div style="background: var(--bg); border-radius: var(--r); padding: 12px;">
+<div style="background:var(--bg);border-radius:var(--r);padding:12px">
 <p class="txs">Uptime: <strong>99.97%</strong></p>
 <p class="txs">API Calls Today: <strong id="apiC">247</strong></p>
 <p class="txs">Avg Response: <strong id="avgR">0.84s</strong></p>
@@ -631,7 +591,6 @@ pre { background: #0d1117; border-radius: var(--r); padding: 12px; overflow-x: a
 </div>
 </div>
 
-<!-- Groq Config -->
 <div class="card">
 <h3 class="fw6 mb-3"><i class="fas fa-microchip"></i> Groq AI Engine</h3>
 <p class="txs tm mb-3">Configure the AI engine. Your key is pre-installed.</p>
@@ -639,14 +598,14 @@ pre { background: #0d1117; border-radius: var(--r); padding: 12px; overflow-x: a
 <div class="flex gap-2 mt-1"><input type="password" id="gkd" value="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" readonly />
 <button class="btn btn-sm btn-secondary" onclick="togKey()"><i class="fas fa-eye"></i></button></div></div>
 <div class="mb-2"><label class="txs tm">Model</label>
-<div class="flex gap-2 mt-1" style="flex-wrap: wrap;">
+<div class="flex gap-2 mt-1" style="flex-wrap:wrap">
 <span class="mc on" data-m="llama3-70b-8192" onclick="selM(this)">Llama 3.3 70B</span>
 <span class="mc" data-m="llama3-8b-8192" onclick="selM(this)">Llama 3.1 8B</span>
 <span class="mc" data-m="mixtral-8x7b-32768" onclick="selM(this)">Mixtral 8x7B</span>
 <span class="mc" data-m="gemma2-9b-it" onclick="selM(this)">Gemma 2 9B</span>
 </div></div>
 <div class="mb-2"><label class="txs tm">Temperature: <span id="tv">0.7</span></label>
-<input type="range" id="tr" min="0" max="2" step="0.1" value="0.7" style="padding: 0;" oninput="document.getElementById('tv').textContent=this.value" /></div>
+<input type="range" id="tr" min="0" max="2" step="0.1" value="0.7" style="padding:0" oninput="document.getElementById('tv').textContent=this.value" /></div>
 <div class="mb-2"><label class="txs tm">Max Tokens</label>
 <input type="number" id="mt2" value="4096" min="256" max="8192" /></div>
 <button class="btn btn-primary w-100 mt-2" onclick="saveG()"><i class="fas fa-save"></i> Save Engine Config</button>
@@ -658,19 +617,20 @@ pre { background: #0d1117; border-radius: var(--r); padding: 12px; overflow-x: a
 </main>
 
 <script>
-// ===== ZEUS AI v7 — COMPLETE ENGINE =====
+// ===== ZEUS AI v7 — FULL ENGINE =====
 const GK = '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';
 let GM = 'llama3-70b-8192';
 let GT = 0.7;
 let GX = 4096;
+const ADMIN_CODE = '1090';
 
 const DEFC = {
-    name:'ZEUS', realName:'Godwin Emmanuel Victory', dob:'FEB 9,2007',
+    name:'ZEUS', realName:'Godwin Emmanuel Victory', dob:'July 4, 2006',
     phone:'+234 906 676 0078', email:'godwinemmanuelvictory@gmail.com',
     whatsapp:'https://wa.me/2349066760078',
     nationality:'Nigerian', religion:'Christian',
-    school:'ISHERI JUNIOR GRAMMAR SCHOOL,ISGS',
-    university:'OLABISI ONABANJO UNIVERSITU,OOU', course:'MSC',
+    school:'Command Day Secondary School, Nigerian Navy, NNS Delta',
+    university:'University of Benin (UNIBEN)', course:'Computer Science (Programming)',
     occupation:'Developer, Student, AI Engineer', relationship:'Single',
     mission:'Building ZEUS AI to empower African youth with free AI education',
     premiumPrice:'8,000', accountNumber:'9066760078',
@@ -700,8 +660,7 @@ const S = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    if (!S.pinSet) document.getElementById('pinMo').classList.remove('hidden');
-    else document.getElementById('pinMo').classList.remove('hidden');
+    document.getElementById('pinMo').classList.remove('hidden');
     document.getElementById('tv').textContent = GT;
     document.getElementById('tr').value = GT;
     document.getElementById('mt2').value = GX;
@@ -717,20 +676,22 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function vPIN() {
-    if (document.getElementById('pinIn').value === S.pin) {
+    const val = document.getElementById('pinIn').value;
+    if (val === S.pin || val === S.pin) {
         document.getElementById('pinMo').classList.add('hidden');
         S.pinSet = true; localStorage.zps = 'true';
         document.getElementById('pinErr').textContent = '';
         toast('✅ Welcome back!', 'success');
     } else document.getElementById('pinErr').textContent = '❌ Wrong PIN';
 }
+
 function sPIN() {
     const v = document.getElementById('pinIn').value;
     if (v.length < 4) { document.getElementById('pinErr').textContent = 'PIN needs 4+ chars'; return; }
     S.pin = v; localStorage.zp = v; localStorage.zps = 'true';
     document.getElementById('pinMo').classList.add('hidden');
     document.getElementById('pinErr').textContent = '';
-    toast('✅ PIN set!', 'success');
+    toast('✅ New PIN set!', 'success');
 }
 
 function go(p) {
@@ -835,7 +796,6 @@ function togF(el) {
     toast(f.charAt(0).toUpperCase()+f.slice(1) + ' ' + (on ? 'enabled' : 'disabled'), on ? 'success' : 'info');
 }
 
-// FIXED: Proper role mapping for Groq API
 async function groq(msgs, sys) {
     const a = [];
     if (sys) a.push({role: 'system', content: sys});
@@ -909,7 +869,6 @@ function loadMsgs() {
     }
 }
 
-// FIXED: procAI sends proper roles to Groq
 async function procAI(t) {
     showT();
     const c = S.cr;
@@ -927,7 +886,6 @@ async function procAI(t) {
         role: m.role === 'usr' ? 'user' : 'assistant',
         content: m.content
     }));
-    // Add current user message
     hist.push({role: 'user', content: t});
     
     try {
@@ -1006,7 +964,7 @@ function togV() {
         if (!SR) { toast('Voice not supported.', 'error'); return; }
         S.rec = new SR(); S.rec.continuous = true; S.rec.interimResults = true; S.rec.lang = 'en-US';
         S.rec.onresult = e => { let t = ''; for (let i = e.resultIndex; i < e.results.length; i++) t += e.results[i][0].transcript; document.getElementById('vr2').innerHTML = '<p class="txs">🎙️ <em>' + t + '</em></p>'; document.getElementById('ci').value = t; };
-        S.rec.onerror = () => { toast('Voice error.', 'error'); S.recOn = false; document.getElementById('vb').innerHTML = '<i class="fas fa-microphone"></i> 🎙️ Start'; };
+        S.rec.onerror = () => { toast('Voice error.', 'error'); S.recOn = false; document.getElementById('vb').innerHTML = '<i class="fas fa-microphone"></i> 🎙️ Start Recording'; };
     }
     if (!S.recOn) { S.rec.start(); S.recOn = true; document.getElementById('vb').innerHTML = '<i class="fas fa-stop" style="color:#dc2626"></i> ⏹️ Stop Recording'; toast('🎙️ Recording...', 'info'); }
     else { S.rec.stop(); S.recOn = false; document.getElementById('vb').innerHTML = '<i class="fas fa-microphone"></i> 🎙️ Start Recording'; const t = document.getElementById('ci').value.trim(); if (t) sendM(); }
@@ -1041,10 +999,7 @@ function saveG() { GT=parseFloat(document.getElementById('tr').value); GX=parseI
 function togKey() { const el=document.getElementById('gkd'); el.type = el.type==='password' ? 'text' : 'password'; }
 function forceUp() {
     const btn = event.target; btn.disabled=true; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Updating...';
-    setTimeout(() => { 
-        btn.disabled=false; btn.innerHTML='<i class="fas fa-cloud-upload-alt"></i> Force Update'; 
-        toast('✅ Updated!', 'success'); 
-    }, 2000);
+    setTimeout(() => { btn.disabled=false; btn.innerHTML='<i class="fas fa-cloud-upload-alt"></i> Force Update'; toast('✅ Updated!', 'success'); }, 2000);
 }
 function vStats() { document.getElementById('stb').classList.toggle('hidden'); }
 function clrAll() { if (confirm('⚠️ Clear ALL data? Permanent!')) { localStorage.clear(); location.reload(); } }
@@ -1058,16 +1013,27 @@ function toast(msg, type='info') {
     setTimeout(() => { t.style.opacity='0'; t.style.transform='translateX(30px)'; t.style.transition='all .3s'; setTimeout(() => t.remove(),300); }, 3500);
 }
 
+// ===== ADMIN CODE 1090 =====
+function checkAdminCode() {
+    const code = prompt('🔐 Enter Admin Code:');
+    if (code === ADMIN_CODE) {
+        S.admin = true; localStorage.za = 'true';
+        document.getElementById('adminBtn').classList.remove('hidden');
+        updUI(); toast('🛡️ Admin mode activated!', 'success');
+    } else if (code !== null) {
+        toast('❌ Wrong admin code.', 'error');
+    }
+}
+
+// Double-click logo for admin access
+document.getElementById('logoEl')?.addEventListener('dblclick', checkAdminCode);
+
 document.addEventListener('keydown', e => {
     if (e.ctrlKey && e.key === 'Enter') { const inp = document.getElementById('ci'); if (inp && !document.getElementById('p-chat').classList.contains('hidden')) sendM(); }
     if (e.key === 'Escape') document.getElementById('pinMo').classList.add('hidden');
     if (e.ctrlKey && e.key === 'k') { e.preventDefault(); const s = document.getElementById('sq'); if (s) { go('search'); s.focus(); } }
-});
-
-document.getElementById('logoEl')?.addEventListener('dblclick', () => {
-    S.admin = !S.admin; localStorage.za = String(S.admin);
-    document.getElementById('adminBtn').classList.toggle('hidden', !S.admin);
-    updUI(); toast(S.admin ? '🛡️ Admin ON' : 'Admin OFF', 'info');
+    // Ctrl+Shift+A for admin code
+    if (e.ctrlKey && e.shiftKey && e.key === 'A') { e.preventDefault(); checkAdminCode(); }
 });
 
 console.log('⚡ ZEUS AI v7 — Fully Loaded');
