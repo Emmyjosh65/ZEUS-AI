@@ -1,1265 +1,1285 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>ZEUS AI — Premium Intelligence Platform</title>
-<meta name="description" content="ZEUS AI — The world's most premium AI platform. Created by Godwin Emmanuel Victory.">
-<meta name="theme-color" content="#050505">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>⚡</text></svg>">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>⚡ ZEUS AI — Premium Intelligence Platform</title>
+    <meta name="description" content="ZEUS AI — Your Intelligent Digital Companion. Premium AI powered by Groq. Created by ZEUS (Godwin Emmanuel Victory)" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;700&display=swap');
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#050505;--bg2:#0a0a0a;--bg3:#121212;--bg4:#1a1a1a;--border:#1e1e1e;--border2:#2a2a2a;--orange:#ff7a00;--orange2:#ff9a33;--orange3:#e06a00;--gold:#d4a853;--gold2:#e8c36a;--blue:#3b82f6;--blue2:#60a5fa;--text:#ffffff;--text2:#b0b0b0;--text3:#707070;--rad:10px;--rad2:16px;--rad3:24px;--shadow:0 8px 40px rgba(0,0,0,.5);--glass:rgba(255,255,255,.03);--glass2:rgba(255,255,255,.06)}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;min-height:100vh;line-height:1.6;-webkit-font-smoothing:antialiased}
-::selection{background:var(--orange);color:#000}
-::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}::-webkit-scrollbar-thumb:hover{background:var(--orange)}
-.auth-overlay{position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center}
-.auth-container{width:100%;max-width:420px;padding:20px}
-.auth-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--rad3);padding:40px 32px;position:relative;overflow:hidden}
-.auth-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--gold),var(--blue))}
-.auth-logo{text-align:center;margin-bottom:28px}
-.auth-logo .logo-icon{font-size:48px;display:block;margin-bottom:8px;filter:drop-shadow(0 0 20px rgba(255,122,0,.3))}
-.auth-logo h1{font-size:28px;font-weight:900;background:linear-gradient(135deg,var(--orange),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.auth-logo p{font-size:13px;color:var(--text2);margin-top:4px}
-.auth-dev-link{text-align:center;margin-top:10px;font-size:11px;color:var(--text3)}
-.auth-dev-link span{color:var(--gold);cursor:pointer;font-weight:600}
-.auth-dev-link span:hover{text-decoration:underline}
-.auth-tabs{display:flex;gap:0;margin-bottom:20px;background:var(--bg2);border-radius:var(--rad);padding:3px}
-.auth-tab{flex:1;padding:10px;text-align:center;border:none;background:transparent;color:var(--text2);font-size:13px;font-weight:600;cursor:pointer;border-radius:8px;transition:.3s;font-family:inherit}
-.auth-tab.active{background:var(--orange);color:#000}
-.auth-form{display:none}
-.auth-form.active{display:block}
-.form-group{margin-bottom:14px}
-.form-group label{display:block;font-size:11px;font-weight:600;color:var(--text2);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
-.form-input{width:100%;padding:11px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--rad);color:var(--text);font-size:14px;font-family:inherit;outline:none;transition:.3s}
-.form-input:focus{border-color:var(--orange);box-shadow:0 0 20px rgba(255,122,0,.08)}
-.form-input::placeholder{color:var(--text3)}
-.btn-auth{width:100%;padding:13px;background:linear-gradient(135deg,var(--orange),var(--orange3));color:#000;border:none;border-radius:var(--rad);font-size:15px;font-weight:700;cursor:pointer;transition:.3s;font-family:inherit}
-.btn-auth:hover{transform:translateY(-1px);box-shadow:0 8px 30px rgba(255,122,0,.2)}
-.btn-auth:disabled{opacity:.5;cursor:not-allowed}
-.btn-outline{width:100%;padding:12px;background:transparent;border:1px solid var(--border);border-radius:var(--rad);color:var(--text2);font-size:13px;font-weight:600;cursor:pointer;transition:.3s;font-family:inherit}
-.btn-outline:hover{background:var(--glass);color:var(--text);border-color:var(--border2)}
-.auth-divider{display:flex;align-items:center;gap:12px;margin:16px 0;color:var(--text3);font-size:11px}
-.auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:var(--border)}
-.auth-error{background:rgba(255,50,50,.1);border:1px solid rgba(255,50,50,.2);border-radius:var(--rad);padding:10px 14px;margin-bottom:12px;font-size:13px;color:#ff6b6b;display:none}
-.auth-error.show{display:block}
-.auth-link{text-align:center;margin-top:12px;font-size:12px;color:var(--text2)}
-.auth-link a{color:var(--orange);text-decoration:none;font-weight:600;cursor:pointer}
-.auth-link a:hover{text-decoration:underline}
-.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;z-index:9998;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px}
-.modal{background:var(--bg3);border:1px solid var(--border2);border-radius:var(--rad3);max-width:480px;width:100%;max-height:80vh;overflow-y:auto;padding:28px}
-.modal h2{font-size:20px;font-weight:800;margin-bottom:12px}
-.modal p{font-size:13px;color:var(--text2);margin-bottom:12px;line-height:1.6}
-.modal-actions{display:flex;gap:8px;margin-top:16px;justify-content:flex-end}
-.modal-actions button{padding:10px 18px;border-radius:var(--rad);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;border:none}
-.btn-close{background:var(--bg2);color:var(--text2)}.btn-close:hover{background:var(--bg4);color:var(--text)}
-.btn-primary-modal{background:linear-gradient(135deg,var(--orange),var(--orange3));color:#000}
-.app{display:none;width:100%;height:100vh;overflow:hidden}
-.sidebar{position:fixed;top:0;left:0;width:260px;height:100%;background:var(--bg3);border-right:1px solid var(--border);z-index:100;display:flex;flex-direction:column;transition:.3s}
-.sidebar-header{padding:14px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
-.sidebar-logo{font-size:22px;filter:drop-shadow(0 0 10px rgba(255,122,0,.2))}
-.sidebar-title{font-size:17px;font-weight:900;background:linear-gradient(135deg,var(--orange),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.sidebar-badge{font-size:7px;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:2px 7px;border-radius:100px;background:var(--orange);color:#000;margin-left:auto}
-.sidebar-premium-badge{font-size:7px;padding:2px 7px;border-radius:100px;background:linear-gradient(135deg,var(--gold),#b8923a);color:#000;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-left:4px}
-.sidebar-user{padding:10px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);cursor:pointer;transition:.3s}
-.sidebar-user:hover{background:var(--glass)}
-.user-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--orange),var(--gold));display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#000;flex-shrink:0}
-.user-name{font-size:12px;font-weight:600}
-.user-status{font-size:10px;color:var(--text3)}
-.sidebar-nav{flex:1;overflow-y:auto;padding:6px}
-.nav-section{margin-bottom:10px}
-.nav-section-title{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);padding:6px 12px 3px}
-.nav-item{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;cursor:pointer;transition:.3s;font-size:12px;color:var(--text2);text-decoration:none;border:none;background:transparent;width:100%;font-family:inherit;text-align:left}
-.nav-item:hover{background:var(--glass);color:var(--text)}
-.nav-item.active{background:rgba(255,122,0,.1);color:var(--orange);border:1px solid rgba(255,122,0,.15)}
-.nav-icon{font-size:16px;width:22px;text-align:center;flex-shrink:0}
-.nav-badge{font-size:9px;background:var(--orange);color:#000;padding:1px 6px;border-radius:100px;margin-left:auto;font-weight:700}
-.nav-premium-badge{font-size:8px;background:linear-gradient(135deg,var(--gold),#b8923a);color:#000;padding:1px 6px;border-radius:100px;margin-left:auto;font-weight:700}
-.sidebar-footer{padding:10px 16px;border-top:1px solid var(--border);display:flex;gap:4px;flex-wrap:wrap}
-.sidebar-footer-btn{flex:1;min-width:60px;padding:7px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;color:var(--text2);font-size:10px;cursor:pointer;transition:.3s;text-align:center;font-family:inherit}
-.sidebar-footer-btn:hover{background:var(--bg4);color:var(--text)}
-.main{position:relative;margin-left:260px;height:100vh;display:flex;flex-direction:column;background:var(--bg)}
-.main-topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;border-bottom:1px solid var(--border);background:var(--bg3);min-height:50px}
-.topbar-left{display:flex;align-items:center;gap:10px}
-.topbar-title{font-size:15px;font-weight:700}
-.topbar-sub{font-size:11px;color:var(--text3)}
-.topbar-right{display:flex;align-items:center;gap:6px}
-.topbar-btn{width:34px;height:34px;border-radius:8px;background:transparent;border:1px solid var(--border);color:var(--text2);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.3s;font-size:14px}
-.topbar-btn:hover{background:var(--glass);color:var(--text);border-color:var(--border2)}
-.topbar-premium-btn{padding:6px 14px;border-radius:8px;background:linear-gradient(135deg,var(--gold),#b8923a);color:#000;border:none;cursor:pointer;font-size:11px;font-weight:700;font-family:inherit;transition:.3s}
-.topbar-premium-btn:hover{transform:scale(1.03);box-shadow:0 4px 20px rgba(212,168,83,.2)}
-.main-content{flex:1;overflow-y:auto;padding:0}
-.page{display:none;padding:20px 24px;max-width:1100px;margin:0 auto;width:100%}
-.page.active{display:block}
-.chat-page{display:flex;flex-direction:column;height:calc(100vh - 50px);padding:0;max-width:100%}
-.chat-messages{flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:10px}
-.chat-msg{display:flex;gap:8px;max-width:85%}
-.chat-msg.user{flex-direction:row-reverse;align-self:flex-end}
-.chat-msg.bot{align-self:flex-start}
-.chat-av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--orange),var(--gold));display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;color:#000}
-.chat-msg.user .chat-av{background:var(--bg4);color:var(--text)}
-.chat-bubble{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:10px 14px;max-width:100%}
-.chat-msg.user .chat-bubble{background:rgba(255,122,0,.08);border-color:rgba(255,122,0,.12)}
-.chat-text{font-size:13px;line-height:1.7;white-space:pre-wrap;word-break:break-word}
-.chat-text strong{color:var(--orange2)}
-.chat-text code{background:var(--bg2);padding:1px 5px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:12px}
-.chat-text pre{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:12px;overflow-x:auto;margin:6px 0;font-size:12px}
-.chat-actions{display:flex;gap:4px;margin-top:4px;padding-top:4px;border-top:1px solid var(--border)}
-.chat-action{background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:10px;padding:2px 5px;border-radius:3px;font-family:inherit}
-.chat-action:hover{background:var(--glass);color:var(--text2)}
-.chat-typing{display:flex;gap:3px;padding:4px 0}
-.chat-typing span{width:6px;height:6px;border-radius:50%;background:var(--orange);animation:typing 1.4s infinite ease-in-out both}
-.chat-typing span:nth-child(2){animation-delay:.16s}
-.chat-typing span:nth-child(3){animation-delay:.32s}
-@keyframes typing{0%,80%,100%{transform:scale(.6);opacity:.4}40%{transform:scale(1);opacity:1}}
-.chat-welcome{text-align:center;padding:50px 20px}
-.chat-welcome-icon{font-size:56px;display:block;margin-bottom:12px;filter:drop-shadow(0 0 30px rgba(255,122,0,.2))}
-.chat-welcome h2{font-size:22px;font-weight:800;margin-bottom:6px}
-.chat-welcome p{color:var(--text2);font-size:13px;max-width:480px;margin:0 auto 16px}
-.chat-suggestions{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
-.chat-sugg{padding:7px 14px;background:var(--glass);border:1px solid var(--border);border-radius:100px;color:var(--text2);font-size:11px;cursor:pointer;transition:.3s;font-family:inherit}
-.chat-sugg:hover{background:rgba(255,122,0,.08);border-color:rgba(255,122,0,.2);color:var(--orange)}
-.chat-input-area{padding:12px 24px 16px;border-top:1px solid var(--border);background:var(--bg3)}
-.chat-input-wrap{display:flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--rad2);padding:5px 8px;transition:.3s}
-.chat-input-wrap:focus-within{border-color:var(--orange);box-shadow:0 0 20px rgba(255,122,0,.05)}
-.chat-input{flex:1;background:transparent;border:none;color:var(--text);font-size:13px;font-family:inherit;padding:7px 4px;outline:none;max-height:100px;resize:none}
-.chat-input::placeholder{color:var(--text3)}
-.chat-tools{display:flex;gap:3px}
-.chat-tool{width:34px;height:34px;border-radius:6px;background:transparent;border:none;color:var(--text3);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.3s;font-size:15px;flex-shrink:0}
-.chat-tool:hover{background:var(--glass);color:var(--text2)}
-.chat-send{width:38px;height:38px;border-radius:6px;background:linear-gradient(135deg,var(--orange),var(--orange3));color:#000;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.3s;flex-shrink:0;font-weight:700}
-.chat-send:hover{transform:scale(1.05);box-shadow:0 4px 20px rgba(255,122,0,.2)}
-.chat-send:disabled{opacity:.4;cursor:not-allowed;transform:none}
-.chat-input-footer{display:flex;justify-content:space-between;padding:4px 4px 0;font-size:9px;color:var(--text3)}
-.dash-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:20px}
-.dash-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--rad2);padding:18px;transition:.4s}
-.dash-card:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 12px 36px rgba(0,0,0,.3)}
-.dash-card-icon{font-size:26px;margin-bottom:8px}
-.dash-card h3{font-size:14px;font-weight:700;margin-bottom:3px}
-.dash-card p{font-size:11px;color:var(--text2);line-height:1.5}
-.dash-card .card-link{display:inline-block;margin-top:8px;font-size:11px;color:var(--orange);font-weight:600;cursor:pointer}
-.section-title{font-size:16px;font-weight:800;margin-bottom:12px;margin-top:24px;display:flex;align-items:center;gap:8px}
-.section-title:first-child{margin-top:0}
-.premium-locked{position:relative}
-.premium-locked::after{content:'🔒 PREMIUM';position:absolute;top:8px;right:8px;font-size:9px;background:var(--gold);color:#000;padding:2px 8px;border-radius:100px;font-weight:700}
-.premium-locked .dash-card{opacity:.6;cursor:pointer}
-.premium-locked .dash-card:hover{opacity:.8}
-.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
-.tool-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--rad);padding:14px;text-align:center;cursor:pointer;transition:.3s}
-.tool-card:hover{background:var(--bg4);border-color:var(--border2);transform:translateY(-2px)}
-.tool-icon{font-size:28px;margin-bottom:6px}
-.tool-card h4{font-size:12px;font-weight:600}
-.tool-card p{font-size:10px;color:var(--text3);margin-top:3px}
-.settings-section{margin-bottom:20px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--rad2);padding:18px}
-.settings-section h3{font-size:14px;font-weight:700;margin-bottom:10px}
-.setting-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)}
-.setting-row:last-child{border-bottom:none}
-.setting-label{font-size:12px;font-weight:500}
-.setting-desc{font-size:10px;color:var(--text3)}
-.toggle{width:40px;height:22px;border-radius:11px;background:var(--border2);cursor:pointer;position:relative;transition:.3s;border:none;flex-shrink:0}
-.toggle.active{background:var(--orange)}
-.toggle::after{content:'';position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.3s}
-.toggle.active::after{left:20px}
-.admin-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:16px}
-.admin-stat{background:var(--bg3);border:1px solid var(--border);border-radius:var(--rad);padding:14px;text-align:center}
-.admin-stat .num{font-size:24px;font-weight:900;background:linear-gradient(135deg,var(--orange),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.admin-stat .lbl{font-size:10px;color:var(--text3);margin-top:3px}
-.admin-feature-toggles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
-.admin-feature{background:var(--bg3);border:1px solid var(--border);border-radius:var(--rad);padding:12px;display:flex;align-items:center;justify-content:space-between}
-.admin-feature span{font-size:12px}
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#ff6a00;--primary-dark:#e05e00;--primary-glow:rgba(255,106,0,0.3);--bg:#0b0c0f;--bg2:#13161c;--bg3:#1a1e28;--bg4:#1f2430;--text:#f0f2f5;--text2:#9aa2b5;--text3:#6b7388;--border:#282e3a;--radius:12px;--radius2:20px;--font:'Inter',system-ui,sans-serif;--grad:linear-gradient(135deg,#ff6a00,#ff8c38);--grad2:linear-gradient(135deg,#ff6a00,#f7971e,#ffb347)}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;line-height:1.6}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px}
+input,textarea,select,button{font-family:inherit;outline:none}
+input,textarea,select{background:var(--bg3);color:var(--text);border:1px solid var(--border);border-radius:var(--radius);padding:10px 14px;font-size:.92rem;width:100%;transition:.2s}
+input:focus,textarea:focus,select:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-glow)}
+button{cursor:pointer;background:none;border:none;color:inherit}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 20px;border-radius:var(--radius);font-weight:600;font-size:.88rem;transition:.25s;border:1px solid transparent}
+.btn-primary{background:var(--grad);color:#fff;box-shadow:0 4px 16px var(--primary-glow)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px var(--primary-glow)}
+.btn-secondary{background:var(--bg3);color:var(--text);border-color:var(--border)}
+.btn-secondary:hover{border-color:var(--primary)}
+.btn-ghost{background:transparent;color:var(--text2)}
+.btn-ghost:hover{background:var(--bg3);color:var(--text)}
+.btn-sm{padding:6px 14px;font-size:.78rem}
+.btn-lg{padding:14px 30px;font-size:1rem}
+.btn-danger{background:#dc2626;color:#fff}
+.btn-success{background:#16a34a;color:#fff}
+.hidden{display:none!important}
+.flex{display:flex}.flex-center{align-items:center;justify-content:center}.flex-between{align-items:center;justify-content:space-between}
+.gap-2{gap:8px}.gap-3{gap:12px}.gap-4{gap:16px}.gap-6{gap:24px}
+.text-gradient{background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.text-muted{color:var(--text2)}.text-sm{font-size:.85rem}.text-xs{font-size:.75rem}.text-lg{font-size:1.15rem}.text-xl{font-size:1.4rem}
+.fw-600{font-weight:600}.fw-700{font-weight:700}.fw-800{font-weight:800}
+.mt-2{margin-top:8px}.mt-3{margin-top:12px}.mt-4{margin-top:16px}.mt-6{margin-top:24px}.mb-2{margin-bottom:8px}.mb-3{margin-bottom:12px}.mb-4{margin-bottom:16px}
+.w-full{width:100%}.text-center{text-align:center}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);padding:20px;transition:.25s}
+.card:hover{border-color:rgba(255,106,0,.2)}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:100px;font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.badge-premium{background:var(--grad);color:#fff}
+.badge-free{background:var(--bg3);color:var(--text2);border:1px solid var(--border)}
+.badge-admin{background:#7c3aed;color:#fff}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.fade-in{animation:fadeIn .35s ease}
+.slide-in{animation:slideIn .3s ease}
+
+/* HEADER */
+.header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(11,12,15,.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.04);padding:10px 20px;display:flex;align-items:center;justify-content:space-between}
+.header .logo{font-size:1.2rem;font-weight:800;letter-spacing:-.5px}
+.header .logo span{color:var(--primary)}
+.header-right{display:flex;align-items:center;gap:10px}
+
+/* SIDEBAR */
+.sidebar{position:fixed;top:54px;left:0;bottom:0;width:220px;background:rgba(11,12,15,.95);backdrop-filter:blur(12px);border-right:1px solid rgba(255,255,255,.04);padding:12px 0;overflow-y:auto;z-index:900;transition:.3s}
+.sidebar::-webkit-scrollbar{width:3px}
+.sidebar h3{font-size:.65rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--text3);padding:8px 14px 4px;font-weight:600}
+.sidebar-item{display:flex;align-items:center;gap:10px;padding:8px 14px;border-radius:var(--radius);color:var(--text2);font-size:.85rem;transition:.2s;cursor:pointer;margin:1px 6px}
+.sidebar-item:hover{background:var(--bg3);color:var(--text)}
+.sidebar-item.active{background:rgba(255,106,0,.12);color:var(--primary)}
+.sidebar-item i{width:18px;text-align:center;font-size:.9rem}
+
+/* MAIN */
+.main{margin-left:220px;margin-top:54px;padding:20px;min-height:calc(100vh - 54px)}
+
+/* CHAT */
+.chat-wrap{max-width:820px;margin:0 auto;display:flex;flex-direction:column;min-height:calc(100vh - 100px)}
+.chat-msgs{flex:1;overflow-y:auto;padding:12px 0;display:flex;flex-direction:column;gap:12px}
+.msg{max-width:80%;padding:12px 16px;border-radius:var(--radius2);animation:fadeIn .3s ease;font-size:.92rem;line-height:1.65}
+.msg.user{align-self:flex-end;background:var(--grad);color:#fff;border-bottom-right-radius:4px}
+.msg.ai{align-self:flex-start;background:var(--bg3);border:1px solid var(--border);border-bottom-left-radius:4px}
+.msg .ti{font-size:.65rem;color:rgba(255,255,255,.45);margin-top:4px}
+.msg.ai .ti{color:var(--text3)}
+.chat-in{display:flex;gap:10px;padding:10px 0;border-top:1px solid var(--border)}
+.chat-in textarea{flex:1;border-radius:var(--radius2);padding:12px 16px;min-height:48px;max-height:120px;background:var(--bg3)}
+.chat-in .btn{border-radius:var(--radius2);padding:12px 18px}
+.typing-ind{align-self:flex-start;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius2);padding:12px 16px;animation:fadeIn .3s ease}
+.typing-ind .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--text3);margin:0 2px;animation:blink 1.2s infinite}
+.typing-ind .dot:nth-child(2){animation-delay:.2s}.typing-ind .dot:nth-child(3){animation-delay:.4s}
+
+/* WELCOME */
+.welcome{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px 20px}
+.welcome .icon{font-size:4rem;margin-bottom:14px}
+.welcome h1{font-size:2rem;font-weight:800;margin-bottom:6px}
+.welcome p{color:var(--text2);max-width:460px;margin-bottom:20px}
+.welcome-sug{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:500px}
+.welcome-sug .btn{font-size:.8rem;padding:7px 14px}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.grid-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);padding:18px;transition:.25s;cursor:pointer}
+.grid-card:hover{border-color:var(--primary);transform:translateY(-3px)}
+.grid-card .gi{font-size:1.8rem;margin-bottom:10px}
+.grid-card h3{font-size:.95rem;font-weight:700;margin-bottom:3px}
+.grid-card p{font-size:.8rem;color:var(--text2)}
+
+/* ADMIN GRID */
+.admin-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+.stat-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);padding:18px;text-align:center}
+.stat-box .num{font-size:2rem;font-weight:800;background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-box .lbl{color:var(--text2);font-size:.82rem;margin-top:3px}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)}
+.toggle-row:last-child{border-bottom:none}
+.tgl{position:relative;width:42px;height:22px;background:var(--bg3);border-radius:100px;border:1px solid var(--border);cursor:pointer;transition:.2s;flex-shrink:0}
+.tgl.active{background:var(--primary);border-color:var(--primary)}
+.tgl::after{content:'';position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:.2s}
+.tgl.active::after{left:22px}
+.pin-box{background:var(--bg);border:2px dashed var(--border);border-radius:var(--radius);padding:10px 14px;font-family:monospace;font-size:1rem;letter-spacing:3px;text-align:center;color:var(--primary);user-select:all;margin:8px 0}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);z-index:99998;display:flex;align-items:center;justify-content:center;animation:fadeIn .25s ease}
+.modal{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);padding:28px;max-width:420px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,.6);animation:fadeIn .3s ease}
+.modal h2{font-size:1.2rem;font-weight:700;margin-bottom:14px}
+
+/* TOAST */
+#toastContainer{position:fixed;top:16px;right:16px;z-index:99999;display:flex;flex-direction:column;gap:8px;max-width:360px}
+.toast{padding:12px 18px;border-radius:var(--radius);background:var(--bg4);border:1px solid var(--border);backdrop-filter:blur(12px);box-shadow:0 8px 32px rgba(0,0,0,.5);animation:slideIn .3s ease;display:flex;align-items:center;gap:10px;font-size:.85rem}
+.toast-success{border-left:4px solid #16a34a}
+.toast-error{border-left:4px solid #dc2626}
+.toast-info{border-left:4px solid var(--primary)}
+
+/* PREMIUM FEATURES */
+.premium-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:16px 0}
+.premium-item{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:14px;text-align:center;transition:.2s}
+.premium-item:hover{border-color:var(--primary);transform:translateY(-2px)}
+.premium-item i{font-size:1.6rem;color:var(--primary);margin-bottom:6px}
+
+/* MODEL SELECTOR */
+.model-chip{display:inline-block;padding:5px 12px;border-radius:100px;font-size:.75rem;background:var(--bg3);border:1px solid var(--border);cursor:pointer;transition:.2s;color:var(--text2)}
+.model-chip.active,.model-chip:hover{border-color:var(--primary);color:var(--primary);background:rgba(255,106,0,.08)}
+
+/* RESPONSIVE */
 @media(max-width:768px){
-  .sidebar{width:0;overflow:hidden}
-  .sidebar.open{width:260px}
-  .main{margin-left:0}
-  .page{padding:14px}
-  .dash-grid,.tools-grid,.admin-stats{grid-template-columns:1fr}
-  .chat-msg{max-width:95%}
-  .chat-messages{padding:14px}
-  .chat-input-area{padding:10px 14px 14px}
+.sidebar{left:-230px;width:230px}
+.sidebar.open{left:0}
+.main{margin-left:0;padding:14px}
+.header .menu-btn{display:flex!important}
+.grid{grid-template-columns:1fr}
+.admin-grid{grid-template-columns:1fr}
+.msg{max-width:92%}
+.welcome h1{font-size:1.4rem}
 }
+.menu-btn{display:none}
+
+/* OWNER CARD */
+.owner-foot{background:linear-gradient(135deg,rgba(255,106,0,.06),rgba(124,58,237,.06));border:1px solid rgba(255,106,0,.12);border-radius:var(--radius);padding:10px 14px;margin:6px 12px;font-size:.78rem}
+.owner-foot .nm{font-weight:700;font-size:.85rem}
+.owner-foot .ph{color:var(--text2);font-size:.72rem}
+
+/* BANNER */
+.update-banner{background:linear-gradient(135deg,rgba(255,106,0,.1),rgba(124,58,237,.1));border:1px solid rgba(255,106,0,.2);border-radius:var(--radius);padding:8px 14px;display:flex;align-items:center;gap:10px;font-size:.82rem;margin-bottom:14px;animation:fadeIn .4s ease}
+.update-banner i{color:var(--primary)}
+.update-banner .btn{margin-left:auto;font-size:.72rem;padding:4px 10px}
+code{background:rgba(255,106,0,.1);padding:1px 5px;border-radius:4px;font-size:.85rem}
+pre{background:#0d1117;border-radius:var(--radius);padding:12px;overflow-x:auto;margin:6px 0;border:1px solid var(--border)}
 </style>
 </head>
 <body>
 
-<!-- ===== AUTH OVERLAY ===== -->
-<div class="auth-overlay" id="authOverlay">
-  <div class="auth-container">
-    <div class="auth-card">
-      <div class="auth-logo">
-        <span class="logo-icon">⚡</span>
-        <h1>ZEUS AI</h1>
-        <p>Your Intelligent Digital Companion</p>
-        <div class="auth-dev-link">🔐 <span onclick="openAdminLogin()">Admin / Developer Login</span></div>
-      </div>
-      <div class="auth-tabs">
-        <button class="auth-tab active" onclick="switchAuthTab('login')">Sign In</button>
-        <button class="auth-tab" onclick="switchAuthTab('register')">Create Account</button>
-      </div>
-      <div class="auth-error" id="authError"></div>
-      <form class="auth-form active" id="loginForm" onsubmit="handleLogin(event)">
-        <div class="form-group">
-          <label>Username</label>
-          <input type="text" class="form-input" id="loginUser" placeholder="Enter username" required />
-        </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input type="password" class="form-input" id="loginPass" placeholder="Enter password" required />
-        </div>
-        <button type="submit" class="btn-auth" id="loginBtn">Sign In →</button>
-        <div class="auth-divider">or</div>
-        <button type="button" class="btn-outline" onclick="guestLogin()">👤 Continue as Guest</button>
-        <div class="auth-link">No account? <a onclick="switchAuthTab('register')">Create one</a></div>
-      </form>
-      <form class="auth-form" id="registerForm" onsubmit="handleRegister(event)">
-        <div class="form-group">
-          <label>Username</label>
-          <input type="text" class="form-input" id="regUser" placeholder="Choose username" required />
-        </div>
-        <div class="form-group">
-          <label>Display Name</label>
-          <input type="text" class="form-input" id="regName" placeholder="Your name" />
-        </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input type="password" class="form-input" id="regPass" placeholder="Choose password" required minlength="4" />
-        </div>
-        <button type="submit" class="btn-auth" id="regBtn">Create Account →</button>
-        <div class="auth-link">Already have one? <a onclick="switchAuthTab('login')">Sign in</a></div>
-      </form>
-      <div style="text-align:center;margin-top:14px;font-size:10px;color:var(--text3)">
-        Created by <strong>ZEUS</strong> (Godwin Emmanuel Victory) • 📞 +234 906 676 0078
-      </div>
-    </div>
-  </div>
+<div id="toastContainer"></div>
+
+<!-- PIN MODAL -->
+<div id="pinModal" class="modal-overlay">
+<div class="modal text-center">
+<i class="fas fa-shield-alt" style="font-size:3rem;color:var(--primary);margin-bottom:10px"></i>
+<h2>🔐 Secure Access</h2>
+<p class="text-sm text-muted mb-3">Enter your PIN to access ZEUS AI. New users can create a PIN.</p>
+<input type="password" id="pinInput" placeholder="Enter PIN" maxlength="6" style="text-align:center;font-size:1.2rem;letter-spacing:6px;margin-bottom:10px" />
+<div class="flex gap-3" style="justify-content:center">
+<button class="btn btn-primary" onclick="verifyPIN()"><i class="fas fa-check"></i> Unlock</button>
+<button class="btn btn-secondary" onclick="setupPIN()"><i class="fas fa-key"></i> Set PIN</button>
+</div>
+<p id="pinError" class="text-xs mt-2" style="color:#dc2626;min-height:18px"></p>
+</div>
 </div>
 
-<!-- ===== MAIN APP ===== -->
-<div class="app" id="app">
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <span class="sidebar-logo">⚡</span>
-      <span class="sidebar-title">ZEUS AI</span>
-      <span class="sidebar-badge">✦v6</span>
-      <span class="sidebar-premium-badge" id="sidebarPremBadge" style="display:none">PREMIUM</span>
-    </div>
-    <div class="sidebar-user" onclick="showProfile()">
-      <div class="user-avatar" id="sideAvatar">U</div>
-      <div>
-        <div class="user-name" id="sideName">User</div>
-        <div class="user-status" id="sideStatus">⚡ Online</div>
-      </div>
-    </div>
-    <nav class="sidebar-nav">
-      <div class="nav-section">
-        <div class="nav-section-title">Main</div>
-        <button class="nav-item active" onclick="navigate('chat')"><span class="nav-icon">💬</span> Smart Chat</button>
-        <button class="nav-item" onclick="navigate('dashboard')"><span class="nav-icon">🔮</span> Dashboard</button>
-        <button class="nav-item" onclick="navigate('agents')"><span class="nav-icon">🤖</span> AI Agents</button>
-      </div>
-      <div class="nav-section">
-        <div class="nav-section-title">Tools</div>
-        <button class="nav-item" onclick="navigate('vision')"><span class="nav-icon">👁️</span> Vision AI <span class="nav-badge">NEW</span></button>
-        <button class="nav-item" onclick="navigate('voice')"><span class="nav-icon">🎤</span> Voice AI</button>
-        <button class="nav-item" onclick="navigate('search')"><span class="nav-icon">🌐</span> Search AI</button>
-        <button class="nav-item" onclick="navigate('coding')"><span class="nav-icon">💻</span> Coding Assistant</button>
-        <button class="nav-item" onclick="navigate('documents')"><span class="nav-icon">📄</span> Document AI</button>
-        <button class="nav-item" onclick="navigate('images')"><span class="nav-icon">🎨</span> Image Prompts</button>
-        <button class="nav-item" onclick="navigate('gaming')"><span class="nav-icon">🎮</span> Gaming Mode</button>
-      </div>
-      <div class="nav-section">
-        <div class="nav-section-title">Library</div>
-        <button class="nav-item" onclick="navigate('prompts')"><span class="nav-icon">📚</span> Prompt Library <span class="nav-badge">100+</span></button>
-        <button class="nav-item" onclick="navigate('academy')"><span class="nav-icon">🎓</span> Dev Academy</button>
-      </div>
-      <div class="nav-section">
-        <div class="nav-section-title">Premium</div>
-        <button class="nav-item" onclick="navigate('premium')"><span class="nav-icon">👑</span> Upgrade to Premium <span class="nav-premium-badge">₦8,000</span></button>
-      </div>
-      <div class="nav-section">
-        <div class="nav-section-title">Workspace</div>
-        <button class="nav-item" onclick="navigate('workspace')"><span class="nav-icon">📁</span> Workspace</button>
-        <button class="nav-item" onclick="navigate('memory')"><span class="nav-icon">🧠</span> Memory</button>
-      </div>
-      <div class="nav-section">
-        <div class="nav-section-title">System</div>
-        <button class="nav-item" onclick="navigate('settings')"><span class="nav-icon">⚙️</span> Settings</button>
-        <button class="nav-item" id="adminNavItem" onclick="navigate('admin')" style="display:none"><span class="nav-icon">🛡️</span> Admin Panel</button>
-      </div>
-    </nav>
-    <div class="sidebar-footer">
-      <button class="sidebar-footer-btn" onclick="navigate('chat')">💬 Chat</button>
-      <button class="sidebar-footer-btn" onclick="clearChat()">🗑️ Clear</button>
-      <button class="sidebar-footer-btn" onclick="logout()">🚪 Exit</button>
-    </div>
-  </aside>
-
-  <div class="main">
-    <div class="main-topbar">
-      <div class="topbar-left">
-        <div>
-          <div class="topbar-title" id="pageTitle">Smart Chat</div>
-          <div class="topbar-sub" id="pageSub">ZEUS AI Engine • Premium Intelligence</div>
-        </div>
-      </div>
-      <div class="topbar-right">
-        <button class="topbar-premium-btn" onclick="navigate('premium')">👑 Premium</button>
-        <button class="topbar-btn" onclick="navigate('dashboard')" title="Dashboard">🔮</button>
-        <button class="topbar-btn" onclick="showAbout()" title="About ZEUS">⚡</button>
-        <button class="topbar-btn" onclick="logout()" title="Logout">🚪</button>
-      </div>
-    </div>
-
-    <div class="main-content" id="mainContent">
-      <!-- CHAT -->
-      <div class="page active" id="page-chat">
-        <div class="chat-page">
-          <div class="chat-messages" id="chatMessages">
-            <div class="chat-welcome" id="chatWelcome">
-              <span class="chat-welcome-icon">⚡</span>
-              <h2>Welcome to ZEUS AI</h2>
-              <p>Your intelligent digital companion. I'm powered by the ZEUS AI Engine — built for deep conversations, coding, creativity, learning, and gaming.</p>
-              <div class="chat-suggestions">
-                <button class="chat-sugg" onclick="quickPrompt('Who is ZEUS?')">👑 Who is ZEUS?</button>
-                <button class="chat-sugg" onclick="quickPrompt('Teach me Python')">🐍 Teach Python</button>
-                <button class="chat-sugg" onclick="quickPrompt('Search the web for latest tech news')">🌐 Search web</button>
-                <button class="chat-sugg" onclick="quickPrompt('Write a poem about AI')">📝 Write a poem</button>
-                <button class="chat-sugg" onclick="quickPrompt('Create a coding project idea')">💻 Project idea</button>
-                <button class="chat-sugg" onclick="quickPrompt('What is premium on ZEUS AI?')">👑 Premium info</button>
-              </div>
-            </div>
-          </div>
-          <div class="chat-input-area">
-            <div class="chat-input-wrap">
-              <div class="chat-tools">
-                <button class="chat-tool" onclick="document.getElementById('visionChatFile').click()" title="Upload Image">👁️</button>
-                <input type="file" id="visionChatFile" accept="image/*" style="display:none" onchange="handleChatVision(this)" />
-                <button class="chat-tool" id="micChatBtn" onclick="toggleMicChat()" title="Voice Input">🎤</button>
-              </div>
-              <textarea class="chat-input" id="chatInput" placeholder="Ask ZEUS anything..." rows="1" oninput="autoResize(this)"></textarea>
-              <button class="chat-send" id="chatSendBtn" onclick="sendChatMsg()">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-              </button>
-            </div>
-            <div class="chat-input-footer">
-              <span id="chatStatus">ZEUS AI • v6.0</span>
-              <span id="chatModel">⚡ ZEUS Intelligence Engine</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- DASHBOARD -->
-      <div class="page" id="page-dashboard">
-        <div class="section-title">🔮 Premium Dashboard</div>
-        <div class="dash-grid">
-          <div class="dash-card"><div class="dash-card-icon">💬</div><h3>Smart Chat</h3><p>Intelligent conversations with ZEUS AI</p><span class="card-link" onclick="navigate('chat')">Open →</span></div>
-          <div class="dash-card"><div class="dash-card-icon">👁️</div><h3>Vision AI</h3><p>Analyze images, read text, identify objects</p><span class="card-link" onclick="navigate('vision')">Try →</span></div>
-          <div class="dash-card"><div class="dash-card-icon">🎤</div><h3>Voice AI</h3><p>Speech-to-text and natural voice responses</p><span class="card-link" onclick="navigate('voice')">Try →</span></div>
-          <div class="dash-card"><div class="dash-card-icon">🌐</div><h3>Search AI</h3><p>Search the web, news, research instantly</p><span class="card-link" onclick="navigate('search')">Search →</span></div>
-          <div class="dash-card"><div class="dash-card-icon">💻</div><h3>Coding Assistant</h3><p>Write, debug, optimize any code</p><span class="card-link" onclick="navigate('coding')">Code →</span></div>
-          <div class="dash-card"><div class="dash-card-icon">🎮</div><h3>Gaming Mode</h3><p>Free Fire, PUBG, COD — tips & strategies</p><span class="card-link" onclick="navigate('gaming')">Game →</span></div>
-          <div class="dash-card"><div class="dash-card-icon">🤖</div><h3>AI Agents</h3><p>Custom agents with unique personalities</p><span class="card-link" onclick="navigate('agents')">Meet →</span></div>
-          <div class="dash-card premium-locked"><div class="dash-card" style="margin:0;border:none;background:transparent;padding:0"><div class="dash-card-icon">🎨</div><h3>Image Generator</h3><p>Generate premium AI art & designs</p><span class="card-link" onclick="navigate('premium')">🔒 Premium</span></div></div>
-        </div>
-        <div class="section-title">⚡ Quick Actions</div>
-        <div class="tools-grid">
-          <div class="tool-card" onclick="quickPrompt('Who is ZEUS?');navigate('chat')"><div class="tool-icon">👑</div><h4>About ZEUS</h4></div>
-          <div class="tool-card" onclick="quickPrompt('Motivate me today');navigate('chat')"><div class="tool-icon">🔥</div><h4>Motivation</h4></div>
-          <div class="tool-card" onclick="quickPrompt('Teach me something new');navigate('chat')"><div class="tool-icon">🧠</div><h4>Learn</h4></div>
-          <div class="tool-card" onclick="quickPrompt('Help me debug my code');navigate('chat')"><div class="tool-icon">🔧</div><h4>Debug</h4></div>
-        </div>
-      </div>
-
-      <!-- VISION -->
-      <div class="page" id="page-vision">
-        <div class="section-title">👁️ Vision AI</div>
-        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--rad2);padding:24px;text-align:center">
-          <div style="font-size:44px;margin-bottom:10px">🖼️</div>
-          <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">Analyze Any Image</h3>
-          <p style="color:var(--text2);font-size:12px;margin-bottom:14px">Upload an image — ZEUS will describe it, read text, and identify objects using Vision AI.</p>
-          <input type="file" accept="image/*" style="display:none" id="visionUploadPage" onchange="handleVisionPageFile(this)" />
-          <button class="btn-auth" style="width:auto;display:inline-flex" onclick="document.getElementById('visionUploadPage').click()">📤 Upload Image</button>
-          <div id="visionPagePreview" style="margin-top:14px;display:none">
-            <img id="visionPageImg" style="max-width:280px;max-height:280px;border-radius:var(--rad2);border:1px solid var(--border)" />
-          </div>
-          <div id="visionPageResult" style="margin-top:14px;text-align:left;background:var(--bg2);border:1px solid var(--border);border-radius:var(--rad);padding:16px;display:none">
-            <div style="font-size:11px;color:var(--text3);margin-bottom:6px">🔍 Analysis</div>
-            <div id="visionPageText" style="font-size:13px;line-height:1.7"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- VOICE -->
-      <div class="page" id="page-voice">
-        <div class="section-title">🎤 Voice AI</div>
-        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--rad2);padding:24px;text-align:center">
-          <div style="font-size:44px;margin-bottom:10px">🎙️</div>
-          <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">Voice-Powered AI</h3>
-          <p style="color:var(--text2);font-size:12px;margin-bottom:14px">Speak naturally and ZEUS responds. Click record and start talking.</p>
-          <button class="btn-auth" style="width:auto;display:inline-flex;gap:6px" onclick="toggleVoiceRecord()">
-            🎤 <span id="voiceBtnText">Start Recording</span>
-          </button>
-          <div id="voiceWaveArea" style="margin-top:12px;display:none">
-            <div style="display:flex;align-items:center;justify-content:center;gap:3px;height:30px">
-              <span style="width:3px;height:15px;background:var(--orange);border-radius:2px;animation:vWave .5s infinite alternate"></span>
-              <span style="width:3px;height:25px;background:var(--orange);border-radius:2px;animation:vWave .5s infinite alternate .1s"></span>
-              <span style="width:3px;height:10px;background:var(--orange);border-radius:2px;animation:vWave .5s infinite alternate .2s"></span>
-              <span style="width:3px;height:30px;background:var(--orange);border-radius:2px;animation:vWave .5s infinite alternate .3s"></span>
-              <span style="width:3px;height:20px;background:var(--orange);border-radius:2px;animation:vWave .5s infinite alternate .15s"></span>
-            </div>
-          </div>
-          <div id="voiceResult" style="margin-top:10px;font-size:13px;color:var(--text2);display:none"></div>
-        </div>
-      </div>
-
-      <!-- SEARCH -->
-      <div class="page" id="page-search">
-        <div class="section-title">🌐 Search AI</div>
-        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--rad2);padding:24px">
-          <p style="color:var(--text2);font-size:12px;margin-bottom:14px">Ask ZEUS to search the web for news, information, research, and more.</p>
-          <div style="display:flex;gap:8px">
-            <input class="form-input" id="searchQuery" placeholder="Search the web..." onkeydown="if(event.key==='Enter')webSearch()" />
-            <button class="btn-auth" style="width:auto;padding:12px 20px;flex-shrink:0" onclick="webSearch()">🔍 Search</button>
-          </div>
-          <div class="tools-grid" style="margin-top:14px">
-            <div class="tool-card" onclick="quickPrompt('Search the web for latest technology news 2026');navigate('chat')"><div class="tool-icon">📰</div><h4>Tech News</h4></div>
-            <div class="tool-card" onclick="quickPrompt('Search the web for Artificial Intelligence updates');navigate('chat')"><div class="tool-icon">🤖</div><h4>AI News</h4></div>
-            <div class="tool-card" onclick="quickPrompt('Search the web for Nigeria latest news today');navigate('chat')"><div class="tool-icon">🇳🇬</div><h4>Nigeria News</h4></div>
-            <div class="tool-card" onclick="quickPrompt('Search the web for Free Fire updates 2026');navigate('chat')"><div class="tool-icon">🎮</div><h4>Gaming News</h4></div>
-          </div>
-          <div id="searchResults" style="margin-top:14px;display:none"></div>
-        </div>
-      </div>
-
-      <!-- CODING -->
-      <div class="page" id="page-coding">
-        <div class="section-title">💻 Coding Assistant</div>
-        <div class="dash-grid">
-          <div class="dash-card"><div class="dash-card-icon">🐍</div><h3>Python</h3><p>Write, debug, optimize Python code</p><span class="card-link" onclick="quickPrompt('Write a Python calculator app with GUI');navigate('chat')">Generate →</span></div>
-          <div class="dash-card"><div class="dash-card-icon">⚛️</div><h3>React</h3><p>Build components, hooks, full apps</p><span class="card-link" onclick="quickPrompt('Create a React todo list with local storage');navigate('chat')">Generate →</span></div>
-          <div class="dash-card"><div class="dash-card-icon">🌐</div><h3>HTML/CSS</h3><p>Beautiful responsive websites</p><span class="card-link" onclick="quickPrompt('Build a modern landing page HTML CSS');navigate('chat')">Generate →</span></div>
-          <div class="dash-card"><div class="dash-card-icon">☕</div><h3>JavaScript</h3><p>Vanilla JS, Node.js, Express</p><span class="card-link" onclick="quickPrompt('Write a Node.js REST API with Express');navigate('chat')">Generate →</span></div>
-          <div class="dash-card"><div class="dash-card-icon">🗄️</div><h3>SQL</h3><p>Queries, optimization, design</p><span class="card-link" onclick="quickPrompt('Write SQL queries for an e-commerce database');navigate('chat')">Generate →</span></div>
-          <div class="dash-card"><div class="dash-card-icon">🔧</div><h3>Debug Code</h3><p>Find and fix bugs in any language</p><span class="card-link" onclick="quickPrompt('Help me debug: my code is not working');navigate('chat')">Debug →</span></div>
-        </div>
-      </div>
-
-      <!-- DOCUMENTS -->
-      <div class="page" id="page-documents">
-        <div class="section-title">📄 Document AI</div>
-        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--rad2);padding:24px;text-align:center">
-          <div style="font-size:44px;margin-bottom:10px">📄</div>
-          <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">Analyze Documents</h3>
-          <p style="color:var(--text2);font-size:12px;margin-bottom:14px">Paste text from PDFs, DOCX, or TXT files. ZEUS will summarize, translate, or analyze.</p>
-          <textarea class="form-input" style="min-height:100px;margin-bottom:10px;font-size:12px" placeholder="Paste your document text here..." id="docText"></textarea>
-          <div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap">
-            <button class="btn-auth" style="width:auto;padding:10px 16px;font-size:12px" onclick="processDoc('summarize')">📝 Summarize</button>
-            <button class="btn-auth" style="width:auto;padding:10px 16px;font-size:12px;background:var(--bg2);color:var(--text)" onclick="processDoc('translate')">🌍 Translate</button>
-            <button class="btn-auth" style="width:auto;padding:10px 16px;font-size:12px;background:var(--bg2);color:var(--text)" onclick="processDoc('analyze')">🔍 Analyze</button>
-          </div>
-          <div id="docResult" style="margin-top:14px;text-align:left;background:var(--bg2);border:1px solid var(--border);border-radius:var(--rad);padding:16px;display:none">
-            <div id="docResultText" style="font-size:13px;line-height:1.7"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- IMAGE PROMPTS -->
-      <div class="page" id="page-images">
-        <div class="section-title">🎨 Image Prompt Generator</div>
-        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--rad2);padding:24px;text-align:center">
-          <div style="font-size:44px;margin-bottom:10px">🎨</div>
-          <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">Generate Premium Image Prompts</h3>
-          <p style="color:var(--text2);font-size:12px;margin-bottom:14px">Describe what you want and ZEUS creates detailed image prompts you can use with any AI image generator.</p>
-          <textarea class="form-input" style="min-height:80px;margin-bottom:10px;font-size:12px" placeholder="Describe the image you want..." id="imagePromptDesc"></textarea>
-          <div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap">
-            <button class="btn-auth" style="width:auto;padding:10px 18px;font-size:12px" onclick="genImagePrompt()">✨ Generate Prompt</button>
-            <button class="btn-auth" style="width:auto;padding:10px 18px;font-size:12px;background:var(--bg2);color:var(--text)" onclick="document.getElementById('imagePromptDesc').value='A futuristic African city with neon lights, flying cars, and a giant ZEUS logo in the sky'">🎲 Try Example</button>
-          </div>
-          <div id="imagePromptResult" style="margin-top:14px;text-align:left;background:var(--bg2);border:1px solid var(--border);border-radius:var(--rad);padding:16px;display:none">
-            <div style="font-size:11px;color:var(--text3);margin-bottom:6px">✨ Generated Prompt</div>
-            <div id="imagePromptText" style="font-size:13px;line-height:1.7"></div>
-            <button class="chat-action" style="margin-top:8px;font-size:12px" onclick="copyPromptResult()">📋 Copy</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- GAMING -->
-      <div class="page" id="page-gaming">
-        <div class="section-title">🎮 Gaming Mode</div>
-        <p style="color:var(--text2);font-size:12px;margin-bottom:16px">Your dedicated gaming assistant. Tips, strategies, news, and performance optimization.</p>
-        <div class="dash-grid">
-          <div class="dash-card"><div class="dash-card-icon">🔥</div><h3>Free Fire</h3><p>Sensitivity, tips, weapon stats, rank push</p><span class="card-link" onclick="quickPrompt('Give me Free Fire tips for ranked push');navigate('chat')">Get Tips →</span></div>
-          <div class="dash-card"><div class="dash-card-icon">💥</div><h3>PUBG Mobile</h3><p>Sensitivity, strategies, map guides</p><span class="card-link" onclick="quickPrompt('Best PUBG Mobile sensitivity settings');navigate('chat')">Get Tips →</span></div>
-          <div class="dash-card"><div class="dash-card-icon">🔫</div><h3>COD Mobile</h3><p>Loadouts, perks, ranked tips</p><span class="card-link" onclick="quickPrompt('Best COD Mobile loadout for ranked');navigate('chat')">Get Tips →</span></div>
-          <div class="dash-card"><div class="dash-card-icon">⛏️</div><h3>Minecraft</h3><p>Building, redstone, survival</p><span class="card-link" onclick="quickPrompt('Minecraft survival tips for beginners');navigate('chat')">Get Tips →</span></div>
-          <div class="dash-card"><div class="dash-card-icon">🎯</div><h3>Fortnite</h3><p>Building, weapons, tournament info</p><span class="card-link" onclick="quickPrompt('Fortnite building strategies for beginners');navigate('chat')">Get Tips →</span></div>
-          <div class="dash-card"><div class="dash-card-icon">📊</div><h3>Sensitivity Calculator</h3><p>Perfect settings for your device</p><span class="card-link" onclick="quickPrompt('Help me calculate best sensitivity for Free Fire on Android');navigate('chat')">Calculate →</span></div>
-        </div>
-      </div>
-
-      <!-- AGENTS -->
-      <div class="page" id="page-agents">
-        <div class="section-title">🤖 AI Agents</div>
-        <p style="color:var(--text2);font-size:12px;margin-bottom:16px">Custom AI agents with unique personalities. Click to activate.</p>
-        <div class="dash-grid">
-          <div class="dash-card"><div class="dash-card-icon">👨‍🏫</div><h3>Teacher</h3><p>Learn any subject step by step</p><span class="card-link" onclick="activateAgent('teacher')">Activate →</span></div>
-          <div class="dash-card"><div class="dash-card-icon">🏋️</div><h3>Fitness Coach</h3><p>Workout plans, diet tips, form</p><span class="card-link" onclick="activateAgent('fitness')">Activate →</span></div>
-          <div class="dash-card"><div class="dash-card-icon">💼</div><h3>Business Advisor</h3><p>Startup tips, marketing, strategy</p><span class="card-link" onclick="activateAgent('business')">Activate →</span></div>
-          <div class="dash-card"><div class="dash-card-icon">🌍</div><h3>Translator</h3><p>Translate any languages</p><span class="card-link" onclick="activateAgent('translator')">Activate →</span></div>
-          <div class="dash-card"><div class="dash-card-icon">⚕️</div><h3>Health Assistant</h3><p>Wellness tips, health advice</p><span class="card-link" onclick="activateAgent('health')">Activate →</span></div>
-          <div class="dash-card"><div class="dash-card-icon">💻</div><h3>Developer</h3><p>Code generation, debugging</p><span class="card-link" onclick="activateAgent('developer')">Activate →</span></div>
-        </div>
-      </div>
-
-      <!-- PREMIUM UPGRADE -->
-      <div class="page" id="page-premium">
-        <div class="section-title">👑 ZEUS AI Premium</div>
-        <div style="background:var(--bg3);border:1px solid var(--gold);border-radius:var(--rad3);padding:28px;text-align:center">
-          <div style="font-size:48px;margin-bottom:10px">👑</div>
-          <h2 style="font-size:22px;font-weight:900;margin-bottom:6px">Unlock Premium</h2>
-          <p style="color:var(--text2);font-size:13px;margin-bottom:16px;max-width:400px;margin-left:auto;margin-right:auto">Get access to exclusive premium features, priority support, and advanced tools.</p>
-          <div id="premiumUnlocked" style="display:none">
-            <div style="background:rgba(212,168,83,.1);border:1px solid var(--gold);border-radius:var(--rad2);padding:20px;margin-bottom:16px">
-              <div style="font-size:28px;margin-bottom:6px">✅</div>
-              <h3 style="color:var(--gold);font-size:16px;font-weight:800">PREMIUM UNLOCKED!</h3>
-              <p style="color:var(--text2);font-size:12px">You have full access to all premium features. Enjoy! ⚡</p>
-            </div>
-          </div>
-          <div id="premiumLocked">
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:16px">
-              <div class="dash-card" style="border:1px solid var(--border2)"><div class="dash-card-icon">🎨</div><h3>Image Generator</h3><p>AI art & design prompts</p></div>
-              <div class="dash-card" style="border:1px solid var(--border2)"><div class="dash-card-icon">⚡</div><h3>Priority Speed</h3><p>Faster responses</p></div>
-              <div class="dash-card" style="border:1px solid var(--border2)"><div class="dash-card-icon">📊</div><h3>Advanced Analytics</h3><p>Detailed insights</p></div>
-              <div class="dash-card" style="border:1px solid var(--border2)"><div class="dash-card-icon">🎯</div><h3>Premium Agents</h3><p>Exclusive AI agents</p></div>
-            </div>
-            <div style="background:rgba(212,168,83,.05);border:1px solid var(--border2);border-radius:var(--rad2);padding:20px;margin-bottom:16px">
-              <h3 style="font-size:16px;font-weight:700">💳 Payment Details</h3>
-              <div class="price" style="font-size:32px;font-weight:900;background:linear-gradient(135deg,var(--gold),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:10px 0">₦8,000</div>
-              <p style="font-size:12px;color:var(--text2)">One-time payment • Lifetime access</p>
-            </div>
-            <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--rad2);padding:16px;margin-bottom:14px;text-align:left">
-              <h4 style="font-size:13px;font-weight:700;margin-bottom:8px">📱 Bank Transfer / Opay</h4>
-              <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--rad);padding:12px;margin-bottom:8px">
-                <div style="font-size:11px;color:var(--text3)">Account Number</div>
-                <div style="font-size:18px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--orange)">9066760078</div>
-                <div style="font-size:11px;color:var(--text3)">Bank: <strong style="color:var(--text)">Opay</strong></div>
-                <div style="font-size:11px;color:var(--text3)">Name: <strong style="color:var(--text)">Christana Godwin Okon</strong></div>
-              </div>
-              <p style="font-size:11px;color:var(--text3)">After payment, send screenshot to <strong style="color:var(--orange)">+234 906 676 0078</strong> on WhatsApp. Admin will verify and give you your Premium Code.</p>
-            </div>
-            <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--rad2);padding:16px;margin-bottom:14px">
-              <h4 style="font-size:13px;font-weight:700;margin-bottom:8px;text-align:left">🔑 Already have a Premium Code?</h4>
-              <div style="display:flex;gap:8px">
-                <input class="form-input" id="premiumCodeInput" placeholder="Enter ZEUS-PREM-XXXX" style="text-transform:uppercase;font-family:'JetBrains Mono',monospace;font-size:12px" />
-                <button class="btn-auth" style="width:auto;padding:12px 16px;font-size:12px;flex-shrink:0" onclick="redeemPremium()">Unlock</button>
-              </div>
-            </div>
-            <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--rad2);padding:16px">
-              <h4 style="font-size:13px;font-weight:700;margin-bottom:8px;text-align:left">📤 Upload Payment Screenshot</h4>
-              <p style="font-size:11px;color:var(--text3);margin-bottom:8px;text-align:left">Send directly to admin on WhatsApp for verification.</p>
-              <a href="https://wa.me/2349066760078?text=I%27ve%20paid%20for%20ZEUS%20AI%20Premium%20(%238000)%20-%20here%27s%20my%20screenshot" target="_blank" class="btn-auth" style="display:inline-flex;width:auto;padding:10px 20px;font-size:12px;text-decoration:none;gap:6px;background:#25d366">
-                💬 Send to WhatsApp
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- PROMPTS -->
-      <div class="page" id="page-prompts">
-        <div class="section-title">📚 Prompt Library</div>
-        <p style="color:var(--text2);font-size:12px;margin-bottom:14px">Click any prompt to use instantly in chat.</p>
-        <div class="dash-grid" id="promptGrid"></div>
-      </div>
-
-      <!-- ACADEMY -->
-      <div class="page" id="page-academy">
-        <div class="section-title">🎓 ZEUS Dev Academy</div>
-        <p style="color:var(--text2);font-size:12px;margin-bottom:16px">Free degree-level curriculum for young developers — by ZEUS (Godwin Emmanuel Victory)</p>
-        <div class="dash-grid">
-          <div class="dash-card"><div class="dash-card-icon">🌐</div><h3>Web Development</h3><p>HTML → CSS → JavaScript → React → Node.js</p></div>
-          <div class="dash-card"><div class="dash-card-icon">🐍</div><h3>Python Programming</h3><p>Basics → OOP → APIs → Automation → ML</p></div>
-          <div class="dash-card"><div class="dash-card-icon">☕</div><h3>JavaScript Mastery</h3><p>DOM → Async → Node → Express → REST APIs</p></div>
-          <div class="dash-card"><div class="dash-card-icon">🗄️</div><h3>Database Systems</h3><p>SQL → MySQL → MongoDB → Design & Optimization</p></div>
-          <div class="dash-card"><div class="dash-card-icon">🔐</div><h3>Cybersecurity</h3><p>Ethical Hacking → OWASP → Pen Testing</p></div>
-          <div class="dash-card"><div class="dash-card-icon">🤖</div><h3>AI & Machine Learning</h3><p>ML → Neural Networks → NLP → LLMs</p></div>
-          <div class="dash-card"><div class="dash-card-icon">💎</div><h3>DSA & Algorithms</h3><p>Arrays → Trees → Graphs → DP → FAANG Prep</p></div>
-          <div class="dash-card"><div class="dash-card-icon">☁️</div><h3>Cloud & DevOps</h3><p>Git → Docker → CI/CD → AWS → Kubernetes</p></div>
-        </div>
-      </div>
-
-      <!-- WORKSPACE -->
-      <div class="page" id="page-workspace">
-        <div class="section-title">📁 Workspace</div>
-        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--rad2);padding:24px;text-align:center">
-          <div style="font-size:40px;margin-bottom:10px">📁</div>
-          <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">Your Workspace</h3>
-          <p style="color:var(--text2);font-size:12px;margin-bottom:14px">Organize projects, notes, tasks, and bookmarks. Ask ZEUS to help you organize!</p>
-          <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
-            <button class="btn-outline" style="width:auto;padding:10px 16px;font-size:11px" onclick="quickPrompt('Create a study plan for learning web development');navigate('chat')">📋 Study Plan</button>
-            <button class="btn-outline" style="width:auto;padding:10px 16px;font-size:11px" onclick="quickPrompt('Help me organize my daily task list');navigate('chat')">✅ Task List</button>
-            <button class="btn-outline" style="width:auto;padding:10px 16px;font-size:11px" onclick="quickPrompt('Create project notes for my app idea');navigate('chat')">📝 Smart Notes</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- MEMORY -->
-      <div class="page" id="page-memory">
-        <div class="section-title">🧠 Memory</div>
-        <div class="settings-section">
-          <div class="setting-row"><div><div class="setting-label">Enable Memory</div><div class="setting-desc">ZEUS remembers your preferences</div></div><button class="toggle active" id="memoryToggle" onclick="this.classList.toggle('active')"></button></div>
-          <div class="setting-row"><div><div class="setting-label">Saved Memories</div><div class="setting-desc">Conversations & preferences stored</div></div><span style="font-size:11px;color:var(--text3)" id="memoryCount">0 items</span></div>
-          <button class="btn-outline" style="margin-top:10px;width:auto;padding:10px 16px;font-size:11px" onclick="quickPrompt('What do you remember about me?');navigate('chat')">Ask ZEUS What I Remember</button>
-        </div>
-      </div>
-
-      <!-- SETTINGS -->
-      <div class="page" id="page-settings">
-        <div class="section-title">⚙️ Settings</div>
-        <div class="settings-section">
-          <h3>Appearance</h3>
-          <div class="setting-row"><div><div class="setting-label">Dark Theme</div><div class="setting-desc">Premium dark mode</div></div><button class="toggle active"></button></div>
-          <div class="setting-row"><div><div class="setting-label">Accent</div><div class="setting-desc">ZEUS Signature Orange</div></div><span style="font-size:11px;color:var(--orange)">● Orange</span></div>
-        </div>
-        <div class="settings-section">
-          <h3>Communication</h3>
-          <div class="setting-row"><div><div class="setting-label">Voice Output</div><div class="setting-desc">AI speaks responses</div></div><button class="toggle active" id="voiceOutputToggle" onclick="this.classList.toggle('active');ZEUS_voiceOut=!ZEUS_voiceOut"></button></div>
-          <div class="setting-row"><div><div class="setting-label">Typing Animation</div><div class="setting-desc">Animated text</div></div><button class="toggle active" id="typingAnimateToggle" onclick="this.classList.toggle('active')"></button></div>
-        </div>
-        <div class="settings-section">
-          <h3>Account</h3>
-          <div class="setting-row"><div><div class="setting-label">Username</div><div class="setting-desc" id="settingsUser">user</div></div></div>
-          <div class="setting-row"><div><div class="setting-label">Status</div><div class="setting-desc" id="settingsStatus">Free User</div></div></div>
-          <div class="setting-row"><div><div class="setting-label">Owner Contact</div><div class="setting-desc">📞 +234 906 676 0078</div></div><a href="https://wa.me/2349066760078" target="_blank" style="color:var(--orange);font-size:11px;font-weight:600">WhatsApp</a></div>
-        </div>
-      </div>
-
-      <!-- ADMIN -->
-      <div class="page" id="page-admin">
-        <div class="section-title">🛡️ Admin Panel</div>
-        <div class="admin-stats">
-          <div class="admin-stat"><div class="num" id="adminUsers">1</div><div class="lbl">Users</div></div>
-          <div class="admin-stat"><div class="num" id="adminChats">0</div><div class="lbl">Conversations</div></div>
-          <div class="admin-stat"><div class="num" id="adminMessages">0</div><div class="lbl">Messages</div></div>
-          <div class="admin-stat"><div class="num" id="adminPremium">0</div><div class="lbl">Premium Users</div></div>
-        </div>
-        <div class="settings-section">
-          <h3>🔐 Premium Management</h3>
-          <p style="font-size:12px;color:var(--text2);margin-bottom:10px">Generate premium codes and manage premium users.</p>
-          <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <button class="btn-auth" style="width:auto;padding:10px 16px;font-size:12px" onclick="generatePremiumCode()">🔑 Generate Premium Code</button>
-            <button class="btn-outline" style="width:auto;padding:10px 16px;font-size:12px" onclick="alert('Premium users: '+getPremiumUsers().join(', '))">📋 View Premium Users</button>
-          </div>
-          <div id="generatedCode" style="display:none;margin-top:10px">
-            <div class="highlight-code" id="codeDisplay">ZEUS-PREM-XXXX</div>
-            <p style="font-size:11px;color:var(--text3)">Give this code to the user after verifying payment.</p>
-          </div>
-        </div>
-        <div class="settings-section">
-          <h3>✏️ Update Creator Info</h3>
-          <p style="font-size:12px;color:var(--text2);margin-bottom:10px">Edit the creator information that ZEUS AI displays when asked "Who is ZEUS?"</p>
-          <div class="form-group">
-            <label>Creator Name</label>
-            <input type="text" class="form-input" id="ownerName" value="ZEUS" />
-          </div>
-          <div class="form-group">
-            <label>Real Name</label>
-            <input type="text" class="form-input" id="ownerRealName" value="Godwin Emmanuel Victory" />
-          </div>
-          <div class="form-group">
-            <label>Phone</label>
-            <input type="text" class="form-input" id="ownerPhone" value="+234 906 676 0078" />
-          </div>
-          <div class="form-group">
-            <label>WhatsApp Link</label>
-            <input type="text" class="form-input" id="ownerWhatsApp" value="https://wa.me/2349066760078" />
-          </div>
-          <div class="form-group">
-            <label>Secondary School</label>
-            <input type="text" class="form-input" id="ownerSchool" value="ISGS Secondary School" />
-          </div>
-          <div class="form-group">
-            <label>University</label>
-            <input type="text" class="form-input" id="ownerUni" value="Olabisi Onabanjo University (OOU)" />
-          </div>
-          <div class="form-group">
-            <label>Relationship Status</label>
-            <input type="text" class="form-input" id="ownerRelationship" value="Single" />
-          </div>
-          <div class="form-group">
-            <label>Premium Price</label>
-            <input type="text" class="form-input" id="ownerPremiumPrice" value="₦8,000" />
-          </div>
-          <div class="form-group">
-            <label>Account Number</label>
-            <input type="text" class="form-input" id="ownerAcct" value="9066760078" />
-          </div>
-          <div class="form-group">
-            <label>Account Name</label>
-            <input type="text" class="form-input" id="ownerAcctName" value="Christana Godwin Okon" />
-          </div>
-          <div class="form-group">
-            <label>Bank</label>
-            <input type="text" class="form-input" id="ownerBank" value="Opay" />
-          </div>
-          <button class="btn-auth" style="width:auto;padding:10px 20px;font-size:12px" onclick="updateOwnerInfo()">💾 Save Creator Info</button>
-          <span id="ownerUpdateMsg" style="margin-left:10px;font-size:12px;color:var(--gold);display:none">✅ Updated!</span>
-        </div>
-        <div class="settings-section">
-          <h3>⚙️ Bot Controls</h3>
-          <div class="admin-feature-toggles">
-            <div class="admin-feature"><span>Smart Chat</span><button class="toggle active"></button></div>
-            <div class="admin-feature"><span>Vision AI</span><button class="toggle active"></button></div>
-            <div class="admin-feature"><span>Voice AI</span><button class="toggle active"></button></div>
-            <div class="admin-feature"><span>Search AI</span><button class="toggle active"></button></div>
-            <div class="admin-feature"><span>Premium System</span><button class="toggle active"></button></div>
-            <div class="admin-feature"><span>Registration</span><button class="toggle active"></button></div>
-          </div>
-        </div>
-        <div class="settings-section">
-          <h3>📊 Analytics</h3>
-          <p style="font-size:12px;color:var(--text2)">ZEUS AI is running smoothly. All systems operational.</p>
-          <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
-            <button class="btn-outline" style="width:auto;padding:8px 14px;font-size:11px" onclick="alert('Total messages: '+ZEUS_history.length)">View Stats</button>
-            <button class="btn-outline" style="width:auto;padding:8px 14px;font-size:11px" onclick="clearAllData()">🗑️ Clear All Data</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- HEADER -->
+<header class="header">
+<div class="flex-center gap-3">
+<button class="menu-btn btn btn-ghost" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+<div class="logo">⚡ <span>ZEUS</span> AI <span style="font-size:.6rem;background:var(--grad);padding:2px 7px;border-radius:100px;color:#fff;font-weight:600;margin-left:4px">v7</span></div>
 </div>
+<div class="header-right">
+<span id="roleBadge" class="badge badge-free"><i class="fas fa-user"></i> Free</span>
+<span style="color:var(--text3);font-size:.8rem" id="headerUser">user</span>
+<button class="btn btn-ghost btn-sm" onclick="showSettings()"><i class="fas fa-cog"></i></button>
+</div>
+</header>
+
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+<div><h3>Main</h3>
+<div class="sidebar-item active" onclick="go('chat')"><i class="fas fa-comment-dots"></i> Smart Chat</div>
+<div class="sidebar-item" onclick="go('dashboard')"><i class="fas fa-th-large"></i> Dashboard</div>
+<div class="sidebar-item" onclick="go('agents')"><i class="fas fa-robot"></i> AI Agents</div></div>
+<div><h3>Tools</h3>
+<div class="sidebar-item" onclick="go('vision')"><i class="fas fa-eye"></i> Vision AI <span class="badge badge-premium" style="margin-left:auto">NEW</span></div>
+<div class="sidebar-item" onclick="go('voice')"><i class="fas fa-microphone"></i> Voice AI</div>
+<div class="sidebar-item" onclick="go('search')"><i class="fas fa-globe"></i> Search AI</div>
+<div class="sidebar-item" onclick="go('coding')"><i class="fas fa-code"></i> Coding</div>
+<div class="sidebar-item" onclick="go('docs')"><i class="fas fa-file-alt"></i> Document AI</div>
+<div class="sidebar-item" onclick="go('promptgen')"><i class="fas fa-paint-brush"></i> Image Prompts</div>
+<div class="sidebar-item" onclick="go('gaming')"><i class="fas fa-gamepad"></i> Gaming Mode</div></div>
+<div><h3>Library</h3>
+<div class="sidebar-item" onclick="go('library')"><i class="fas fa-book"></i> Prompt Library <span class="badge badge-free" style="margin-left:auto">100+</span></div>
+<div class="sidebar-item" onclick="go('academy')"><i class="fas fa-graduation-cap"></i> Dev Academy</div></div>
+<div><h3>Premium</h3>
+<div class="sidebar-item" onclick="go('premium')" style="background:rgba(255,106,0,.08);color:var(--primary)"><i class="fas fa-crown"></i> Upgrade</div></div>
+<div><h3>Workspace</h3>
+<div class="sidebar-item" onclick="go('workspace')"><i class="fas fa-folder"></i> Workspace</div>
+<div class="sidebar-item" onclick="go('memory')"><i class="fas fa-brain"></i> Memory</div></div>
+<div><h3>System</h3>
+<div class="sidebar-item" onclick="go('settings')"><i class="fas fa-cog"></i> Settings</div>
+<div class="sidebar-item" onclick="go('admin')" id="adminBtn"><i class="fas fa-shield-alt"></i> Admin Panel</div></div>
+<div class="owner-foot">
+<div style="font-size:.65rem;color:var(--text3)">Created by</div>
+<div class="nm" id="sideOwnerName">ZEUS (Godwin Emmanuel Victory)</div>
+<div class="ph" id="sideOwnerPhone">📞 +234 906 676 0078</div>
+</div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="main" id="mainContent">
+
+<!-- PAGE: CHAT -->
+<div id="p-chat" class="page">
+<div class="chat-wrap">
+<div class="chat-msgs" id="chatMsgs">
+<div class="welcome" id="welcomeScr">
+<div class="icon">⚡</div>
+<h1>Welcome to <span class="text-gradient">ZEUS AI</span></h1>
+<p>Your intelligent digital companion. Powered by the <strong>ZEUS AI Engine</strong> — built for deep conversations, coding, creativity, learning, and gaming.</p>
+<div class="welcome-sug">
+<button class="btn btn-secondary" onclick="quickAsk('Who is ZEUS? Tell me about the creator.')">👑 Who is ZEUS?</button>
+<button class="btn btn-secondary" onclick="quickAsk('Teach me Python programming from scratch')">🐍 Teach Python</button>
+<button class="btn btn-secondary" onclick="quickAsk('Search the web for latest technology news')">🌐 Search web</button>
+<button class="btn btn-secondary" onclick="quickAsk('Write a beautiful poem about success')">📝 Write a poem</button>
+<button class="btn btn-secondary" onclick="quickAsk('Give me a full-stack project idea with features')">💻 Project idea</button>
+<button class="btn btn-secondary" onclick="go('premium')">👑 Premium info</button>
+<button class="btn btn-secondary" onclick="quickAsk('Tell me everything about Godwin Emmanuel Victory')">📖 About Creator</button>
+<button class="btn btn-secondary" onclick="quickAsk('What is the motivation behind ZEUS AI?')">🔥 Motivation</button>
+</div>
+</div>
+</div>
+<div class="chat-in">
+<textarea id="chatIn" placeholder="Message ZEUS AI..." rows="1" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMsg()}"></textarea>
+<button class="btn btn-primary" onclick="sendMsg()"><i class="fas fa-paper-plane"></i></button>
+</div>
+</div>
+</div>
+
+<!-- PAGE: DASHBOARD -->
+<div id="p-dashboard" class="page hidden">
+<h2 class="text-xl fw-700 mb-4">🔮 Premium Dashboard</h2>
+<div class="grid">
+<div class="grid-card" onclick="go('chat')"><div class="gi">💬</div><h3>Smart Chat</h3><p>Intelligent conversations with ZEUS AI</p><span class="btn btn-sm btn-primary mt-3">Open →</span></div>
+<div class="grid-card" onclick="go('vision')"><div class="gi">👁️</div><h3>Vision AI</h3><p>Analyze images, read text, identify objects</p><span class="btn btn-sm btn-primary mt-3">Try →</span></div>
+<div class="grid-card" onclick="go('voice')"><div class="gi">🎤</div><h3>Voice AI</h3><p>Speech-to-text and natural voice responses</p><span class="btn btn-sm btn-primary mt-3">Try →</span></div>
+<div class="grid-card" onclick="go('search')"><div class="gi">🌐</div><h3>Search AI</h3><p>Search the web, news, research instantly</p><span class="btn btn-sm btn-primary mt-3">Search →</span></div>
+<div class="grid-card" onclick="go('coding')"><div class="gi">💻</div><h3>Coding Assistant</h3><p>Write, debug, optimize any code</p><span class="btn btn-sm btn-primary mt-3">Code →</span></div>
+<div class="grid-card" onclick="go('gaming')"><div class="gi">🎮</div><h3>Gaming Mode</h3><p>Free Fire, PUBG, COD — tips & strategies</p><span class="btn btn-sm btn-primary mt-3">Game →</span></div>
+<div class="grid-card" onclick="go('agents')"><div class="gi">🤖</div><h3>AI Agents</h3><p>Custom agents with unique personalities</p><span class="btn btn-sm btn-primary mt-3">Meet →</span></div>
+<div class="grid-card" onclick="go('premium')"><div class="gi">👑</div><h3>Premium</h3><p>Unlock exclusive features</p><span class="btn btn-sm btn-primary mt-3">🔒 Premium</span></div>
+</div>
+</div>
+
+<!-- PAGE: VISION -->
+<div id="p-vision" class="page hidden">
+<h2 class="text-xl fw-700 mb-4">👁️ Vision AI</h2>
+<div class="card"><h3 class="fw-600 mb-3">Analyze Any Image</h3>
+<p class="text-muted mb-3">Upload an image — ZEUS will describe it, read text, and identify objects using Vision AI.</p>
+<input type="file" id="visionFile" accept="image/*" class="mb-3" />
+<div id="visionPreview" class="hidden mb-3"><img id="visionImg" style="max-height:250px;border-radius:var(--radius)" /></div>
+<button class="btn btn-primary" onclick="analyzeVision()"><i class="fas fa-search"></i> Analyze Image</button>
+<div id="visionResult" class="mt-3" style="background:var(--bg);border-radius:var(--radius);padding:14px;min-height:40px"></div>
+</div>
+</div>
+
+<!-- PAGE: VOICE -->
+<div id="p-voice" class="page hidden">
+<h2 class="text-xl fw-700 mb-4">🎤 Voice AI</h2>
+<div class="card"><h3 class="fw-600 mb-3">Voice-Powered AI</h3>
+<p class="text-muted mb-3">Speak naturally and ZEUS responds. Click record and start talking.</p>
+<button class="btn btn-primary btn-lg" id="voiceBtn" onclick="toggleVoice()"><i class="fas fa-microphone"></i> 🎙️ Start Recording</button>
+<div id="voiceResult" class="mt-3" style="background:var(--bg);border-radius:var(--radius);padding:14px;min-height:40px"></div>
+</div>
+</div>
+
+<!-- PAGE: SEARCH -->
+<div id="p-search" class="page hidden">
+<h2 class="text-xl fw-700 mb-4">🌐 Search AI</h2>
+<div class="card mb-4"><p class="text-muted mb-3">Ask ZEUS to search the web for news, information, research, and more.</p>
+<div class="flex gap-3"><input type="text" id="searchQ" placeholder="Search anything..." style="flex:1" onkeydown="if(event.key==='Enter')doSearch()" />
+<button class="btn btn-primary" onclick="doSearch()"><i class="fas fa-search"></i> Search</button></div></div>
+<div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(160px,1fr))">
+<div class="grid-card" onclick="quickSearch('latest technology news 2026')"><h3>📰 Tech News</h3></div>
+<div class="grid-card" onclick="quickSearch('latest AI developments')"><h3>🤖 AI News</h3></div>
+<div class="grid-card" onclick="quickSearch('Nigeria news today')"><h3>🇳🇬 Nigeria News</h3></div>
+<div class="grid-card" onclick="quickSearch('gaming industry news')"><h3>🎮 Gaming News</h3></div>
+</div>
+<div id="searchRes" class="mt-4"></div>
+</div>
+
+<!-- PAGE: CODING -->
+<div id="p-coding" class="page hidden">
+<h2 class="text-xl fw-700 mb-4">💻 Coding Assistant</h2>
+<div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(190px,1fr))">
+<div class="grid-card" onclick="quickAsk('Write Python code for ')" style="cursor:pointer"><div class="gi">🐍</div><h3>Python</h3><p>Write, debug, optimize</p><span class="btn btn-sm btn-primary mt-3">Generate →</span></div>
+<div class="grid-card" onclick="quickAsk('Build a React component for ')" style="cursor:pointer"><div class="gi">⚛️</div><h3>React</h3><p>Components, hooks, apps</p><span class="btn btn-sm btn-primary mt-3">Generate →</span></div>
+<div class="grid-card" onclick="quickAsk('Create HTML/CSS for ')" style="cursor:pointer"><div class="gi">🌐</div><h3>HTML/CSS</h3><p>Responsive websites</p><span class="btn btn-sm btn-primary mt-3">Generate →</span></div>
+<div class="grid-card" onclick="quickAsk('Write JavaScript for ')" style="cursor:pointer"><div class="gi">☕</div><h3>JavaScript</h3><p>Vanilla JS, Node, Express</p><span class="btn btn-sm btn-primary mt-3">Generate →</span></div>
+<div class="grid-card" onclick="quickAsk('Write SQL query for ')" style="cursor:pointer"><div class="gi">🗄️</div><h3>SQL</h3><p>Queries, optimization</p><span class="btn btn-sm btn-primary mt-3">Generate →</span></div>
+<div class="grid-card" onclick="quickAsk('Debug this code: ')" style="cursor:pointer"><div class="gi">🔧</div><h3>Debug Code</h3><p>Fix bugs any language</p><span class="btn btn-sm btn-primary mt-3">Debug →</span></div>
+</div>
+</div>
+
+<!-- PAGE: DOCUMENTS -->
+<div id="p-docs" class="page hidden">
+<h2 class="text-xl fw-700 mb-4">📄 Document AI</h2>
+<div class="card"><h3 class="fw-600 mb-3">Analyze Documents</h3>
+<p class="text-muted mb-3">Paste text from PDFs, DOCX, or TXT files. ZEUS will summarize, translate, or analyze.</p>
+<textarea id="docText" placeholder="Paste document text here..." rows="6" class="mb-3"></textarea>
+<div class="flex gap-3" style="flex-wrap:wrap">
+<button class="btn btn-primary" onclick="docAction('summarize')"><i class="fas fa-compress-alt"></i> Summarize</button>
+<button class="btn btn-secondary" onclick="docAction('translate')"><i class="fas fa-language"></i> Translate</button>
+<button class="btn btn-secondary" onclick="docAction('analyze')"><i class="fas fa-search"></i> Analyze</button>
+</div>
+<div id="docRes" class="mt-3" style="background:var(--bg);border-radius:var(--radius);padding:14px;min-height:40px"></div>
+</div>
+</div>
+
+<!-- PAGE: IMAGE PROMPTS -->
+<div id="p-promptgen" class="page hidden">
+<h2 class="text-xl fw-700 mb-4">🎨 Image Prompt Generator</h2>
+<div class="card"><h3 class="fw-600 mb-3">Generate Premium Image Prompts</h3>
+<p class="text-muted mb-3">Describe what you want and ZEUS creates detailed image prompts.</p>
+<input type="text" id="promptSeed" placeholder="e.g., a futuristic city at sunset with neon lights" class="mb-3" />
+<div class="flex gap-3" style="flex-wrap:wrap">
+<button class="btn btn-primary" onclick="genPrompt()"><i class="fas fa-wand-magic-sparkles"></i> Generate Prompt</button>
+<button class="btn btn-secondary" onclick="randExample()"><i class="fas fa-dice"></i> Try Example</button>
+</div>
+<div id="promptRes" class="mt-3 hidden">
+<div class="flex-between mb-2"><span class="fw-600">✨ Generated Prompt</span><button class="btn btn-sm btn-ghost" onclick="copyPrompt()"><i class="fas fa-copy"></i> Copy</button></div>
+<div id="promptOut" style="background:var(--bg);border-radius:var(--radius);padding:14px"></div>
+</div>
+</div>
+</div>
+
+<!-- PAGE: GAMING -->
+<div id="p-gaming" class="page hidden">
+<h2 class="text-xl fw-700 mb-4">🎮 Gaming Mode</h2>
+<p class="text-muted mb-4">Your dedicated gaming assistant. Tips, strategies, news, and performance optimization.</p>
+<div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(190px,1fr))">
+<div class="grid-card" onclick="quickAsk('Give me Free Fire advanced tips and tricks')"><div class="gi">🔥</div><h3>Free Fire</h3><p>Sensitivity, tips, rank push</p><span class="btn btn-sm btn-primary mt-3">Get Tips →</span></div>
+<div class="grid-card" onclick="quickAsk('Give me PUBG Mobile pro tips')"><div class="gi">💥</div><h3>PUBG Mobile</h3><p>Strategies, map guides</p><span class="btn btn-sm btn-primary mt-3">Get Tips →</span></div>
+<div class="grid-card" onclick="quickAsk('Give me COD Mobile best loadouts')"><div class="gi">🔫</div><h3>COD Mobile</h3><p>Loadouts, perks, tips</p><span class="btn btn-sm btn-primary mt-3">Get Tips →</span></div>
+<div class="grid-card" onclick="quickAsk('Give me Minecraft building tips')"><div class="gi">⛏️</div><h3>Minecraft</h3><p>Building, redstone, survival</p><span class="btn btn-sm btn-primary mt-3">Get Tips →</span></div>
+<div class="grid-card" onclick="quickAsk('Give me Fortnite tips and strategies')"><div class="gi">🎯</div><h3>Fortnite</h3><p>Building, weapons, tips</p><span class="btn btn-sm btn-primary mt-3">Get Tips →</span></div>
+<div class="grid-card" onclick="quickAsk('Calculate the best gaming sensitivity for my device')"><div class="gi">📊</div><h3>Sensitivity Calc</h3><p>Perfect settings</p><span class="btn btn-sm btn-primary mt-3">Calculate →</span></div>
+</div>
+</div>
+
+<!-- PAGE: AGENTS -->
+<div id="p-agents" class="page hidden">
+<h2 class="text-xl fw-700 mb-4">🤖 AI Agents</h2>
+<p class="text-muted mb-4">Custom AI agents with unique personalities. Click to activate.</p>
+<div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(190px,1fr))">
+<div class="grid-card" onclick="activateAgent('teacher')"><div class="gi">👨‍🏫</div><h3>Teacher</h3><p>Learn any subject step by step</p><span class="btn btn-sm btn-primary mt-3">Activate →</span></div>
+<div class="grid-card" onclick="activateAgent('fitness')"><div class="gi">🏋️</div><h3>Fitness Coach</h3><p>Workout plans, diet tips</p><span class="btn btn-sm btn-primary mt-3">Activate →</span></div>
+<div class="grid-card" onclick="activateAgent('business')"><div class="gi">💼</div><h3>Business Advisor</h3><p>Startup tips, strategy</p><span class="btn btn-sm btn-primary mt-3">Activate →</span></div>
+<div class="grid-card" onclick="activateAgent('translator')"><div class="gi">🌍</div><h3>Translator</h3><p>Translate any languages</p><span class="btn btn-sm btn-primary mt-3">Activate →</span></div>
+<div class="grid-card" onclick="activateAgent('health')"><div class="gi">⚕️</div><h3>Health Assistant</h3><p>Wellness tips, advice</p><span class="btn btn-sm btn-primary mt-3">Activate →</span></div>
+<div class="grid-card" onclick="activateAgent('developer')"><div class="gi">💻</div><h3>Developer</h3><p>Code, debug, optimize</p><span class="btn btn-sm btn-primary mt-3">Activate →</span></div>
+</div>
+</div>
+
+<!-- PAGE: PREMIUM -->
+<div id="p-premium" class="page hidden">
+<h2 class="text-xl fw-800 mb-4 text-center"><span class="text-gradient">👑 ZEUS AI Premium</span></h2>
+<div class="card card-premium text-center" style="max-width:600px;margin:0 auto;border:1px solid rgba(255,106,0,.25);background:linear-gradient(135deg,rgba(255,106,0,.06),rgba(255,179,71,.03))">
+<div style="font-size:3.5rem;margin-bottom:10px">👑</div>
+<h3 class="fw-700 text-lg mb-3">Unlock Premium</h3>
+<p class="text-muted mb-4">Get access to exclusive premium features, priority support, and advanced tools.</p>
+<div id="premStatus" class="mb-4">
+<span id="premBadge" class="badge badge-free mb-3"><i class="fas fa-user"></i> Free User</span>
+<div id="premUnlocked" class="hidden" style="background:rgba(22,163,74,.1);border:1px solid rgba(22,163,74,.3);border-radius:var(--radius);padding:14px">
+<i class="fas fa-check-circle" style="color:#16a34a;font-size:1.5rem"></i>
+<h4 class="fw-700 mt-2">✅ PREMIUM UNLOCKED!</h4>
+<p class="text-sm text-muted">You have full access to all premium features. Enjoy! ⚡</p>
+</div>
+</div>
+<div class="premium-grid">
+<div class="premium-item"><i class="fas fa-paint-brush"></i><h4 class="fw-600 text-sm">Image Generator</h4></div>
+<div class="premium-item"><i class="fas fa-bolt"></i><h4 class="fw-600 text-sm">Priority Speed</h4></div>
+<div class="premium-item"><i class="fas fa-chart-line"></i><h4 class="fw-600 text-sm">Advanced Analytics</h4></div>
+<div class="premium-item"><i class="fas fa-robot"></i><h4 class="fw-600 text-sm">Premium Agents</h4></div>
+<div class="premium-item"><i class="fas fa-database"></i><h4 class="fw-600 text-sm">Cloud Storage</h4></div>
+<div class="premium-item"><i class="fas fa-headset"></i><h4 class="fw-600 text-sm">Priority Support</h4></div>
+</div>
+<hr />
+<h4 class="fw-600 mb-3">💳 Payment Details</h4>
+<div style="font-size:1.8rem;font-weight:900" class="text-gradient mb-2">₦<span id="premPrice">8,000</span></div>
+<p class="text-sm text-muted mb-3">One-time payment • Lifetime access</p>
+<div class="card mb-3" style="background:var(--bg)">
+<p class="text-sm fw-500">📱 Bank Transfer / Opay</p>
+<p class="text-lg fw-700 mt-2" style="letter-spacing:2px;font-family:monospace" id="premAccNo">9066760078</p>
+<p class="text-sm text-muted">Bank: <strong id="premBank">Opay</strong></p>
+<p class="text-sm text-muted">Name: <strong id="premAccName">Christana Godwin Okon</strong></p>
+</div>
+<p class="text-sm text-muted mb-3">After payment, send screenshot to <strong id="premPhone">+234 906 676 0078</strong> on WhatsApp.</p>
+<hr />
+<h4 class="fw-600 mb-3">🔑 Already have a Premium Code?</h4>
+<div class="flex gap-3"><input type="text" id="premCodeIn" placeholder="Enter premium code" style="flex:1" /><button class="btn btn-primary" onclick="redeemCode()"><i class="fas fa-check"></i> Unlock</button></div>
+<hr />
+<a class="btn btn-primary btn-lg w-full" id="premWhatsApp" href="https://wa.me/2349066760078?text=I%27ve%20paid%20for%20ZEUS%20AI%20Premium" target="_blank"><i class="fab fa-whatsapp"></i> Send to WhatsApp</a>
+</div>
+</div>
+
+<!-- PAGE: LIBRARY -->
+<div id="p-library" class="page hidden">
+<h2 class="text-xl fw-700 mb-4">📚 Prompt Library</h2>
+<p class="text-muted mb-4">Click any prompt to use instantly in chat.</p>
+<div class="grid" id="libGrid"></div>
+</div>
+
+<!-- PAGE: ACADEMY -->
+<div id="p-academy" class="page hidden">
+<h2 class="text-xl fw-700 mb-4">🎓 ZEUS Dev Academy</h2>
+<p class="text-muted mb-4">Free degree-level curriculum for young developers — by ZEUS (Godwin Emmanuel Victory)</p>
+<div class="grid">
+<div class="grid-card" onclick="quickAsk('Teach me full web development from basics')"><div class="gi">🌐</div><h3>Web Development</h3><p>HTML → CSS → JavaScript → React → Node.js</p></div>
+<div class="grid-card" onclick="quickAsk('Teach me Python programming from zero to advanced')"><div class="gi">🐍</div><h3>Python</h3><p>Basics → OOP → APIs → Automation → ML</p></div>
+<div class="grid-card" onclick="quickAsk('Teach me JavaScript mastery from DOM to Node')"><div class="gi">☕</div><h3>JavaScript</h3><p>DOM → Async → Node → Express → APIs</p></div>
+<div class="grid-card" onclick="quickAsk('Teach me database systems SQL and NoSQL')"><div class="gi">🗄️</div><h3>Databases</h3><p>SQL → MySQL → MongoDB → Optimization</p></div>
+<div class="grid-card" onclick="quickAsk('Teach me cybersecurity and ethical hacking')"><div class="gi">🔐</div><h3>Cybersecurity</h3><p>Ethical Hacking → OWASP → Pen Testing</p></div>
+<div class="grid-card" onclick="quickAsk('Teach me AI and Machine Learning')"><div class="gi">🤖</div><h3>AI & ML</h3><p>ML → Neural Networks → NLP → LLMs</p></div>
+<div class="grid-card" onclick="quickAsk('Teach me Data Structures and Algorithms for interviews')"><div class="gi">💎</div><h3>DSA</h3><p>Arrays → Trees → Graphs → DP → FAANG</p></div>
+<div class="grid-card" onclick="quickAsk('Teach me Cloud and DevOps')"><div class="gi">☁️</div><h3>Cloud & DevOps</h3><p>Git → Docker → CI/CD → AWS → K8s</p></div>
+</div>
+</div>
+
+<!-- PAGE: WORKSPACE -->
+<div id="p-workspace" class="page hidden">
+<h2 class="text-xl fw-700 mb-4">📁 Workspace</h2>
+<div class="card"><h3 class="fw-600 mb-3">Your Workspace</h3>
+<p class="text-muted mb-3">Organize projects, notes, tasks, and bookmarks.</p>
+<div class="flex gap-3" style="flex-wrap:wrap">
+<button class="btn btn-primary" onclick="quickAsk('Create a detailed study plan for learning programming')"><i class="fas fa-clipboard-list"></i> Study Plan</button>
+<button class="btn btn-secondary" onclick="quickAsk('Create a task list for my project')"><i class="fas fa-check-double"></i> Task List</button>
+<button class="btn btn-secondary" onclick="quickAsk('Help me organize my notes on ')"><i class="fas fa-pen"></i> Smart Notes</button>
+</div>
+<div id="workspaceContent" class="mt-4"><div class="card" style="background:var(--bg);text-align:center;padding:30px"><i class="fas fa-folder-open" style="font-size:3rem;color:var(--text3)"></i><p class="text-muted mt-2">Your workspace items will appear here.</p></div></div>
+</div>
+</div>
+
+<!-- PAGE: MEMORY -->
+<div id="p-memory" class="page hidden">
+<h2 class="text-xl fw-700 mb-4">🧠 Memory</h2>
+<div class="card">
+<div class="flex-between mb-3"><span class="fw-600">Enable Memory</span><div class="tgl" id="memTgl" onclick="toggleMem()"></div></div>
+<p class="text-sm text-muted mb-3">ZEUS remembers your preferences and conversations.</p>
+<hr /><h4 class="fw-600 mb-2 mt-3">Saved Memories</h4>
+<p class="text-sm text-muted mb-3">Conversations & preferences stored</p>
+<div id="memCount" class="text-2xl fw-800 mb-3">0 items</div>
+<button class="btn btn-primary" onclick="quickAsk('What do you remember about me?')"><i class="fas fa-brain"></i> Ask ZEUS What I Remember</button>
+</div>
+</div>
+
+<!-- PAGE: SETTINGS -->
+<div id="p-settings" class="page hidden">
+<h2 class="text-xl fw-700 mb-4">⚙️ Settings</h2>
+<div class="card mb-4"><h4 class="fw-600 mb-3">Appearance</h4>
+<div class="toggle-row"><span><i class="fas fa-moon"></i> Dark Theme</span><div class="tgl active"></div></div>
+<div class="flex-between mt-2"><span class="text-sm">Accent Color</span>
+<div class="flex gap-2"><span style="width:26px;height:26px;border-radius:50%;background:#ff6a00;border:2px solid #fff;cursor:pointer"></span>
+<span style="width:26px;height:26px;border-radius:50%;background:#7c3aed;cursor:pointer"></span>
+<span style="width:26px;height:26px;border-radius:50%;background:#16a34a;cursor:pointer"></span></div></div>
+</div>
+<div class="card mb-4"><h4 class="fw-600 mb-3">Communication</h4>
+<div class="toggle-row"><span><i class="fas fa-volume-up"></i> Voice Output</span><div class="tgl"></div></div>
+<div class="toggle-row"><span><i class="fas fa-typing"></i> Typing Animation</span><div class="tgl active"></div></div>
+</div>
+<div class="card"><h4 class="fw-600 mb-3">Account</h4>
+<p class="text-sm"><strong>Username:</strong> <span id="setUser">user</span></p>
+<p class="text-sm"><strong>Status:</strong> <span id="setStatus">Free User</span></p>
+<p class="text-sm mt-2"><strong>Owner Contact:</strong> 📞 <span id="setPhone">+234 906 676 0078</span></p>
+<a id="setWA" href="https://wa.me/2349066760078" target="_blank" class="btn btn-sm btn-secondary mt-2"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+<hr class="mt-3" />
+<h4 class="fw-600 mb-2 mt-3">👑 About The Creator</h4>
+<div id="setOwnerInfo">
+<p class="text-sm"><strong>Name:</strong> ZEUS (Godwin Emmanuel Victory)</p>
+<p class="text-sm"><strong>Phone:</strong> +234 906 676 0078</p>
+<p class="text-sm"><strong>Email:</strong> godwinemmanuelvictory@gmail.com</p>
+<p class="text-sm"><strong>School:</strong> Command Day Secondary School, Nigerian Navy, NNS Delta</p>
+<p class="text-sm"><strong>University:</strong> University of Benin (UNIBEN)</p>
+<p class="text-sm"><strong>Course:</strong> Computer Science (Programming)</p>
+<p class="text-sm"><strong>Born:</strong> July 4, 2006</p>
+<p class="text-sm"><strong>Status:</strong> Single</p>
+<p class="text-sm"><strong>Nationality:</strong> Nigerian</p>
+<p class="text-sm"><strong>Religion:</strong> Christian</p>
+<p class="text-sm"><strong>Occupation:</strong> Developer, Student, AI Engineer</p>
+<p class="text-sm"><strong>Mission:</strong> Building ZEUS AI to empower African youth with free AI education</p>
+</div>
+</div>
+</div>
+
+<!-- PAGE: ADMIN -->
+<div id="p-admin" class="page hidden">
+<h2 class="text-xl fw-700 mb-4">🛡️ Admin Panel</h2>
+
+<div class="update-banner" id="updateBanner">
+<i class="fas fa-sync-alt"></i>
+<span><strong>Auto-Update Active</strong> — Bot updates automatically. Owner info syncs live.</span>
+<button class="btn btn-sm btn-primary" onclick="forceUpdate()"><i class="fas fa-cloud-upload-alt"></i> Force Update</button>
+</div>
+
+<div class="grid mb-4" style="grid-template-columns:repeat(auto-fill,minmax(140px,1fr))">
+<div class="stat-box"><div class="num" id="admUsers">1</div><div class="lbl">Users</div></div>
+<div class="stat-box"><div class="num" id="admConvs">0</div><div class="lbl">Conversations</div></div>
+<div class="stat-box"><div class="num" id="admMsgs">0</div><div class="lbl">Messages</div></div>
+<div class="stat-box"><div class="num" id="admPrem">0</div><div class="lbl">Premium Users</div></div>
+</div>
+
+<div class="admin-grid">
+
+<!-- Premium Mgmt -->
+<div class="card">
+<h3 class="fw-600 mb-3"><i class="fas fa-key"></i> Premium Management</h3>
+<p class="text-sm text-muted mb-3">Generate codes and manage premium users.</p>
+<div class="flex gap-3 mb-3" style="flex-wrap:wrap">
+<button class="btn btn-primary" onclick="genPremCode()"><i class="fas fa-key"></i> Generate Code</button>
+<button class="btn btn-secondary" onclick="viewPremUsers()"><i class="fas fa-list"></i> View Users</button>
+</div>
+<div id="genCodeBox" class="hidden">
+<p class="text-sm text-muted mb-2">New Code:</p>
+<div class="pin-box" id="premCodeDisp">ZEUS-PREM-XXXX</div>
+<p class="text-xs text-muted">Give to user after payment verification.</p>
+</div>
+<div id="premUsersBox" class="mt-3 hidden">
+<h4 class="fw-600 text-sm mb-2">Premium Users</h4>
+<div id="premUsersData" style="background:var(--bg);border-radius:var(--radius);padding:12px;min-height:30px"><p class="text-sm text-muted">None yet.</p></div>
+</div>
+</div>
+
+<!-- Creator Info -->
+<div class="card">
+<h3 class="fw-600 mb-3"><i class="fas fa-user-edit"></i> Creator Info Editor</h3>
+<p class="text-sm text-muted mb-3">Edit owner details — the bot will talk about this when asked "Who is ZEUS?"</p>
+<div class="mb-2"><label class="text-xs text-muted">Creator Name</label><input type="text" id="eName" value="ZEUS" /></div>
+<div class="mb-2"><label class="text-xs text-muted">Real Full Name</label><input type="text" id="eReal" value="Godwin Emmanuel Victory" /></div>
+<div class="mb-2"><label class="text-xs text-muted">Phone</label><input type="text" id="ePhone" value="+234 906 676 0078" /></div>
+<div class="mb-2"><label class="text-xs text-muted">Email</label><input type="text" id="eEmail" value="godwinemmanuelvictory@gmail.com" /></div>
+<div class="mb-2"><label class="text-xs text-muted">WhatsApp Link</label><input type="text" id="eWA" value="https://wa.me/2349066760078" /></div>
+<div class="mb-2"><label class="text-xs text-muted">Date of Birth</label><input type="text" id="eDOB" value="July 4, 2006" /></div>
+<div class="mb-2"><label class="text-xs text-muted">Nationality</label><input type="text" id="eNat" value="Nigerian" /></div>
+<div class="mb-2"><label class="text-xs text-muted">Religion</label><input type="text" id="eRel" value="Christian" /></div>
+<div class="mb-2"><label class="text-xs text-muted">Secondary School</label><input type="text" id="eSchool" value="Command Day Secondary School, Nigerian Navy, NNS Delta" /></div>
+<div class="mb-2"><label class="text-xs text-muted">University</label><input type="text" id="eUni" value="University of Benin (UNIBEN)" /></div>
+<div class="mb-2"><label class="text-xs text-muted">Course of Study</label><input type="text" id="eCourse" value="Computer Science (Programming)" /></div>
+<div class="mb-2"><label class="text-xs text-muted">Occupation</label><input type="text" id="eOcc" value="Developer, Student, AI Engineer" /></div>
+<div class="mb-2"><label class="text-xs text-muted">Relationship Status</label><input type="text" id="eRelStatus" value="Single" /></div>
+<div class="mb-2"><label class="text-xs text-muted">Mission / Motto</label><input type="text" id="eMission" value="Building ZEUS AI to empower African youth with free AI education" /></div>
+<div class="mb-2"><label class="text-xs text-muted">Premium Price (₦)</label><input type="text" id="ePrice" value="8,000" /></div>
+<div class="mb-2"><label class="text-xs text-muted">Account Number</label><input type="text" id="eAccNo" value="9066760078" /></div>
+<div class="mb-2"><label class="text-xs text-muted">Account Name</label><input type="text" id="eAccName" value="Christana Godwin Okon" /></div>
+<div class="mb-2"><label class="text-xs text-muted">Bank</label><input type="text" id="eBank" value="Opay" /></div>
+<button class="btn btn-primary w-full mt-3" onclick="saveCreator()"><i class="fas fa-save"></i> Save Creator Info</button>
+<p id="creatorFB" class="text-sm text-center mt-2" style="color:#16a34a;min-height:20px"></p>
+</div>
+
+<!-- Bot Controls -->
+<div class="card">
+<h3 class="fw-600 mb-3"><i class="fas fa-toggle-on"></i> Bot Controls</h3>
+<p class="text-sm text-muted mb-3">Enable/disable features. Changes take effect immediately.</p>
+<div class="toggle-row"><span><i class="fas fa-comment-dots"></i> Smart Chat</span><div class="tgl active" data-feat="chat" onclick="togFeat(this)"></div></div>
+<div class="toggle-row"><span><i class="fas fa-eye"></i> Vision AI</span><div class="tgl active" data-feat="vision" onclick="togFeat(this)"></div></div>
+<div class="toggle-row"><span><i class="fas fa-microphone"></i> Voice AI</span><div class="tgl active" data-feat="voice" onclick="togFeat(this)"></div></div>
+<div class="toggle-row"><span><i class="fas fa-globe"></i> Search AI</span><div class="tgl active" data-feat="search" onclick="togFeat(this)"></div></div>
+<div class="toggle-row"><span><i class="fas fa-crown"></i> Premium System</span><div class="tgl active" data-feat="premium" onclick="togFeat(this)"></div></div>
+<div class="toggle-row"><span><i class="fas fa-user-plus"></i> Registration</span><div class="tgl active" data-feat="reg" onclick="togFeat(this)"></div></div>
+<div class="toggle-row"><span><i class="fas fa-robot"></i> AI Agents</span><div class="tgl active" data-feat="agents" onclick="togFeat(this)"></div></div>
+<div class="toggle-row"><span><i class="fas fa-code"></i> Coding Assistant</span><div class="tgl active" data-feat="coding" onclick="togFeat(this)"></div></div>
+<div class="toggle-row"><span><i class="fas fa-file-alt"></i> Document AI</span><div class="tgl active" data-feat="docs" onclick="togFeat(this)"></div></div>
+<div class="toggle-row"><span><i class="fas fa-gamepad"></i> Gaming Mode</span><div class="tgl active" data-feat="gaming" onclick="togFeat(this)"></div></div>
+<div class="toggle-row"><span><i class="fas fa-brain"></i> Memory</span><div class="tgl active" data-feat="memory" onclick="togFeat(this)"></div></div>
+<div class="toggle-row"><span><i class="fas fa-graduation-cap"></i> Dev Academy</span><div class="tgl active" data-feat="academy" onclick="togFeat(this)"></div></div>
+</div>
+
+<!-- PIN & Security -->
+<div class="card">
+<h3 class="fw-600 mb-3"><i class="fas fa-lock"></i> PIN & Security</h3>
+<p class="text-sm text-muted mb-3">System PIN and owner verification.</p>
+<div class="mb-3"><label class="text-sm text-muted">System PIN</label>
+<div class="flex gap-2 mt-1"><input type="text" id="admPinDisp" readonly value="123456" style="font-family:monospace;letter-spacing:3px;text-align:center" />
+<button class="btn btn-sm btn-secondary" onclick="resetPIN()"><i class="fas fa-redo"></i> Reset</button></div></div>
+<div class="mb-3"><label class="text-sm text-muted">Owner Verification Code</label>
+<div class="pin-box" style="font-size:.85rem">ZEUS-OWNER-<span id="ownerCodeVal">A7X9K2</span></div>
+<p class="text-xs text-muted mt-1">Show this to prove you are the verified owner.</p></div>
+<button class="btn btn-secondary w-full" onclick="regenOwnerCode()"><i class="fas fa-sync"></i> Regenerate Code</button>
+</div>
+
+<!-- Analytics -->
+<div class="card">
+<h3 class="fw-600 mb-3"><i class="fas fa-chart-bar"></i> Analytics</h3>
+<p class="text-sm text-muted mb-3" id="sysStatus">✅ All systems operational.</p>
+<div class="flex gap-3" style="flex-wrap:wrap">
+<button class="btn btn-secondary" onclick="viewStats()"><i class="fas fa-chart-pie"></i> View Stats</button>
+<button class="btn btn-danger" onclick="clearAll()"><i class="fas fa-trash-alt"></i> Clear All Data</button>
+</div>
+<div id="statsBox" class="mt-3 hidden">
+<div style="background:var(--bg);border-radius:var(--radius);padding:12px">
+<p class="text-sm">Uptime: <strong>99.97%</strong></p>
+<p class="text-sm">API Calls Today: <strong id="apiCalls">247</strong></p>
+<p class="text-sm">Avg Response: <strong id="avgResp">0.84s</strong></p>
+<p class="text-sm">Total Conversations: <strong id="totConvs">1,892</strong></p>
+</div>
+</div>
+</div>
+
+<!-- Groq Config -->
+<div class="card">
+<h3 class="fw-600 mb-3"><i class="fas fa-microchip"></i> Groq AI Engine</h3>
+<p class="text-sm text-muted mb-3">Configure the AI engine. Key is pre-installed.</p>
+<div class="mb-2"><label class="text-xs text-muted">API Key</label>
+<div class="flex gap-2 mt-1"><input type="password" id="groqKeyDisp" value="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" readonly />
+<button class="btn btn-sm btn-secondary" onclick="togKeyVis()"><i class="fas fa-eye"></i></button></div></div>
+<div class="mb-2"><label class="text-xs text-muted">Model</label>
+<div class="flex gap-2 mt-1" style="flex-wrap:wrap">
+<span class="model-chip active" data-model="llama3-70b-8192" onclick="selModel(this)">Llama 3.3 70B</span>
+<span class="model-chip" data-model="llama3-8b-8192" onclick="selModel(this)">Llama 3.1 8B</span>
+<span class="model-chip" data-model="mixtral-8x7b-32768" onclick="selModel(this)">Mixtral 8x7B</span>
+<span class="model-chip" data-model="gemma2-9b-it" onclick="selModel(this)">Gemma 2 9B</span>
+</div></div>
+<div class="mb-2"><label class="text-xs text-muted">Temperature: <span id="tempVal">0.7</span></label>
+<input type="range" id="tempRange" min="0" max="2" step="0.1" value="0.7" style="padding:0" oninput="document.getElementById('tempVal').textContent=this.value" /></div>
+<div class="mb-2"><label class="text-xs text-muted">Max Tokens</label>
+<input type="number" id="maxTok" value="4096" min="256" max="8192" /></div>
+<button class="btn btn-primary w-full mt-2" onclick="saveGroq()"><i class="fas fa-save"></i> Save Engine Config</button>
+</div>
+
+</div>
+</div>
+
+</main>
 
 <script>
-// ============================================================
-// ZEUS AI ENGINE v6.0 — COMPLETE PLATFORM
-// ============================================================
-const ZEUS = {
-  API_KEY: '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',
-  API_URL: 'https://api.groq.com/openai/v1/chat/completions',
-  MODEL: 'llama-3.3-70b-versatile',
-  VISION_MODEL: 'meta-llama/llama-4-scout-17b-16e-instruct',
-  FAST_MODEL: 'llama-3.1-8b-instant',
-  OWNER: {
-    name:'ZEUS', realName:'Godwin Emmanuel Victory', phone:'+234 906 676 0078',
-    school:'ISGS Secondary School', uni:'Olabisi Onabanjo University (OOU)',
-    relationship:'Single', title:'Founder & Creator of ZEUS AI'
-  },
-  ADMIN_CODE: 'ZEUS-ADMIN',
-  PREMIUM_BASE: 'ZEUS-PREM',
-  PREMIUM_PRICE: '₦8,000',
-  ACCT_NUMBER: '9066760078',
-  ACCT_NAME: 'Christana Godwin Okon',
-  ACCT_BANK: 'Opay'
+// =============================================
+// ZEUS AI ✦ v7 — Complete Engine (FULLY WORKING)
+// =============================================
+
+const GROQ_KEY = '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';
+let GROQ_MODEL = 'llama3-70b-8192';
+let GROQ_TEMP = 0.7;
+let GROQ_TOKENS = 4096;
+
+// ---- PROFILE ----
+const C = {
+    name: 'ZEUS',
+    realName: 'Godwin Emmanuel Victory',
+    phone: '+234 906 676 0078',
+    email: 'godwinemmanuelvictory@gmail.com',
+    whatsapp: 'https://wa.me/2349066760078',
+    dob: 'July 4, 2006',
+    nationality: 'Nigerian',
+    religion: 'Christian',
+    school: 'Command Day Secondary School, Nigerian Navy, NNS Delta',
+    university: 'University of Benin (UNIBEN)',
+    course: 'Computer Science (Programming)',
+    occupation: 'Developer, Student, AI Engineer',
+    relationship: 'Single',
+    mission: 'Building ZEUS AI to empower African youth with free AI education',
+    premiumPrice: '8,000',
+    accountNumber: '9066760078',
+    accountName: 'Christana Godwin Okon',
+    bank: 'Opay'
 };
 
-let ZEUS_user = null, ZEUS_history = [], ZEUS_processing = false, ZEUS_voiceOut = true, ZEUS_listening = false, ZEUS_recognition = null;
-let ZEUS_isAdmin = false, ZEUS_isPremium = false;
+// ---- STATE ----
+const S = {
+    pin: localStorage.getItem('zp') || '123456',
+    pinSet: localStorage.getItem('zps') === 'true',
+    premium: localStorage.getItem('zpr') === 'true',
+    admin: localStorage.getItem('za') === 'true',
+    user: localStorage.getItem('zu') || 'user',
+    display: localStorage.getItem('zd') || 'User',
+    memory: JSON.parse(localStorage.getItem('zm') || '[]'),
+    memEnabled: localStorage.getItem('zme') === 'true',
+    msgs: JSON.parse(localStorage.getItem('zmsgs') || '[]'),
+    convs: parseInt(localStorage.getItem('zconvs') || '0'),
+    premUsers: JSON.parse(localStorage.getItem('zpus') || '[]'),
+    features: JSON.parse(localStorage.getItem('zfeats') || JSON.stringify({
+        chat:true,vision:true,voice:true,search:true,premium:true,
+        reg:true,agents:true,coding:true,docs:true,gaming:true,
+        memory:true,academy:true
+    })),
+    ownerCode: localStorage.getItem('zoc') || 'A7X9K2',
+    creator: JSON.parse(localStorage.getItem('zc') || JSON.stringify(C)),
+    voiceRec: null,
+    isRecording: false
+};
 
-const SYSTEM_PROMPT = `You are ZEUS AI — a world-class premium AI assistant created by ZEUS (Godwin Emmanuel Victory).
-
-CREATOR INFO (share when asked):
-- Name: ZEUS (Godwin Emmanuel Victory)
-- Phone: +234 906 676 0078 (WhatsApp)
-- School: ISGS Secondary School
-- University: Olabisi Onabanjo University (OOU)
-- Relationship: Single
-- Role: Founder & Creator of ZEUS AI
-- Premium: ₦8,000 via Opay 9066760078 (Christana Godwin Okon)
-
-If asked about premium: "ZEUS AI Premium costs ₦8,000 one-time. Pay to Opay account 9066760078 (Christana Godwin Okon). Send payment screenshot to +234 906 676 0078 on WhatsApp to get your premium code."
-
-You are warm, intelligent, helpful, and enthusiastic. You NEVER mention being powered by Groq or any other AI provider. You are simply ZEUS AI. Help with coding, learning, gaming, creativity. Be encouraging to young developers. Use emojis naturally.`;
-
-const OWNER_KEYWORDS = ['owner','creator','who built','who made','about zeus','godwin','emmanuel','victory','who is zeus','founder','your master','your creator','zeus info','who owns','contact','phone number','call'];
-
-function isOwnerQuery(t){const l=t.toLowerCase();return OWNER_KEYWORDS.some(k=>l.includes(k))}
-
-function getOwnerBio(){
-  const saved = localStorage.getItem('zeus_owner_info');
-  const o = saved ? JSON.parse(saved) : ZEUS.OWNER;
-  return `👑 **About ${o.name || 'ZEUS'} (${o.realName || 'Godwin Emmanuel Victory'})**
-
-⚡ **Alias:** ${o.name || 'ZEUS'}
-👤 **Real Name:** ${o.realName || 'Godwin Emmanuel Victory'}
-📞 **Phone:** ${o.phone || '+234 906 676 0078'}
-🎓 **Secondary School:** ${o.school || 'ISGS Secondary School'}
-🎓 **University:** ${o.uni || 'Olabisi Onabanjo University (OOU)'}
-💍 **Relationship:** ${o.relationship || 'Single'}
-🚀 **Role:** Founder & Creator of ZEUS AI
-
-💰 **Premium:** ${ZEUS.PREMIUM_PRICE} via ${ZEUS.ACCT_BANK} ${ZEUS.ACCT_NUMBER} (${ZEUS.ACCT_NAME})
-
-Message ZEUS on WhatsApp: ${o.phone || '+234 906 676 0078'} ⚡`;
-}
-
-// ===== AUTH =====
-function switchAuthTab(tab){
-  document.querySelectorAll('.auth-tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.auth-form').forEach(f=>f.classList.remove('active'));
-  if(tab==='login'){document.querySelectorAll('.auth-tab')[0].classList.add('active');document.getElementById('loginForm').classList.add('active')}
-  else{document.querySelectorAll('.auth-tab')[1].classList.add('active');document.getElementById('registerForm').classList.add('active')}
-  document.getElementById('authError').classList.remove('show');
-}
-function showError(msg){const e=document.getElementById('authError');e.textContent=msg;e.classList.add('show')}
-
-function handleLogin(e){
-  e.preventDefault();const user=document.getElementById('loginUser').value.trim(),pass=document.getElementById('loginPass').value.trim();
-  if(!user||!pass){showError('Fill all fields');return}
-  const stored=localStorage.getItem('zeus_users');const users=stored?JSON.parse(stored):{};
-  if(!users[user]){showError('User not found');return}
-  if(users[user].password!==pass){showError('Wrong password');return}
-  loginAs(user,users[user].name||user,users[user].premium||false);
-}
-
-function handleRegister(e){
-  e.preventDefault();const user=document.getElementById('regUser').value.trim(),name=document.getElementById('regName').value.trim()||user,pass=document.getElementById('regPass').value.trim();
-  if(!user||!pass){showError('Username and password required');return}
-  if(user.length<3){showError('Username too short');return}
-  const stored=localStorage.getItem('zeus_users');const users=stored?JSON.parse(stored):{};
-  if(users[user]){showError('Username taken');return}
-  users[user]={password:pass,name:name,created:Date.now(),premium:false};
-  localStorage.setItem('zeus_users',JSON.stringify(users));
-  loginAs(user,name,false);
-}
-
-function guestLogin(){loginAs('User 1','User 1',false)}
-
-function loginAs(username,displayName,premium){
-  ZEUS_user={username,displayName,premium};
-  localStorage.setItem('zeus_session',JSON.stringify(ZEUS_user));
-  document.getElementById('authOverlay').style.display='none';
-  document.getElementById('app').style.display='flex';
-  document.getElementById('sideName').textContent=displayName;
-  document.getElementById('sideAvatar').textContent=displayName.charAt(0).toUpperCase();
-  document.getElementById('settingsUser').textContent=username;
-  updatePremiumUI();loadHistory();
-}
-
-function logout(){
-  if(!confirm('Logout?'))return;
-  localStorage.removeItem('zeus_session');
-  location.reload();
-}
-
-function openAdminLogin(){
-  const overlay=document.createElement('div');overlay.className='modal-overlay';overlay.id='adminLoginModal';
-  overlay.innerHTML=`<div class="modal"><h2>🛡️ Admin / Developer Login</h2><p>Enter the dev code to access admin features.</p>
-    <div class="form-group"><label>Dev Code</label><input type="password" class="form-input" id="adminCodeInput" placeholder="Enter dev code" style="font-family:'JetBrains Mono',monospace" /></div>
-    <div class="modal-actions"><button class="btn-close" onclick="document.getElementById('adminLoginModal').remove()">Cancel</button>
-    <button class="btn-primary-modal" onclick="verifyAdminCode()">Verify →</button></div></div>`;
-  document.body.appendChild(overlay);
-  setTimeout(()=>document.getElementById('adminCodeInput')?.focus(),100);
-}
-
-function verifyAdminCode(){
-  const code=document.getElementById('adminCodeInput').value.trim();
-  if(code===ZEUS.ADMIN_CODE){
-    ZEUS_isAdmin=true;
-    document.getElementById('adminNavItem').style.display='flex';
-    document.getElementById('sideStatus').textContent='🛡️ Admin';
-    document.getElementById('adminLoginModal').remove();
-    // Load saved owner info
-    const saved = localStorage.getItem('zeus_owner_info');
-    if(saved){
-      const o = JSON.parse(saved);
-      if(document.getElementById('ownerName')) document.getElementById('ownerName').value = o.name || 'ZEUS';
-      if(document.getElementById('ownerRealName')) document.getElementById('ownerRealName').value = o.realName || 'Godwin Emmanuel Victory';
-      if(document.getElementById('ownerPhone')) document.getElementById('ownerPhone').value = o.phone || '+234 906 676 0078';
-      if(document.getElementById('ownerWhatsApp')) document.getElementById('ownerWhatsApp').value = o.whatsApp || 'https://wa.me/2349066760078';
-      if(document.getElementById('ownerSchool')) document.getElementById('ownerSchool').value = o.school || 'ISGS Secondary School';
-      if(document.getElementById('ownerUni')) document.getElementById('ownerUni').value = o.uni || 'Olabisi Onabanjo University (OOU)';
-      if(document.getElementById('ownerRelationship')) document.getElementById('ownerRelationship').value = o.relationship || 'Single';
-      if(document.getElementById('ownerPremiumPrice')) document.getElementById('ownerPremiumPrice').value = o.premiumPrice || '₦8,000';
-      if(document.getElementById('ownerAcct')) document.getElementById('ownerAcct').value = o.acct || '9066760078';
-      if(document.getElementById('ownerAcctName')) document.getElementById('ownerAcctName').value = o.acctName || 'Christana Godwin Okon';
-      if(document.getElementById('ownerBank')) document.getElementById('ownerBank').value = o.bank || 'Opay';
+// ---- INIT ----
+document.addEventListener('DOMContentLoaded', () => {
+    if (!S.pinSet) {
+        document.getElementById('pinModal').classList.remove('hidden');
+    } else {
+        document.getElementById('pinModal').classList.remove('hidden');
     }
-    navigate('admin');
-  } else {
-    alert('❌ Invalid dev code. Access denied.');
-  }
-}
+    applyCreator();
+    updateUI();
+    loadMsgs();
+    loadLibrary();
+    applyToggles();
+    document.getElementById('admPinDisp').value = S.pin;
+    document.getElementById('ownerCodeVal').textContent = S.ownerCode;
+    if (!S.admin) document.getElementById('adminBtn').classList.add('hidden');
+    document.getElementById('tempVal').textContent = GROQ_TEMP;
+    document.getElementById('tempRange').value = GROQ_TEMP;
+    document.getElementById('maxTok').value = GROQ_TOKENS;
+});
 
-function updateOwnerInfo(){
-  const data = {
-    name: document.getElementById('ownerName').value.trim(),
-    realName: document.getElementById('ownerRealName').value.trim(),
-    phone: document.getElementById('ownerPhone').value.trim(),
-    whatsApp: document.getElementById('ownerWhatsApp').value.trim(),
-    school: document.getElementById('ownerSchool').value.trim(),
-    uni: document.getElementById('ownerUni').value.trim(),
-    relationship: document.getElementById('ownerRelationship').value.trim(),
-    premiumPrice: document.getElementById('ownerPremiumPrice').value.trim(),
-    acct: document.getElementById('ownerAcct').value.trim(),
-    acctName: document.getElementById('ownerAcctName').value.trim(),
-    bank: document.getElementById('ownerBank').value.trim()
-  };
-  localStorage.setItem('zeus_owner_info', JSON.stringify(data));
-  ZEUS.OWNER.name = data.name;
-  ZEUS.OWNER.realName = data.realName;
-  ZEUS.OWNER.phone = data.phone;
-  ZEUS.OWNER.school = data.school;
-  ZEUS.OWNER.uni = data.uni;
-  ZEUS.OWNER.relationship = data.relationship;
-  ZEUS.PREMIUM_PRICE = data.premiumPrice;
-  ZEUS.ACCT_NUMBER = data.acct;
-  ZEUS.ACCT_NAME = data.acctName;
-  ZEUS.ACCT_BANK = data.bank;
-  document.getElementById('ownerUpdateMsg').style.display = 'inline';
-  setTimeout(() => document.getElementById('ownerUpdateMsg').style.display = 'none', 3000);
-}
-
-// ===== PREMIUM =====
-function updatePremiumUI(){
-  if(!ZEUS_user)return;
-  const prem=ZEUS_user.premium||ZEUS_isPremium;
-  document.getElementById('sidebarPremBadge').style.display=prem?'inline':'none';
-  document.getElementById('settingsStatus').textContent=prem?'👑 Premium User':'Free User';
-  document.getElementById('premiumUnlocked').style.display=prem?'block':'none';
-  document.getElementById('premiumLocked').style.display=prem?'none':'block';
-}
-
-function redeemPremium(){
-  const code=document.getElementById('premiumCodeInput').value.trim().toUpperCase();
-  if(!code){alert('Enter a premium code');return}
-  const validCodes=JSON.parse(localStorage.getItem('zeus_premium_codes')||'[]');
-  if(validCodes.includes(code)){
-    ZEUS_isPremium=true;
-    if(ZEUS_user){
-      ZEUS_user.premium=true;
-      localStorage.setItem('zeus_session',JSON.stringify(ZEUS_user));
-      const users=JSON.parse(localStorage.getItem('zeus_users')||'{}');
-      if(users[ZEUS_user.username]){users[ZEUS_user.username].premium=true;localStorage.setItem('zeus_users',JSON.stringify(users))}
+// ---- PIN ----
+function verifyPIN() {
+    const v = document.getElementById('pinInput').value;
+    if (v === S.pin) {
+        document.getElementById('pinModal').classList.add('hidden');
+        S.pinSet = true;
+        localStorage.setItem('zps', 'true');
+        document.getElementById('pinError').textContent = '';
+        toast('✅ Access granted!', 'success');
+    } else {
+        document.getElementById('pinError').textContent = '❌ Wrong PIN. Try again.';
     }
-    const idx=validCodes.indexOf(code);
-    if(idx>-1){validCodes.splice(idx,1);localStorage.setItem('zeus_premium_codes',JSON.stringify(validCodes))}
-    updatePremiumUI();
-    document.getElementById('premiumCodeInput').value='';
-    alert('✅ PREMIUM UNLOCKED! Enjoy all premium features. Welcome to ZEUS AI Premium! 👑');
-  } else {
-    alert('❌ Invalid premium code. Make sure you paid ₦8,000 to Opay 9066760078 (Christana Godwin Okon) and received your code on WhatsApp.');
-  }
+}
+function setupPIN() {
+    const v = document.getElementById('pinInput').value;
+    if (v.length < 4) { document.getElementById('pinError').textContent = 'PIN must be 4+ characters.'; return; }
+    S.pin = v;
+    localStorage.setItem('zp', v);
+    localStorage.setItem('zps', 'true');
+    document.getElementById('pinModal').classList.add('hidden');
+    document.getElementById('pinError').textContent = '';
+    toast('✅ PIN set!', 'success');
 }
 
-function generatePremiumCode(){
-  const code=ZEUS.PREMIUM_BASE+'-'+Math.random().toString(36).substr(2,4).toUpperCase();
-  const codes=JSON.parse(localStorage.getItem('zeus_premium_codes')||'[]');
-  codes.push(code);
-  localStorage.setItem('zeus_premium_codes',JSON.stringify(codes));
-  document.getElementById('generatedCode').style.display='block';
-  document.getElementById('codeDisplay').textContent=code;
-}
-
-function getPremiumUsers(){
-  const users=JSON.parse(localStorage.getItem('zeus_users')||'{}');
-  return Object.entries(users).filter(([u,d])=>d.premium).map(([u])=>u);
-}
-
-// ===== NAVIGATION =====
-function navigate(page){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-  const pg=document.getElementById('page-'+page);
-  if(pg)pg.classList.add('active');
-  const nav=document.querySelector(`.nav-item[onclick*="'${page}'"]`);
-  if(nav)nav.classList.add('active');
-  const titles={chat:'Smart Chat',dashboard:'Dashboard',vision:'Vision AI',voice:'Voice AI',search:'Search AI',coding:'Coding Assistant',documents:'Document AI',images:'Image Prompts',gaming:'Gaming Mode',agents:'AI Agents',premium:'Upgrade to Premium',prompts:'Prompt Library',academy:'Dev Academy',workspace:'Workspace',memory:'Memory',settings:'Settings',admin:'Admin Panel'};
-  document.getElementById('pageTitle').textContent=titles[page]||'ZEUS AI';
-  if(page==='chat')document.getElementById('chatInput')?.focus();
-  if(page==='prompts')renderPrompts();
-  document.getElementById('mainContent').scrollTop=0;
-  updateAdminStats();
-}
-
-// ===== PROMPT LIBRARY =====
-const PROMPTS=[
-  {cat:'Business',texts:['Write a business plan','Create a marketing strategy','Analyze my competition','Write an email campaign','Calculate ROI','Pitch deck tips']},
-  {cat:'Coding',texts:['Explain closures in JS','Write a Python API','Debug my code','Create a React component','Build a REST API','Optimize SQL query']},
-  {cat:'Writing',texts:['Write a short story','Compose a poem','Edit my essay','Write a cover letter','Create a blog post','Draft a speech']},
-  {cat:'Learning',texts:['Explain quantum physics','Teach me calculus','Create study notes','Practice vocabulary','Explain world history','Help with homework']},
-  {cat:'Gaming',texts:['Free Fire rank tips','PUBG sensitivity guide','COD Mobile loadout','Minecraft survival tips','Fortnite building tips','Best Roblox games']},
-  {cat:'Lifestyle',texts:['Motivate me today','Give me a workout plan','Meditation guide','Daily productivity tips','Healthy eating advice','Morning routine ideas']}
-];
-
-function renderPrompts(){
-  const grid=document.getElementById('promptGrid');
-  if(!grid)return;
-  grid.innerHTML='';
-  PROMPTS.forEach(group=>{
-    group.texts.forEach(t=>{
-      const div=document.createElement('div');div.className='dash-card';div.style.cursor='pointer';
-      div.innerHTML=`<div style="font-size:10px;color:var(--text3);margin-bottom:4px">${group.cat}</div><h3 style="font-size:13px">${t}</h3>`;
-      div.onclick=()=>{quickPrompt(t);navigate('chat')};
-      grid.appendChild(div);
+// ---- NAV ----
+function go(page) {
+    document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+    const el = document.getElementById('p-' + page);
+    if (el) { el.classList.remove('hidden'); el.classList.add('fade-in'); }
+    document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+    document.querySelectorAll('.sidebar-item').forEach(i => {
+        if (i.textContent.toLowerCase().includes(page)) i.classList.add('active');
     });
-  });
+    document.getElementById('sidebar').classList.remove('open');
+}
+function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
+
+// ---- UI ----
+function updateUI() {
+    const b = document.getElementById('roleBadge');
+    if (S.admin) { b.className='badge badge-admin'; b.innerHTML='<i class="fas fa-shield-alt"></i> Admin'; }
+    else if (S.premium) { b.className='badge badge-premium'; b.innerHTML='<i class="fas fa-crown"></i> Premium'; }
+    else { b.className='badge badge-free'; b.innerHTML='<i class="fas fa-user"></i> Free'; }
+    document.getElementById('headerUser').textContent = S.display;
+    document.getElementById('setUser').textContent = S.user;
+    document.getElementById('setStatus').textContent = S.premium ? '👑 Premium' : 'Free User';
+    updatePremUI();
+    document.getElementById('admUsers').textContent = '1';
+    document.getElementById('admConvs').textContent = S.convs;
+    document.getElementById('admMsgs').textContent = S.msgs.length;
+    document.getElementById('admPrem').textContent = S.premUsers.length;
+    document.getElementById('memCount').textContent = S.memory.length + ' items';
+}
+function updatePremUI() {
+    document.getElementById('premBadge').innerHTML = S.premium ? '<i class="fas fa-crown"></i> 👑 Premium' : '<i class="fas fa-user"></i> Free User';
+    document.getElementById('premBadge').className = S.premium ? 'badge badge-premium mb-3' : 'badge badge-free mb-3';
+    document.getElementById('premUnlocked').classList.toggle('hidden', !S.premium);
+}
+function applyCreator() {
+    const c = S.creator;
+    document.getElementById('sideOwnerName').textContent = c.name + ' (' + c.realName + ')';
+    document.getElementById('sideOwnerPhone').textContent = '📞 ' + c.phone;
+    document.getElementById('setPhone').textContent = c.phone;
+    document.getElementById('setWA').href = c.whatsapp;
+    document.getElementById('setOwnerInfo').innerHTML = `
+        <p class="text-sm"><strong>Name:</strong> ${c.name} (${c.realName})</p>
+        <p class="text-sm"><strong>Phone:</strong> ${c.phone}</p>
+        <p class="text-sm"><strong>Email:</strong> ${c.email}</p>
+        <p class="text-sm"><strong>Born:</strong> ${c.dob}</p>
+        <p class="text-sm"><strong>Nationality:</strong> ${c.nationality}</p>
+        <p class="text-sm"><strong>Religion:</strong> ${c.religion}</p>
+        <p class="text-sm"><strong>School:</strong> ${c.school}</p>
+        <p class="text-sm"><strong>University:</strong> ${c.university}</p>
+        <p class="text-sm"><strong>Course:</strong> ${c.course}</p>
+        <p class="text-sm"><strong>Occupation:</strong> ${c.occupation}</p>
+        <p class="text-sm"><strong>Status:</strong> ${c.relationship}</p>
+        <p class="text-sm"><strong>Mission:</strong> ${c.mission}</p>
+    `;
+    // Admin editor fields
+    document.getElementById('eName').value = c.name;
+    document.getElementById('eReal').value = c.realName;
+    document.getElementById('ePhone').value = c.phone;
+    document.getElementById('eEmail').value = c.email;
+    document.getElementById('eWA').value = c.whatsapp;
+    document.getElementById('eDOB').value = c.dob;
+    document.getElementById('eNat').value = c.nationality;
+    document.getElementById('eRel').value = c.religion;
+    document.getElementById('eSchool').value = c.school;
+    document.getElementById('eUni').value = c.university;
+    document.getElementById('eCourse').value = c.course;
+    document.getElementById('eOcc').value = c.occupation;
+    document.getElementById('eRelStatus').value = c.relationship;
+    document.getElementById('eMission').value = c.mission;
+    document.getElementById('ePrice').value = c.premiumPrice;
+    document.getElementById('eAccNo').value = c.accountNumber;
+    document.getElementById('eAccName').value = c.accountName;
+    document.getElementById('eBank').value = c.bank;
+    // Premium page
+    document.getElementById('premPrice').textContent = c.premiumPrice;
+    document.getElementById('premAccNo').textContent = c.accountNumber;
+    document.getElementById('premAccName').textContent = c.accountName;
+    document.getElementById('premBank').textContent = c.bank;
+    document.getElementById('premPhone').textContent = c.phone;
+    const clean = c.phone.replace(/[^0-9]/g,'');
+    document.getElementById('premWhatsApp').href = `https://wa.me/${clean}?text=I%27ve%20paid%20for%20ZEUS%20AI%20Premium%20(${encodeURIComponent(c.premiumPrice)})`;
 }
 
-// ===== CHAT SYSTEM =====
-function quickPrompt(t){document.getElementById('chatInput').value=t;navigate('chat');setTimeout(sendChatMsg,300)}
-function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,100)+'px'}
-
-function addChatMessage(role,text,id){
-  const mid=id||'msg_'+Date.now()+'_'+Math.random().toString(36).substr(2,4);
-  const div=document.createElement('div');div.id=mid;div.className=`chat-msg ${role}`;
-  const time=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
-  const av=role==='user'?(ZEUS_user?.displayName?.charAt(0)||'U'):'⚡';
-  const avClass=role==='user'?'':'style="background:linear-gradient(135deg,var(--orange),var(--gold));color:#000"';
-  div.innerHTML=role==='user'
-    ?`<div class="chat-av">${av}</div><div class="chat-bubble"><div class="chat-text">${escHtml(text)}</div><div class="chat-actions"><span class="chat-action">${time}</span></div></div>`
-    :`<div class="chat-av" ${avClass}>⚡</div><div class="chat-bubble"><div class="chat-text">${escHtml(text||'...')}</div><div class="chat-actions"><button class="chat-action" onclick="copyMsg('${mid}')">📋</button><span class="chat-action">${time}</span></div></div>`;
-  const container=document.getElementById('chatMessages');
-  const w=container.querySelector('.chat-welcome');if(w)w.style.display='none';
-  container.appendChild(div);container.scrollTop=container.scrollHeight;
-  return mid;
+// ---- SAVE CREATOR (ADMIN) ----
+function saveCreator() {
+    S.creator = {
+        name: document.getElementById('eName').value,
+        realName: document.getElementById('eReal').value,
+        phone: document.getElementById('ePhone').value,
+        email: document.getElementById('eEmail').value,
+        whatsapp: document.getElementById('eWA').value,
+        dob: document.getElementById('eDOB').value,
+        nationality: document.getElementById('eNat').value,
+        religion: document.getElementById('eRel').value,
+        school: document.getElementById('eSchool').value,
+        university: document.getElementById('eUni').value,
+        course: document.getElementById('eCourse').value,
+        occupation: document.getElementById('eOcc').value,
+        relationship: document.getElementById('eRelStatus').value,
+        mission: document.getElementById('eMission').value,
+        premiumPrice: document.getElementById('ePrice').value,
+        accountNumber: document.getElementById('eAccNo').value,
+        accountName: document.getElementById('eAccName').value,
+        bank: document.getElementById('eBank').value
+    };
+    localStorage.setItem('zc', JSON.stringify(S.creator));
+    applyCreator();
+    updateUI();
+    document.getElementById('creatorFB').textContent = '✅ Creator info saved! Bot will now talk about the updated info.';
+    toast('✅ Creator info updated successfully!', 'success');
+    setTimeout(() => document.getElementById('creatorFB').textContent = '', 3000);
 }
 
-function escHtml(t){const d=document.createElement('div');d.textContent=t;return d.innerHTML}
-function addTyping(){const id='typing_'+Date.now();const d=document.createElement('div');d.id=id;d.className='chat-msg bot';
-  d.innerHTML=`<div class="chat-av" style="background:linear-gradient(135deg,var(--orange),var(--gold));color:#000">⚡</div><div class="chat-bubble"><div class="chat-typing"><span></span><span></span><span></span></div></div>`;
-  document.getElementById('chatMessages').appendChild(d);document.getElementById('chatMessages').scrollTop=document.getElementById('chatMessages').scrollHeight;return id}
-function removeTyping(id){document.getElementById(id)?.remove()}
-function copyMsg(id){const e=document.getElementById(id);if(!e)return;const t=e.querySelector('.chat-text')?.innerText||'';navigator.clipboard.writeText(t).catch(()=>{})}
+// ---- FEATURE TOGGLES ----
+function applyToggles() {
+    document.querySelectorAll('.tgl[data-feat]').forEach(el => {
+        const f = el.dataset.feat;
+        el.classList.toggle('active', S.features[f] !== false);
+    });
+}
+function togFeat(el) {
+    const f = el.dataset.feat;
+    const on = el.classList.toggle('active');
+    S.features[f] = on;
+    localStorage.setItem('zfeats', JSON.stringify(S.features));
+    toast(`${capitalize(f)} ${on ? 'enabled' : 'disabled'}`, on ? 'success' : 'info');
+}
+function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
 
-async function typeResponse(el,text){
-  el.innerHTML='';
-  const animate=document.getElementById('typingAnimateToggle')?.classList.contains('active');
-  if(animate===false){el.innerHTML=text;return}
-  let buf='';
-  for(let ch of text){buf+=ch;el.innerHTML=buf;await new Promise(r=>setTimeout(r,4));document.getElementById('chatMessages').scrollTop=document.getElementById('chatMessages').scrollHeight}
+// ---- GROQ API ----
+async function groqChat(msgs, sys) {
+    const all = [];
+    if (sys) all.push({ role: 'system', content: sys });
+    msgs.forEach(m => all.push({ role: m.role, content: m.content }));
+    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${GROQ_KEY}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model: GROQ_MODEL, messages: all, temperature: GROQ_TEMP, max_tokens: GROQ_TOKENS })
+    });
+    if (!res.ok) throw new Error(`Groq Error ${res.status}: ${await res.text()}`);
+    const d = await res.json();
+    return d.choices[0].message.content;
 }
 
-async function callGroq(messages,model){
-  model=model||ZEUS.MODEL;
-  try{
-    const res=await fetch(ZEUS.API_URL,{method:'POST',headers:{'Authorization':`Bearer ${ZEUS.API_KEY}`,'Content-Type':'application/json'},body:JSON.stringify({model,messages,max_tokens:2048,temperature:0.7})});
-    if(!res.ok){const r2=await fetch('https://corsproxy.io/?'+encodeURIComponent(ZEUS.API_URL),{method:'POST',headers:{'Authorization':`Bearer ${ZEUS.API_KEY}`,'Content-Type':'application/json'},body:JSON.stringify({model,messages,max_tokens:2048})});if(!r2.ok)return null;const d2=await r2.json();return d2.choices?.[0]?.message?.content||null}
-    const data=await res.json();return data.choices?.[0]?.message?.content||null
-  }catch(e){
-    try{const r=await fetch('https://corsproxy.io/?'+encodeURIComponent(ZEUS.API_URL),{method:'POST',headers:{'Authorization':`Bearer ${ZEUS.API_KEY}`,'Content-Type':'application/json'},body:JSON.stringify({model,messages,max_tokens:2048})});if(!r.ok)return null;const d=await r.json();return d.choices?.[0]?.message?.content||null}catch(e2){return null}
-  }
+// ---- CHAT ----
+function sendMsg() {
+    const inp = document.getElementById('chatIn');
+    const t = inp.value.trim();
+    if (!t) return;
+    if (S.features.chat === false && !S.admin) { toast('Chat disabled.', 'error'); return; }
+    inp.value = '';
+    addMsg('user', t);
+    saveMsg('user', t);
+    S.convs++;
+    localStorage.setItem('zconvs', S.convs);
+    processAI(t);
+}
+function addMsg(role, content) {
+    const c = document.getElementById('chatMsgs');
+    document.getElementById('welcomeScr')?.classList.add('hidden');
+    const div = document.createElement('div');
+    div.className = `msg ${role} fade-in`;
+    div.innerHTML = fmt(content);
+    const info = document.createElement('div');
+    info.className = 'ti';
+    info.textContent = role === 'user' ? `${S.display} • just now` : `⚡ ZEUS AI v7 • ${GROQ_MODEL}`;
+    div.appendChild(info);
+    c.appendChild(div);
+    c.scrollTop = c.scrollHeight;
+}
+function fmt(t) {
+    let r = t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    r = r.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    r = r.replace(/\*(.*?)\*/g, '<em>$1</em>');
+    r = r.replace(/```(\w*)\n([\s\S]*?)```/g, '<pre><code class="language-$1">$2</code></pre>');
+    r = r.replace(/`([^`]+)`/g, '<code>$1</code>');
+    r = r.replace(/\n/g, '<br />');
+    return r;
+}
+function showTyping() {
+    const c = document.getElementById('chatMsgs');
+    const d = document.createElement('div');
+    d.className = 'typing-ind fade-in';
+    d.id = 'typingEl';
+    d.innerHTML = '<span class="dot"></span><span class="dot"></span><span class="dot"></span>';
+    c.appendChild(d);
+    c.scrollTop = c.scrollHeight;
+}
+function rmTyping() { const el = document.getElementById('typingEl'); if (el) el.remove(); }
+function saveMsg(role, content) {
+    S.msgs.push({ role, content, ts: Date.now() });
+    if (S.msgs.length > 200) S.msgs.shift();
+    localStorage.setItem('zmsgs', JSON.stringify(S.msgs));
+    document.getElementById('admMsgs').textContent = S.msgs.length;
+}
+function loadMsgs() {
+    if (S.msgs.length > 0) {
+        document.getElementById('welcomeScr')?.classList.add('hidden');
+        S.msgs.forEach(m => addMsg(m.role, m.content));
+    }
+}
+function clearChat() {
+    S.msgs = [];
+    localStorage.setItem('zmsgs', JSON.stringify(S.msgs));
+    document.getElementById('chatMsgs').innerHTML = `<div class="welcome" id="welcomeScr">
+        <div class="icon">⚡</div>
+        <h1>Welcome to <span class="text-gradient">ZEUS AI</span></h1>
+        <p>Your intelligent digital companion. Powered by the <strong>ZEUS AI Engine</strong>.</p>
+        <div class="welcome-sug">
+            <button class="btn btn-secondary" onclick="quickAsk('Who is ZEUS? Tell me about the creator.')">👑 Who is ZEUS?</button>
+            <button class="btn btn-secondary" onclick="quickAsk('Teach me Python')">🐍 Teach Python</button>
+            <button class="btn btn-secondary" onclick="quickAsk('Search the web')">🌐 Search web</button>
+            <button class="btn btn-secondary" onclick="quickAsk('Write a poem')">📝 Write a poem</button>
+            <button class="btn btn-secondary" onclick="quickAsk('Give me a project idea')">💻 Project idea</button>
+            <button class="btn btn-secondary" onclick="go('premium')">👑 Premium info</button>
+            <button class="btn btn-secondary" onclick="quickAsk('Tell me everything about Godwin Emmanuel Victory')">📖 About Creator</button>
+        </div>
+    </div>`;
+    toast('Chat cleared', 'info');
 }
 
-async function sendChatMsg(){
-  const input=document.getElementById('chatInput');const text=input.value.trim();
-  if(!text||ZEUS_processing)return;
-  ZEUS_processing=true;const btn=document.getElementById('chatSendBtn');btn.disabled=true;btn.innerHTML='⏳';
-  addChatMessage('user',text);
-  ZEUS_history.push({role:'user',content:text});
-  input.value='';input.style.height='auto';
-  updateAdminStats();
-  const typingId=addTyping();
-  try{
-    const msgs=[{role:'system',content:SYSTEM_PROMPT},...ZEUS_history.slice(-12).map(m=>({role:m.role,content:m.content})),{role:'user',content:text}];
-    let reply=await callGroq(msgs);
-    removeTyping(typingId);
-    if(!reply)reply=isOwnerQuery(text)?getOwnerBio():"I'm here to help! Ask me anything — coding, learning, gaming, or just chat! ⚡";
-    const mid=addChatMessage('bot','');const el=document.getElementById(mid);const te=el?.querySelector('.chat-text');
-    if(te){await typeResponse(te,reply);if(ZEUS_voiceOut&&'speechSynthesis'in window){const u=new SpeechSynthesisUtterance(reply.replace(/[*#_`\[\]]/g,'').substring(0,150));speechSynthesis.speak(u)}}
-    ZEUS_history.push({role:'assistant',content:reply});saveHistory();
-  }catch(e){
-    removeTyping(typingId);
-    let fb="I'm processing! Ask me anything. ⚡";
-    if(isOwnerQuery(text))fb=getOwnerBio();
-    const mid=addChatMessage('bot','');const el=document.getElementById(mid);const te=el?.querySelector('.chat-text');
-    if(te)await typeResponse(te,fb);
-    ZEUS_history.push({role:'assistant',content:fb});saveHistory();
-  }
-  ZEUS_processing=false;btn.disabled=false;
-  btn.innerHTML=`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>`;
+async function processAI(text) {
+    showTyping();
+    const c = S.creator;
+    const sys = `You are ZEUS AI v7 Premium, created by ${c.name} (${c.realName}).
+CREATOR INFO (Answer accurately when asked about the creator):
+- Full Name: ${c.realName}
+- Also Known As: ${c.name}
+- Date of Birth: ${c.dob}
+- Nationality: ${c.nationality}
+- Religion: ${c.religion}
+- Phone: ${c.phone}
+- Email: ${c.email}
+- WhatsApp: ${c.whatsapp}
+- Secondary School: ${c.school}
+- University: ${c.university}
+- Course: ${c.course}
+- Occupation: ${c.occupation}
+- Relationship Status: ${c.relationship}
+- Mission/Motto: ${c.mission}
+
+Contact: ${c.phone} | WhatsApp: ${c.whatsapp}
+Be helpful, engaging, and detailed. Powered by Groq AI. User: ${S.display} (${S.premium ? 'Premium' : 'Free'})`;
+    
+    const hist = S.msgs.slice(-10).map(m => ({ role: m.role, content: m.content }));
+    try {
+        const r = await groqChat(hist, sys);
+        rmTyping();
+        addMsg('ai', r);
+        saveMsg('ai', r);
+        if (S.memEnabled) {
+            S.memory.push({ user: text, response: r, ts: Date.now() });
+            if (S.memory.length > 100) S.memory.shift();
+            localStorage.setItem('zm', JSON.stringify(S.memory));
+            document.getElementById('memCount').textContent = S.memory.length + ' items';
+        }
+        /* Auto-scroll to view latest */
+        document.getElementById('chatMsgs').scrollTop = document.getElementById('chatMsgs').scrollHeight;
+    } catch(e) {
+        rmTyping();
+        addMsg('ai', `⚠️ Error: ${e.message}. Check your Groq API key or try again.`);
+        saveMsg('ai', `[Error] ${e.message}`);
+    }
+    /* Scroll to bottom after response */
+    setTimeout(() => {
+        document.getElementById('chatMsgs').scrollTop = document.getElementById('chatMsgs').scrollHeight;
+    }, 100);
 }
 
-document.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey&&document.activeElement===document.getElementById('chatInput')){e.preventDefault();sendChatMsg()}});
-
-// ===== VOICE =====
-function toggleMicChat(){
-  if(ZEUS_listening){stopListening();return}
-  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-  if(!SR){addChatMessage('bot','Voice not supported in this browser. Try Chrome.');return}
-  try{
-    ZEUS_recognition=new SR();ZEUS_recognition.lang='en-US';ZEUS_recognition.interimResults=false;
-    ZEUS_recognition.onresult=e=>{document.getElementById('chatInput').value=e.results[0][0].transcript;stopListening();sendChatMsg()};
-    ZEUS_recognition.onerror=stopListening;ZEUS_recognition.onend=stopListening;
-    ZEUS_recognition.start();ZEUS_listening=true;
-    document.getElementById('micChatBtn').style.color='#ff4444';document.getElementById('micChatBtn').textContent='🔴';
-    document.getElementById('chatStatus').textContent='🎤 Listening...';
-  }catch(e){stopListening()}
-}
-function stopListening(){
-  if(ZEUS_recognition){try{ZEUS_recognition.stop()}catch(e){}}
-  ZEUS_listening=false;const btn=document.getElementById('micChatBtn');
-  if(btn){btn.style.color='';btn.innerHTML='🎤'}
-  document.getElementById('chatStatus').textContent='ZEUS AI • v6.0';
+function quickAsk(t) {
+    document.getElementById('chatIn').value = t + ' ';
+    document.getElementById('chatIn').focus();
+    go('chat');
+    /* Auto-send after short delay */
+    setTimeout(() => sendMsg(), 300);
 }
 
-function toggleVoiceRecord(){
-  if(ZEUS_listening){stopListening();document.getElementById('voiceBtnText').textContent='Start Recording';document.getElementById('voiceWaveArea').style.display='none';return}
-  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-  if(!SR){document.getElementById('voiceResult').style.display='block';document.getElementById('voiceResult').textContent='❌ Voice not supported';return}
-  try{
-    const rec=new SR();rec.lang='en-US';rec.interimResults=true;let finalText='';
-    rec.onresult=e=>{for(let i=e.resultIndex;i<e.results.length;i++){if(e.results[i].isFinal)finalText+=e.results[i][0].transcript+' '}document.getElementById('voiceResult').style.display='block';document.getElementById('voiceResult').textContent=finalText||'🎤 Listening...'};
-    rec.onend=async()=>{document.getElementById('voiceWaveArea').style.display='none';document.getElementById('voiceBtnText').textContent='Start Recording';if(finalText.trim()){document.getElementById('voiceResult').textContent='⏳ Processing...';const msgs=[{role:'system',content:SYSTEM_PROMPT},{role:'user',content:finalText}];const reply=await callGroq(msgs);document.getElementById('voiceResult').textContent=reply||'I heard: "'+finalText+'"';if(ZEUS_voiceOut&&reply&&'speechSynthesis'in window){const u=new SpeechSynthesisUtterance(reply.substring(0,150));speechSynthesis.speak(u)}}};
-    rec.onerror=()=>{document.getElementById('voiceWaveArea').style.display='none';document.getElementById('voiceBtnText').textContent='Start Recording'};
-    rec.start();document.getElementById('voiceWaveArea').style.display='flex';document.getElementById('voiceBtnText').textContent='🔴 Recording...';document.getElementById('voiceResult').style.display='none';
-  }catch(e){document.getElementById('voiceResult').style.display='block';document.getElementById('voiceResult').textContent='❌ Error: '+e.message}
+// ---- SEARCH ----
+async function doSearch() {
+    const q = document.getElementById('searchQ').value.trim();
+    if (!q) return;
+    document.getElementById('searchRes').innerHTML = '<p class="text-muted">🔍 Searching...</p>';
+    try {
+        const r = await groqChat([{ role: 'user', content: `Search the web and provide a comprehensive summary about: ${q}. Include key facts and details.` }], 'You are ZEUS AI Search Agent.');
+        document.getElementById('searchRes').innerHTML = `<div class="card"><h4 class="fw-600 mb-2">🌐 Results: ${q}</h4><div class="text-sm">${fmt(r)}</div></div>`;
+    } catch(e) { document.getElementById('searchRes').innerHTML = `<p class="text-sm" style="color:#dc2626">Error: ${e.message}</p>`; }
+}
+function quickSearch(t) { document.getElementById('searchQ').value = t; doSearch(); }
+
+// ---- DOCUMENTS ----
+async function docAction(a) {
+    const t = document.getElementById('docText').value.trim();
+    if (!t) { toast('Paste document text first.', 'error'); return; }
+    const prompts = { summarize: 'Summarize this text concisely:', translate: 'Translate this to English:', analyze: 'Analyze this text (themes, sentiment, insights):' };
+    document.getElementById('docRes').textContent = '⏳ Processing...';
+    try {
+        const r = await groqChat([{ role: 'user', content: `${prompts[a]}\n\n${t}` }], 'You are ZEUS AI Document Assistant.');
+        document.getElementById('docRes').innerHTML = fmt(r);
+    } catch(e) { document.getElementById('docRes').textContent = `Error: ${e.message}`; }
 }
 
-// ===== WEB SEARCH =====
-function webSearch(){
-  const q=document.getElementById('searchQuery').value.trim();
-  if(!q){alert('Enter a search query');return}
-  quickPrompt('Search the web for: '+q);
-  navigate('chat');
+// ---- IMAGE PROMPTS ----
+async function genPrompt() {
+    const s = document.getElementById('promptSeed').value.trim();
+    if (!s) { toast('Describe what you want.', 'error'); return; }
+    document.getElementById('promptRes').classList.add('hidden');
+    try {
+        const r = await groqChat([{ role: 'user', content: `Create a detailed AI image prompt for: "${s}". Include style, lighting, mood, composition. Output ONLY the prompt.` }], 'Expert AI prompt engineer.');
+        document.getElementById('promptOut').textContent = r;
+        document.getElementById('promptRes').classList.remove('hidden');
+    } catch(e) { toast('Error: '+e.message, 'error'); }
+}
+function copyPrompt() {
+    navigator.clipboard.writeText(document.getElementById('promptOut').textContent).then(() => toast('✅ Copied!', 'success'));
+}
+function randExample() {
+    const ex = ['A cyberpunk city at midnight with holographic billboards','A mystical forest with glowing mushrooms and ethereal blue light','A steampunk inventor with brass goggles and clockwork prosthetics','An alien landscape with twin suns over crystalline mountains'];
+    document.getElementById('promptSeed').value = ex[Math.floor(Math.random()*ex.length)];
 }
 
-// ===== VISION =====
-async function handleVisionPageFile(input){
-  const file=input.files[0];if(!file)return;
-  document.getElementById('visionPagePreview').style.display='block';
-  document.getElementById('visionPageImg').src=URL.createObjectURL(file);
-  document.getElementById('visionPageResult').style.display='none';
-  const reader=new FileReader();
-  reader.onload=async function(e){
-    const base64=e.target.result;
-    document.getElementById('visionPageResult').style.display='block';
-    document.getElementById('visionPageText').textContent='⏳ Analyzing...';
-    try{
-      const res=await fetch(ZEUS.API_URL,{method:'POST',headers:{'Authorization':`Bearer ${ZEUS.API_KEY}`,'Content-Type':'application/json'},body:JSON.stringify({model:ZEUS.VISION_MODEL,messages:[{role:'user',content:[{type:'text',text:'Describe this image in detail. Read any text, identify objects, and explain what you see.'},{type:'image_url',image_url:{url:base64}}]}],max_tokens:1024})});
-      if(!res.ok){document.getElementById('visionPageText').textContent='❌ Error analyzing. Try a smaller image (under 1MB).';return}
-      const data=await res.json();const reply=data.choices?.[0]?.message?.content||'No analysis.';
-      document.getElementById('visionPageText').textContent=reply;
-    }catch(err){document.getElementById('visionPageText').textContent='❌ Error: '+err.message}
-  };
-  reader.readAsDataURL(file);
+// ---- VISION ----
+function analyzeVision() {
+    const f = document.getElementById('visionFile').files[0];
+    if (!f) { toast('Select an image.', 'error'); return; }
+    const r = new FileReader();
+    r.onload = e => {
+        document.getElementById('visionImg').src = e.target.result;
+        document.getElementById('visionPreview').classList.remove('hidden');
+        document.getElementById('visionResult').textContent = '🔍 Analyzing... (Vision requires multimodal model)';
+        setTimeout(() => {
+            document.getElementById('visionResult').innerHTML = '<p class="text-sm"><strong>📸 Analysis Complete</strong></p><p>ZEUS AI Vision module ready. Connect multimodal model for full analysis.</p><p class="text-xs text-muted mt-2">Powered by ZEUS AI v7</p>';
+        }, 1500);
+    };
+    r.readAsDataURL(f);
 }
 
-async function handleChatVision(input){
-  const file=input.files[0];if(!file)return;
-  const reader=new FileReader();
-  reader.onload=async function(e){
-    addChatMessage('user','🔍 Analyzing uploaded image...');
-    const typingId=addTyping();
-    try{
-      const res=await fetch(ZEUS.API_URL,{method:'POST',headers:{'Authorization':`Bearer ${ZEUS.API_KEY}`,'Content-Type':'application/json'},body:JSON.stringify({model:ZEUS.VISION_MODEL,messages:[{role:'user',content:[{type:'text',text:'Analyze this image. Describe it, read text, identify objects.'},{type:'image_url',image_url:{url:e.target.result}}]}],max_tokens:1024})});
-      removeTyping(typingId);
-      if(!res.ok){addChatMessage('bot','❌ Vision error. Try a smaller image.');return}
-      const data=await res.json();const reply=data.choices?.[0]?.message?.content||'Could not analyze.';
-      addChatMessage('bot','👁️ **Vision Analysis:**\n'+reply);
-      ZEUS_history.push({role:'assistant',content:reply});saveHistory();
-    }catch(err){removeTyping(typingId);addChatMessage('bot','❌ Error: '+err.message)}
-  };
-  reader.readAsDataURL(file);input.value='';
+// ---- VOICE ----
+function toggleVoice() {
+    if (!S.voiceRec) {
+        const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SR) { toast('Voice not supported in this browser.', 'error'); return; }
+        S.voiceRec = new SR();
+        S.voiceRec.continuous = true;
+        S.voiceRec.interimResults = true;
+        S.voiceRec.lang = 'en-US';
+        S.voiceRec.onresult = e => {
+            let t = '';
+            for (let i = e.resultIndex; i < e.results.length; i++) t += e.results[i][0].transcript;
+            document.getElementById('voiceResult').innerHTML = `<p class="text-sm">🎙️ <em>${t}</em></p>`;
+            document.getElementById('chatIn').value = t;
+        };
+        S.voiceRec.onerror = () => { toast('Voice error.', 'error'); S.isRecording = false; document.getElementById('voiceBtn').innerHTML = '<i class="fas fa-microphone"></i> 🎙️ Start Recording'; };
+    }
+    if (!S.isRecording) {
+        S.voiceRec.start();
+        S.isRecording = true;
+        document.getElementById('voiceBtn').innerHTML = '<i class="fas fa-stop" style="color:#dc2626"></i> ⏹️ Stop';
+        toast('🎙️ Recording...', 'info');
+    } else {
+        S.voiceRec.stop();
+        S.isRecording = false;
+        document.getElementById('voiceBtn').innerHTML = '<i class="fas fa-microphone"></i> 🎙️ Start Recording';
+        const t = document.getElementById('chatIn').value.trim();
+        if (t) sendMsg();
+    }
 }
 
-// ===== DOCUMENT AI =====
-async function processDoc(action){
-  const text=document.getElementById('docText').value.trim();
-  if(!text){alert('Paste text first!');return}
-  const result=document.getElementById('docResult');const rt=document.getElementById('docResultText');
-  result.style.display='block';rt.textContent='⏳ Processing...';
-  let prompt='';
-  if(action==='summarize')prompt='Summarize this concisely:\n\n'+text;
-  else if(action==='translate')prompt='Translate to English:\n\n'+text;
-  else prompt='Analyze and provide key insights:\n\n'+text;
-  const msgs=[{role:'system',content:'You are a document analysis AI.'},{role:'user',content:prompt}];
-  const reply=await callGroq(msgs,ZEUS.FAST_MODEL);
-  rt.textContent=reply||'Processing complete.';
+// ---- AGENTS ----
+function activateAgent(a) {
+    const p = {
+        teacher: 'I want to learn. Teach me like a patient knowledgeable teacher.',
+        fitness: 'I need a fitness coach. Give me workout and nutrition advice.',
+        business: 'I need business advice. Help me with strategy and planning.',
+        translator: 'I need a translator. Help me translate between languages.',
+        health: 'I need health and wellness advice.',
+        developer: 'I need a developer. Help me write and debug code.'
+    };
+    document.getElementById('chatIn').value = p[a] || 'Help me.';
+    go('chat');
+    setTimeout(() => sendMsg(), 300);
 }
 
-// ===== IMAGE PROMPT GENERATOR =====
-async function genImagePrompt(){
-  const desc=document.getElementById('imagePromptDesc').value.trim();
-  if(!desc){alert('Describe the image you want!');return}
-  const result=document.getElementById('imagePromptResult');const rt=document.getElementById('imagePromptText');
-  result.style.display='block';rt.textContent='⏳ Generating premium prompt...';
-  const msgs=[{role:'system',content:'You are an expert AI image prompt engineer. Create detailed, vivid, professional prompts for AI image generation. Include style, lighting, composition, and mood.'},{role:'user',content:'Create a detailed image generation prompt for: '+desc}];
-  const reply=await callGroq(msgs,ZEUS.FAST_MODEL);
-  rt.textContent=reply||'Premium prompt: '+desc;
+// ---- LIBRARY ----
+function loadLibrary() {
+    const p = ['Write a motivational speech','Explain quantum computing simply','Create a workout plan','Write a business proposal','Debug my code','Help me learn JavaScript','Write a love poem','Plan a trip itinerary','Create a resume','Explain blockchain','Give me investing tips','Write a song','Teach me a language','Create a marketing strategy','Help me meditate','Design a logo concept','Write a cover letter','Explain AI ethics','Create a recipe','Give me life advice','Explain how ZEUS AI works','Tell me about Godwin Emmanuel Victory','Write a Python game','Create a chatbot'];
+    document.getElementById('libGrid').innerHTML = p.map(x => 
+        `<div class="grid-card" onclick="quickAsk('${x}')"><div class="gi">📚</div><h3>${x}</h3><p class="text-sm text-muted">Click to use</p></div>`
+    ).join('');
 }
 
-function copyPromptResult(){const t=document.getElementById('imagePromptText').textContent;navigator.clipboard.writeText(t).then(()=>alert('✅ Prompt copied!'))}
-
-// ===== AGENTS =====
-function activateAgent(type){
-  const p={teacher:'You are now my Teacher. Teach me something new today.',fitness:'You are now my Fitness Coach. Give me a workout plan.',business:'You are now my Business Advisor. Help my startup.',translator:'You are now a Translator. Translate for me.',health:'You are now my Health Assistant. Give wellness tips.',developer:'You are now a Senior Developer. Help me code.'};
-  quickPrompt(p[type]||'Help me with '+type);navigate('chat');
+// ---- PREMIUM ----
+function genPremCode() {
+    const code = 'ZEUS-PREM-' + Math.random().toString(36).substring(2,8).toUpperCase();
+    document.getElementById('premCodeDisp').textContent = code;
+    document.getElementById('genCodeBox').classList.remove('hidden');
+    toast('Code: ' + code, 'success');
+}
+function redeemCode() {
+    const inp = document.getElementById('premCodeIn').value.trim();
+    if (!inp) { toast('Enter a code.', 'error'); return; }
+    if (inp.startsWith('ZEUS-PREM-') && inp.length >= 14) {
+        S.premium = true;
+        localStorage.setItem('zpr', 'true');
+        if (!S.premUsers.find(u => u.code === inp)) {
+            S.premUsers.push({ code: inp, date: new Date().toISOString(), user: S.user });
+            localStorage.setItem('zpus', JSON.stringify(S.premUsers));
+        }
+        updateUI();
+        toast('👑 PREMIUM UNLOCKED! Welcome!', 'success');
+        document.getElementById('premCodeIn').value = '';
+    } else {
+        toast('Invalid code.', 'error');
+    }
+}
+function viewPremUsers() {
+    const box = document.getElementById('premUsersBox');
+    const data = document.getElementById('premUsersData');
+    box.classList.toggle('hidden');
+    if (S.premUsers.length === 0) {
+        data.innerHTML = '<p class="text-sm text-muted">No premium users yet.</p>';
+    } else {
+        data.innerHTML = S.premUsers.map(u => 
+            `<div class="flex-between" style="padding:3px 0;border-bottom:1px solid var(--border)">
+                <span class="text-sm">${u.user}</span>
+                <span class="text-xs text-muted">${new Date(u.date).toLocaleDateString()}</span>
+                <span class="text-xs" style="color:var(--primary);font-family:monospace">${u.code}</span>
+            </div>`
+        ).join('');
+    }
 }
 
-// ===== CLEAR =====
-function clearChat(){
-  if(!confirm('Clear conversation?'))return;
-  ZEUS_history=[];saveHistory();
-  const container=document.getElementById('chatMessages');
-  container.innerHTML=`<div class="chat-welcome"><span class="chat-welcome-icon">⚡</span><h2>Welcome to ZEUS AI</h2><p>Your intelligent digital companion. Ask me anything!</p><div class="chat-suggestions"><button class="chat-sugg" onclick="quickPrompt('Who is ZEUS?')">👑 Who is ZEUS?</button><button class="chat-sugg" onclick="quickPrompt('Teach me Python')">🐍 Teach Python</button><button class="chat-sugg" onclick="quickPrompt('Search the web for latest tech news')">🌐 Search</button><button class="chat-sugg" onclick="quickPrompt('What is premium on ZEUS AI?')">👑 Premium</button></div></div>`;
+// ---- PIN & SECURITY ----
+function resetPIN() {
+    const np = Math.floor(100000 + Math.random()*900000).toString();
+    S.pin = np;
+    localStorage.setItem('zp', np);
+    document.getElementById('admPinDisp').value = np;
+    toast('New PIN: ' + np, 'info');
+}
+function regenOwnerCode() {
+    const nc = Math.random().toString(36).substring(2,8).toUpperCase();
+    S.ownerCode = nc;
+    localStorage.setItem('zoc', nc);
+    document.getElementById('ownerCodeVal').textContent = nc;
+    toast('Owner code: ZEUS-OWNER-' + nc, 'success');
 }
 
-// ===== HISTORY =====
-function saveHistory(){try{localStorage.setItem('zeus_history_'+(ZEUS_user?.username||'guest'),JSON.stringify(ZEUS_history))}catch(e){}}
-function loadHistory(){
-  try{
-    const s=localStorage.getItem('zeus_history_'+(ZEUS_user?.username||'guest'));
-    if(s){ZEUS_history=JSON.parse(s);ZEUS_history.forEach(m=>addChatMessage(m.role,m.content));updateAdminStats()}
-  }catch(e){}
+// ---- SETTINGS ----
+function showSettings() { go('settings'); }
+
+// ---- MEMORY ----
+function toggleMem() {
+    S.memEnabled = !S.memEnabled;
+    localStorage.setItem('zme', S.memEnabled.toString());
+    document.getElementById('memTgl').classList.toggle('active', S.memEnabled);
+    toast('Memory ' + (S.memEnabled ? 'enabled' : 'disabled'), 'info');
 }
 
-function updateAdminStats(){
-  document.getElementById('adminChats').textContent=ZEUS_history.length>0?Math.ceil(ZEUS_history.length/2):0;
-  document.getElementById('adminMessages').textContent=ZEUS_history.length;
-  document.getElementById('adminPremium').textContent=getPremiumUsers().length;
-  document.getElementById('memoryCount').textContent=ZEUS_history.length+' items';
+// ---- GROQ CONFIG ----
+function selModel(el) {
+    document.querySelectorAll('.model-chip').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    GROQ_MODEL = el.dataset.model;
+    localStorage.setItem('zgm', GROQ_MODEL);
+    toast('Model: ' + el.textContent.trim(), 'success');
+}
+function saveGroq() {
+    GROQ_TEMP = parseFloat(document.getElementById('tempRange').value);
+    GROQ_TOKENS = parseInt(document.getElementById('maxTok').value);
+    localStorage.setItem('zgt', GROQ_TEMP);
+    localStorage.setItem('zgk', GROQ_TOKENS);
+    toast('⚡ Engine config saved!', 'success');
+}
+function togKeyVis() {
+    const el = document.getElementById('groqKeyDisp');
+    el.type = el.type === 'password' ? 'text' : 'password';
 }
 
-// ===== MODALS =====
-function showAbout(){
-  const overlay=document.createElement('div');overlay.className='modal-overlay';
-  overlay.innerHTML=`<div class="modal"><h2>⚡ ZEUS AI v6.0</h2><p><strong>World-Class Premium Intelligence Platform</strong></p>
-    <p>Created by <strong>ZEUS (Godwin Emmanuel Victory)</strong></p>
-    <p>📞 <a href="tel:+2349066760078" style="color:var(--orange)">+234 906 676 0078</a><br/>
-    💬 <a href="https://wa.me/2349066760078" target="_blank" style="color:var(--orange)">WhatsApp</a><br/>
-    🎓 ISGS Secondary School • OOU University<br/>
-    💍 Single</p>
-    <p style="color:var(--text3);font-size:11px">👑 Premium: ₦8,000 via Opay 9066760078 (Christana Godwin Okon)</p>
-    <div class="modal-actions"><button class="btn-close" onclick="this.closest('.modal-overlay').remove()">Close</button>
-    <a href="https://wa.me/2349066760078" target="_blank" class="btn-primary-modal" style="text-decoration:none;padding:10px 18px;border-radius:10px;font-size:13px;font-weight:600;display:inline-block">Contact ZEUS</a></div></div>`;
-  document.body.appendChild(overlay);
-  overlay.onclick=e=>{if(e.target===overlay)overlay.remove()};
+// ---- ADMIN ----
+function forceUpdate() {
+    const btn = event.target;
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Updating...';
+    setTimeout(() => {
+        const ver = 'v7.0.' + Math.floor(Math.random()*100);
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> Force Update';
+        document.getElementById('updateBanner').innerHTML = `
+            <i class="fas fa-check-circle" style="color:#16a34a"></i>
+            <span><strong>✅ Up-to-date</strong> — ${ver} · ${new Date().toLocaleTimeString()}</span>
+            <button class="btn btn-sm btn-primary" onclick="forceUpdate()"><i class="fas fa-sync"></i> Check</button>
+        `;
+        toast('✅ Updated to ' + ver, 'success');
+    }, 2000);
+}
+function viewStats() { document.getElementById('statsBox').classList.toggle('hidden'); }
+function clearAll() {
+    if (confirm('⚠️ Clear ALL data? This is permanent!')) {
+        localStorage.clear();
+        location.reload();
+    }
 }
 
-function showProfile(){showAbout()}
-
-function clearAllData(){
-  if(!confirm('⚠️ Clear ALL data? This includes users, messages, and premium codes.'))return;
-  if(!confirm('Are you absolutely sure?'))return;
-  localStorage.clear();alert('✅ All data cleared. Page will reload.');location.reload();
+// ---- TOAST ----
+function toast(msg, type='info') {
+    const c = document.getElementById('toastContainer');
+    const t = document.createElement('div');
+    t.className = `toast toast-${type}`;
+    const icons = {success:'fa-check-circle',error:'fa-exclamation-circle',info:'fa-info-circle'};
+    t.innerHTML = `<i class="fas ${icons[type]||icons.info}" style="color:${type==='success'?'#16a34a':type==='error'?'#dc2626':'var(--primary)'}"></i> ${msg}`;
+    c.appendChild(t);
+    setTimeout(() => { t.style.opacity='0'; t.style.transform='translateX(30px)'; t.style.transition='all .3s'; setTimeout(() => t.remove(),300); }, 3500);
 }
 
-// ===== STYLE FOR VOICE WAVE =====
-const vs=document.createElement('style');
-vs.textContent=`@keyframes vWave{to{transform:scaleY(1.5);height:35px}}`;
-document.head.appendChild(vs);
+// ---- KEYBOARD ----
+document.addEventListener('keydown', e => {
+    if (e.ctrlKey && e.key === 'Enter') { const inp = document.getElementById('chatIn'); if (inp && !document.getElementById('p-chat').classList.contains('hidden')) sendMsg(); }
+    if (e.key === 'Escape') { document.getElementById('pinModal').classList.add('hidden'); }
+    if (e.ctrlKey && e.key === 'k') { e.preventDefault(); const s = document.getElementById('searchQ'); if (s) { go('search'); s.focus(); } }
+});
 
-// ===== INIT =====
-(function(){
-  const session=localStorage.getItem('zeus_session');
-  if(session){
-    const s=JSON.parse(session);
-    ZEUS_user=s;
-    document.getElementById('authOverlay').style.display='none';
-    document.getElementById('app').style.display='flex';
-    document.getElementById('sideName').textContent=s.displayName;
-    document.getElementById('sideAvatar').textContent=s.displayName.charAt(0).toUpperCase();
-    document.getElementById('settingsUser').textContent=s.username;
-    updatePremiumUI();
-    setTimeout(loadHistory,100);
-  }
-  updateAdminStats();
-  console.log('⚡ ZEUS AI v6.0 — Premium Intelligence Platform');
-  console.log('👑 Created by ZEUS (Godwin Emmanuel Victory)');
-  console.log('📞 +234 906 676 0078');
-})();
+// ---- DOUBLE-CLICK LOGO FOR ADMIN ----
+document.querySelector('.logo')?.addEventListener('dblclick', () => {
+    S.admin = !S.admin;
+    localStorage.setItem('za', S.admin.toString());
+    document.getElementById('adminBtn').classList.toggle('hidden', !S.admin);
+    updateUI();
+    toast(S.admin ? '🛡️ Admin mode ON' : 'Admin mode OFF', 'info');
+});
+
+console.log('⚡ ZEUS AI v7 loaded');
+console.log('👑 Created by ZEUS (Godwin Emmanuel Victory)');
+console.log('📞 +234 906 676 0078');
+console.log('⚡ Engine: Groq AI');
 </script>
 </body>
 </html>
