@@ -52,3 +52,20 @@ ZEUS AI is a world-class premium artificial intelligence platform featuring mult
    ```bash
    git clone https://github.com/Emmyjosh65/ZEUS-AI.git
    cd ZEUS-AI
+ZEUS.API_KEY = 'your-openrouter-api-key-here';Detail	Info
+Price	₦8,000 (One-time payment)
+Payment	Opay: 9066760078 (Christana Godwin Okon)
+Delivery	Premium code sent via WhatsApp after payment
+Contact	WhatsApp: wa.me/2349066760078Method	Action
+Double-click	Logo or sidebar title "ZEUS AI"
+Link	Click "Admin / Developer Login" on auth page
+Hotkey	Press Ctrl + Shift + A
+Contact	Details
+Creator	ZEUS (Godwin Emmanuel Victory)
+Phone	+234 906 676 0078
+WhatsApp	wa.me/2349066760078
+Email	(via WhatsApp or phone)
+Education	ISGS Secondary School • OOU University
+Status	Single
+📝 License
+This project is proprietary software. All rights reserved © 2025 ZEUS (Godwin Emmanuel Victor
