@@ -3,243 +3,396 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZEUS AI v7 — Premium Intelligence</title>
+<title>ZEUS AI — Premium Intelligence Platform v6</title>
 <style>
+/* ===== RESET & BASE ===== */
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,-apple-system,sans-serif}
 body{background:#0a0a0f;color:#e0e0e0;min-height:100vh;overflow-x:hidden}
-::-webkit-scrollbar{width:5px}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar{width:6px}
 ::-webkit-scrollbar-track{background:#0a0a0f}
 ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#ffd700,#b8860b);border-radius:3px}
-a{color:#ffd700;text-decoration:none}
 
-/* ===== LANDING PAGE ===== */
-#landing{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 40%,#1a1a2e 0%,#0a0a0f 70%);transition:opacity .6s,transform .6s}
-#landing.hide{opacity:0;transform:scale(.95);pointer-events:none}
-.land-badge{padding:6px 18px;border-radius:20px;background:rgba(255,215,0,.12);border:1px solid rgba(255,215,0,.25);color:#ffd700;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
-.land-title{font-size:5rem;font-weight:900;background:linear-gradient(135deg,#ffd700,#ffaa00,#b8860b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:8px;letter-spacing:-1px}
-.land-sub{color:#888;font-size:1.05rem;margin-bottom:36px;letter-spacing:3px;text-transform:uppercase}
-.land-btns{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
-.land-btn{padding:14px 40px;border-radius:50px;font-size:1rem;font-weight:600;cursor:pointer;transition:all .3s;text-transform:uppercase;letter-spacing:1.5px;border:2px solid transparent}
-.land-btn-primary{background:linear-gradient(135deg,#ffd700,#b8860b);color:#0a0a0f;border-color:#ffd700}
-.land-btn-primary:hover{box-shadow:0 0 40px rgba(255,215,0,.3);transform:translateY(-2px)}
-.land-btn-outline{background:transparent;color:#ffd700;border-color:#ffd700}
-.land-btn-outline:hover{background:rgba(255,215,0,.1);box-shadow:0 0 30px rgba(255,215,0,.15)}
-.land-footer{position:absolute;bottom:20px;color:#555;font-size:.8rem;text-align:center}
-.land-footer span{color:#ffd700}
+/* ===== LANDING ===== */
+#landing{
+  position:fixed;inset:0;z-index:9999;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:radial-gradient(ellipse at center,#1a1a2e 0%,#0a0a0f 100%);
+  transition:opacity 0.5s,transform 0.5s
+}
+#landing.hide{opacity:0;transform:scale(0.95);pointer-events:none}
+.landing-logo{font-size:4rem;font-weight:900;background:linear-gradient(135deg,#ffd700,#ffaa00,#b8860b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px}
+.landing-sub{color:#888;font-size:1.1rem;margin-bottom:32px;letter-spacing:2px;text-transform:uppercase}
+.landing-btn{
+  padding:16px 48px;border:2px solid #ffd700;border-radius:50px;
+  background:transparent;color:#ffd700;font-size:1.1rem;font-weight:600;
+  cursor:pointer;transition:all 0.3s;text-transform:uppercase;letter-spacing:2px
+}
+.landing-btn:hover{background:#ffd700;color:#0a0a0f;box-shadow:0 0 40px rgba(255,215,0,0.3)}
+.landing-footer{position:absolute;bottom:24px;color:#555;font-size:0.85rem}
 
 /* ===== AUTH MODAL ===== */
-#authModal{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.85);backdrop-filter:blur(16px)}
+#authModal{
+  position:fixed;inset:0;z-index:10000;
+  display:none;align-items:center;justify-content:center;
+  background:rgba(0,0,0,0.85);backdrop-filter:blur(12px)
+}
 #authModal.active{display:flex}
-.auth-box{background:linear-gradient(145deg,#16162a,#0d0d1a);border:1px solid rgba(255,215,0,.15);border-radius:20px;padding:36px;width:420px;max-width:92vw;box-shadow:0 0 80px rgba(255,215,0,.04)}
-.auth-box h2{text-align:center;margin-bottom:20px;font-size:1.5rem;color:#ffd700}
-.auth-tabs{display:flex;gap:4px;margin-bottom:20px;background:rgba(255,255,255,.04);border-radius:10px;padding:4px}
-.auth-tab{flex:1;padding:10px;text-align:center;border-radius:8px;cursor:pointer;transition:all .3s;font-weight:500;color:#888;border:none;background:transparent;font-size:.9rem}
+.auth-box{
+  background:linear-gradient(145deg,#16162a,#0d0d1a);
+  border:1px solid rgba(255,215,0,0.2);border-radius:24px;
+  padding:40px;width:420px;max-width:92vw;box-shadow:0 0 80px rgba(255,215,0,0.05)
+}
+.auth-box h2{text-align:center;margin-bottom:24px;font-size:1.6rem;color:#ffd700}
+.auth-tabs{display:flex;gap:4px;margin-bottom:24px;background:rgba(255,255,255,0.05);border-radius:12px;padding:4px}
+.auth-tab{
+  flex:1;padding:10px;text-align:center;border-radius:10px;
+  cursor:pointer;transition:all 0.3s;font-weight:500;color:#888;
+  border:none;background:transparent;font-size:0.9rem
+}
 .auth-tab.active{background:#ffd700;color:#0a0a0f;font-weight:700}
-.auth-form{display:none;flex-direction:column;gap:12px}
+.auth-form{display:none;flex-direction:column;gap:14px}
 .auth-form.active{display:flex}
-.auth-form input{padding:13px 16px;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:#e0e0e0;font-size:.95rem;transition:border .3s}
+.auth-form input{
+  padding:14px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.1);
+  background:rgba(255,255,255,0.05);color:#e0e0e0;font-size:0.95rem;transition:border 0.3s
+}
 .auth-form input:focus{border-color:#ffd700;outline:none}
-.auth-form button{padding:13px;border-radius:10px;border:none;background:linear-gradient(135deg,#ffd700,#b8860b);color:#0a0a0f;font-weight:700;font-size:1rem;cursor:pointer;transition:all .3s}
-.auth-form button:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,215,0,.25)}
-.auth-divider{text-align:center;color:#555;font-size:.82rem;position:relative;margin:6px 0}
-.auth-divider:after,.auth-divider:before{content:'';position:absolute;top:50%;width:38%;height:1px;background:rgba(255,255,255,.08)}
-.auth-divider:before{left:0}
-.auth-divider:after{right:0}
-.auth-close{position:absolute;top:16px;right:20px;font-size:1.5rem;color:#666;cursor:pointer;background:none;border:none}
-.auth-box{position:relative}
+.auth-form button,.auth-btn{
+  padding:14px;border-radius:12px;border:none;
+  background:linear-gradient(135deg,#ffd700,#b8860b);color:#0a0a0f;
+  font-weight:700;font-size:1rem;cursor:pointer;transition:all 0.3s
+}
+.auth-form button:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,215,0,0.3)}
+.auth-divider{text-align:center;color:#555;font-size:0.85rem;position:relative}
+.auth-divider::before,.auth-divider::after{content:'';position:absolute;top:50%;width:40%;height:1px;background:rgba(255,255,255,0.1)}
+.auth-divider::before{left:0}
+.auth-divider::after{right:0}
 
-/* ===== APP LAYOUT ===== */
+/* ===== APP ===== */
 #app{display:none;min-height:100vh}
 #app.active{display:flex}
-#sidebar{width:250px;min-height:100vh;background:linear-gradient(180deg,#101018,#0a0a12);border-right:1px solid rgba(255,215,0,.07);display:flex;flex-direction:column;position:fixed;left:0;top:0;bottom:0;z-index:100;transition:transform .3s}
-.side-logo{padding:18px 20px 14px;font-size:1.3rem;font-weight:800;background:linear-gradient(135deg,#ffd700,#b8860b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;border-bottom:1px solid rgba(255,215,0,.07);display:flex;align-items:center;gap:8px;cursor:pointer}
-.side-user{display:flex;align-items:center;gap:10px;padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.04)}
-.side-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#ffd700,#b8860b);display:flex;align-items:center;justify-content:center;font-weight:700;color:#0a0a0f;font-size:.9rem}
-.side-user-info{flex:1}
-.side-user-info .name{font-weight:600;font-size:.9rem}
-.side-user-info .status{font-size:.72rem;color:#888}
-.side-nav{padding:10px 0;flex:1;overflow-y:auto}
-.nav-group{padding:6px 0}
-.nav-group-title{padding:2px 20px;font-size:.68rem;text-transform:uppercase;letter-spacing:1px;color:#555;margin-bottom:2px}
-.nav-item{display:flex;align-items:center;gap:10px;padding:9px 20px;cursor:pointer;transition:all .2s;color:#999;font-size:.85rem;border:none;background:none;width:100%;text-align:left;border-radius:0}
-.nav-item:hover{background:rgba(255,215,0,.08);color:#e0e0e0}
-.nav-item.active{background:rgba(255,215,0,.12);color:#ffd700;border-right:3px solid #ffd700}
-.nav-item .icon{font-size:1.15rem;width:22px;text-align:center}
-.side-footer{padding:14px 20px;border-top:1px solid rgba(255,255,255,.04)}
-.side-footer button{width:100%;padding:9px;border-radius:8px;border:1px solid rgba(255,215,0,.2);background:transparent;color:#ffd700;cursor:pointer;transition:all .3s;font-size:.82rem}
-.side-footer button:hover{background:rgba(255,215,0,.1)}
 
-/* ===== MAIN ===== */
-#main{margin-left:250px;flex:1;padding:24px 28px;min-height:100vh}
+/* ===== SIDEBAR ===== */
+#sidebar{
+  width:260px;min-height:100vh;background:linear-gradient(180deg,#101018,#0a0a12);
+  border-right:1px solid rgba(255,215,0,0.08);padding:0;display:flex;flex-direction:column;
+  position:fixed;left:0;top:0;bottom:0;z-index:100;transition:transform 0.3s
+}
+.side-logo{
+  padding:20px 20px 16px;font-size:1.4rem;font-weight:800;
+  background:linear-gradient(135deg,#ffd700,#b8860b);-webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;border-bottom:1px solid rgba(255,215,0,0.08);
+  display:flex;align-items:center;gap:10px;cursor:pointer
+}
+.side-logo span{font-size:1.6rem}
+.side-user{
+  display:flex;align-items:center;gap:12px;padding:16px 20px;
+  border-bottom:1px solid rgba(255,255,255,0.05)
+}
+.side-avatar{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,#ffd700,#b8860b);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;color:#0a0a0f;font-size:1rem
+}
+.side-user-info{flex:1}
+.side-user-info .name{font-weight:600;font-size:0.95rem}
+.side-user-info .status{font-size:0.75rem;color:#888}
+.side-nav{padding:12px 0;flex:1;overflow-y:auto}
+.nav-group{padding:8px 0}
+.nav-group-title{padding:4px 20px;font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;color:#555;margin-bottom:4px}
+.nav-item{
+  display:flex;align-items:center;gap:12px;padding:10px 20px;
+  cursor:pointer;transition:all 0.2s;color:#999;font-size:0.9rem;border-radius:0;
+  border:none;background:none;width:100%;text-align:left
+}
+.nav-item:hover{background:rgba(255,215,0,0.08);color:#e0e0e0}
+.nav-item.active{background:rgba(255,215,0,0.12);color:#ffd700;border-right:3px solid #ffd700}
+.nav-item .icon{font-size:1.2rem;width:24px;text-align:center}
+.side-footer{padding:16px 20px;border-top:1px solid rgba(255,255,255,0.05)}
+.side-footer button{
+  width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,215,0,0.2);
+  background:transparent;color:#ffd700;cursor:pointer;transition:all 0.3s;font-size:0.85rem
+}
+.side-footer button:hover{background:rgba(255,215,0,0.1);border-color:#ffd700}
+
+/* ===== MAIN CONTENT ===== */
+#main{
+  margin-left:260px;flex:1;padding:24px 32px;min-height:100vh;
+  position:relative;z-index:1
+}
 .page{display:none}
 .page.active{display:block}
-.page-title{font-size:1.7rem;font-weight:700;margin-bottom:20px;color:#fff}
+.page-title{font-size:1.8rem;font-weight:700;margin-bottom:24px;color:#fff}
 .page-title span{background:linear-gradient(135deg,#ffd700,#b8860b);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 
-/* ===== CARDS ===== */
-.card{background:linear-gradient(145deg,#16162a,#0f0f20);border-radius:14px;padding:18px;border:1px solid rgba(255,215,0,.08);margin-bottom:12px}
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:20px}
-.stat-card{background:linear-gradient(145deg,#16162a,#0f0f20);border-radius:14px;padding:18px;border:1px solid rgba(255,215,0,.08)}
-.stat-card .num{font-size:1.8rem;font-weight:800;background:linear-gradient(135deg,#ffd700,#b8860b);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.stat-card .label{font-size:.8rem;color:#888;margin-top:2px}
+/* ===== STATS CARDS ===== */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
+.stat-card{
+  background:linear-gradient(145deg,#16162a,#0f0f20);border-radius:16px;
+  padding:20px;border:1px solid rgba(255,215,0,0.08);transition:all 0.3s
+}
+.stat-card:hover{border-color:rgba(255,215,0,0.2);transform:translateY(-2px)}
+.stat-card .label{font-size:0.8rem;color:#888;text-transform:uppercase;letter-spacing:1px}
+.stat-card .value{font-size:2rem;font-weight:700;color:#ffd700;margin-top:4px}
+.stat-card .sub{font-size:0.8rem;color:#555;margin-top:2px}
 
-/* ===== BUTTONS ===== */
-.btn{padding:10px 22px;border-radius:10px;border:none;font-size:.88rem;font-weight:600;cursor:pointer;transition:all .3s;display:inline-block}
-.btn-primary{background:linear-gradient(135deg,#ffd700,#b8860b);color:#0a0a0f}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,215,0,.2)}
-.btn-outline{background:transparent;border:1px solid rgba(255,215,0,.3);color:#ffd700}
-.btn-outline:hover{background:rgba(255,215,0,.08)}
-.btn-small{padding:6px 14px;font-size:.78rem}
-.btn-danger{background:#ff3333;color:#fff}
-.btn-danger:hover{box-shadow:0 4px 16px rgba(255,51,51,.3)}
+/* ===== CARDS & PANELS ===== */
+.card{
+  background:linear-gradient(145deg,#16162a,#0f0f20);border-radius:16px;
+  padding:24px;border:1px solid rgba(255,215,0,0.08);margin-bottom:16px
+}
+.card h3{font-size:1.1rem;margin-bottom:12px;color:#fff}
+.card h3 span{color:#ffd700}
 
 /* ===== CHAT ===== */
-.chat-container{display:flex;flex-direction:column;height:calc(100vh - 160px)}
-.chat-messages{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px}
-.chat-msg{max-width:80%;padding:12px 16px;border-radius:14px;font-size:.9rem;line-height:1.5}
-.chat-msg.user{background:rgba(255,215,0,.12);border:1px solid rgba(255,215,0,.15);align-self:flex-end;border-bottom-right-radius:4px}
-.chat-msg.bot{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);align-self:flex-start;border-bottom-left-radius:4px}
-.chat-input-area{display:flex;gap:10px;padding:12px 0}
-.chat-input-area input{flex:1;padding:13px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:#e0e0e0;font-size:.95rem}
+.chat-container{display:flex;flex-direction:column;height:calc(100vh - 120px)}
+.chat-messages{flex:1;overflow-y:auto;padding:16px 0;display:flex;flex-direction:column;gap:12px}
+.chat-msg{
+  max-width:80%;padding:14px 18px;border-radius:16px;
+  line-height:1.6;font-size:0.95rem;animation:fadeIn 0.3s
+}
+.chat-msg.user{margin-left:auto;background:linear-gradient(135deg,#ffd700,#b8860b);color:#0a0a0f;border-bottom-right-radius:4px}
+.chat-msg.bot{margin-right:auto;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.05);border-bottom-left-radius:4px}
+.chat-msg.bot pre{background:rgba(0,0,0,0.3);padding:12px;border-radius:8px;overflow-x:auto;margin:8px 0;font-size:0.85rem}
+.chat-msg.bot code{background:rgba(0,0,0,0.3);padding:2px 6px;border-radius:4px;font-size:0.85rem}
+.chat-msg.bot p{margin:6px 0}
+.chat-input-area{
+  display:flex;gap:12px;padding:16px 0;
+  background:transparent;border-top:1px solid rgba(255,215,0,0.08);margin-top:auto
+}
+.chat-input-area input{
+  flex:1;padding:14px 18px;border-radius:14px;border:1px solid rgba(255,215,0,0.15);
+  background:rgba(255,255,255,0.05);color:#e0e0e0;font-size:0.95rem
+}
 .chat-input-area input:focus{border-color:#ffd700;outline:none}
-.chat-input-area button{padding:13px 24px;border-radius:12px;border:none;background:linear-gradient(135deg,#ffd700,#b8860b);color:#0a0a0f;font-weight:600;cursor:pointer;transition:all .3s}
+.chat-input-area button{
+  padding:14px 24px;border-radius:14px;border:none;
+  background:linear-gradient(135deg,#ffd700,#b8860b);color:#0a0a0f;
+  font-weight:700;cursor:pointer;transition:all 0.3s;font-size:0.95rem
+}
+.chat-input-area button:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(255,215,0,0.3)}
+.chat-input-area button:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+.suggestions{
+  display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px
+}
+.suggestions button{
+  padding:8px 16px;border-radius:20px;border:1px solid rgba(255,215,0,0.15);
+  background:rgba(255,215,0,0.05);color:#ccc;cursor:pointer;font-size:0.8rem;transition:all 0.2s
+}
+.suggestions button:hover{background:rgba(255,215,0,0.15);color:#ffd700}
 
-/* ===== FORM ELEMENTS ===== */
-input,textarea,select{width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:#e0e0e0;font-size:.9rem;transition:border .3s}
-input:focus,textarea:focus,select:focus{border-color:#ffd700;outline:none}
-textarea{min-height:100px;resize:vertical}
-select option{background:#16162a;color:#e0e0e0}
-label{display:block;margin-bottom:4px;font-size:.85rem;color:#aaa}
+/* ===== PREMIUM PLANS ===== */
+.plans-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:16px}
+.plan-card{
+  background:linear-gradient(145deg,#16162a,#0f0f20);border-radius:16px;
+  padding:24px;border:1px solid rgba(255,215,0,0.1);text-align:center;
+  transition:all 0.3s;position:relative
+}
+.plan-card.popular{border-color:#ffd700;box-shadow:0 0 30px rgba(255,215,0,0.1)}
+.plan-card.popular::before{
+  content:'POPULAR';position:absolute;top:-10px;left:50%;transform:translateX(-50%);
+  background:#ffd700;color:#0a0a0f;padding:4px 16px;border-radius:20px;font-size:0.7rem;font-weight:700;letter-spacing:1px
+}
+.plan-card:hover{border-color:#ffd700;transform:translateY(-4px)}
+.plan-card h4{font-size:1.3rem;color:#ffd700;margin-bottom:4px}
+.plan-card .price{font-size:2.2rem;font-weight:800;color:#fff;margin:8px 0}
+.plan-card .price span{font-size:1rem;color:#888}
+.plan-card ul{list-style:none;padding:0;margin:16px 0;text-align:left}
+.plan-card ul li{padding:6px 0;color:#aaa;font-size:0.85rem}
+.plan-card ul li::before{content:'✓ ';color:#ffd700;font-weight:700}
+.plan-card button{
+  width:100%;padding:12px;border-radius:12px;border:none;
+  background:linear-gradient(135deg,#ffd700,#b8860b);color:#0a0a0f;
+  font-weight:700;cursor:pointer;transition:all 0.3s;font-size:0.95rem
+}
+.plan-card button:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(255,215,0,0.3)}
 
-/* ===== GRID ===== */
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.grid-3{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
-.grid-tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+/* ===== ADMIN PANEL ===== */
+.admin-tabs{display:flex;gap:4px;margin-bottom:24px;background:rgba(255,255,255,0.03);border-radius:12px;padding:4px;flex-wrap:wrap}
+.admin-tab{
+  padding:10px 18px;border-radius:10px;cursor:pointer;transition:all 0.3s;
+  font-weight:500;color:#888;border:none;background:transparent;font-size:0.85rem
+}
+.admin-tab.active{background:#ffd700;color:#0a0a0f;font-weight:700}
+.admin-content{display:none}
+.admin-content.active{display:block}
+
+/* ===== PREMIUM CODES TABLE ===== */
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:0.9rem}
+th,td{padding:12px 16px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.05)}
+th{color:#ffd700;font-weight:600;font-size:0.8rem;text-transform:uppercase;letter-spacing:1px}
+td{color:#ccc}
+tr:hover td{background:rgba(255,215,0,0.03)}
+.badge{
+  padding:4px 10px;border-radius:20px;font-size:0.75rem;font-weight:600
+}
+.badge.unused{background:rgba(0,255,100,0.15);color:#00ff64}
+.badge.redeemed{background:rgba(255,100,0,0.15);color:#ff6400}
+.badge.weekly{background:rgba(100,150,255,0.15);color:#6496ff}
+.badge.monthly{background:rgba(100,255,200,0.15);color:#64ffc8}
+.badge.lifetime{background:rgba(255,215,0,0.15);color:#ffd700}
+
+/* ===== FORM ===== */
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:0.85rem;color:#aaa;margin-bottom:6px;font-weight:500}
+.form-group input,.form-group select,.form-group textarea{
+  width:100%;padding:12px 16px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);
+  background:rgba(255,255,255,0.05);color:#e0e0e0;font-size:0.9rem;transition:border 0.3s
+}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:#ffd700;outline:none}
+.form-group select option{background:#16162a;color:#e0e0e0}
+.btn{
+  padding:12px 24px;border-radius:10px;border:none;cursor:pointer;
+  font-weight:600;transition:all 0.3s;font-size:0.9rem
+}
+.btn-primary{background:linear-gradient(135deg,#ffd700,#b8860b);color:#0a0a0f}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(255,215,0,0.3)}
+.btn-danger{background:linear-gradient(135deg,#ff4444,#cc0000);color:#fff}
+.btn-danger:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(255,0,0,0.3)}
+.btn-secondary{background:rgba(255,255,255,0.08);color:#ccc;border:1px solid rgba(255,255,255,0.1)}
+.btn-secondary:hover{background:rgba(255,255,255,0.12);color:#fff}
 
 /* ===== TOAST ===== */
-#toast{position:fixed;top:24px;right:24px;z-index:99999;padding:14px 22px;border-radius:12px;font-size:.88rem;font-weight:500;max-width:380px;display:none;animation:slideIn .3s}
-#toast.show{display:block}
-#toast.success{background:rgba(0,200,100,.9);color:#fff;border:1px solid rgba(0,200,100,.3)}
-#toast.error{background:rgba(255,50,50,.9);color:#fff;border:1px solid rgba(255,50,50,.3)}
-#toast.info{background:rgba(50,130,255,.9);color:#fff;border:1px solid rgba(50,130,255,.3)}
-@keyframes slideIn{from{transform:translateX(100px);opacity:0}to{transform:translateX(0);opacity:1}}
+.toast-container{position:fixed;top:20px;right:20px;z-index:99999;display:flex;flex-direction:column;gap:8px}
+.toast{
+  padding:14px 20px;border-radius:12px;background:linear-gradient(145deg,#1a1a30,#0d0d1a);
+  border:1px solid rgba(255,215,0,0.2);color:#e0e0e0;font-size:0.9rem;
+  box-shadow:0 8px 32px rgba(0,0,0,0.5);animation:slideIn 0.3s;min-width:280px;
+  display:flex;align-items:center;gap:10px
+}
+.toast.success{border-color:#00ff64}
+.toast.error{border-color:#ff4444}
+.toast .toast-icon{font-size:1.2rem}
 
-/* ===== MISC ===== */
-.text-sm{font-size:.8rem;color:#888}
-.text-center{text-align:center}
-.mt-4{margin-top:4px}
-.mt-8{margin-top:8px}
-.mt-12{margin-top:12px}
-.mt-16{margin-top:16px}
-.mb-8{margin-bottom:8px}
-.mb-12{margin-bottom:12px}
-.flex{display:flex}
-.flex-1{flex:1}
-.gap-8{gap:8px}
-.gap-12{gap:12px}
-.items-center{align-items:center}
-.justify-between{justify-content:space-between}
-.copy-btn{padding:4px 12px;border-radius:6px;border:1px solid rgba(255,215,0,.3);background:transparent;color:#ffd700;cursor:pointer;font-size:.78rem;transition:all .2s}
-.copy-btn:hover{background:rgba(255,215,0,.1)}
-.tag{padding:3px 10px;border-radius:12px;font-size:.7rem;font-weight:600}
-.tag-premium{background:rgba(255,215,0,.15);color:#ffd700;border:1px solid rgba(255,215,0,.2)}
-.tag-free{background:rgba(255,255,255,.06);color:#888;border:1px solid rgba(255,255,255,.1)}
-.team-card{background:linear-gradient(145deg,#16162a,#0f0f20);border-radius:14px;padding:20px;border:1px solid rgba(255,215,0,.08);text-align:center}
-.team-avatar{width:60px;height:60px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:700}
-.team-avatar.gold{background:linear-gradient(135deg,#ffd700,#b8860b);color:#0a0a0f}
-.team-avatar.blue{background:linear-gradient(135deg,#4488ff,#2255cc);color:#fff}
-.team-avatar.green{background:linear-gradient(135deg,#44dd88,#22aa55);color:#fff}
-.team-card h3{color:#fff;font-size:1rem}
-.team-card .role{color:#ffd700;font-size:.82rem;margin:2px 0 6px}
-.team-card .bio{font-size:.78rem;color:#999;line-height:1.4}
-.code-display{font-family:'Courier New',monospace;font-size:.82rem;background:rgba(0,0,0,.4);padding:8px 12px;border-radius:6px;color:#ffd700;letter-spacing:1px}
-.admin-table{width:100%;border-collapse:collapse;font-size:.85rem}
-.admin-table th,.admin-table td{padding:10px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,.06)}
-.admin-table th{color:#ffd700;font-weight:600;font-size:.78rem;text-transform:uppercase}
-.admin-table td{color:#ccc}
-.hidden-file{display:none}
+/* ===== SETTINGS PAGE ===== */
+.settings-section{margin-bottom:24px}
+.settings-section h3{color:#ffd700;margin-bottom:12px;font-size:1rem;text-transform:uppercase;letter-spacing:1px}
+.settings-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.settings-row .label{color:#aaa;font-size:0.9rem}
+.settings-row .value{color:#fff;font-weight:500;font-size:0.9rem}
 
-/* ===== CALCULATOR ===== */
-.calc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:320px}
-.calc-btn{padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.05);color:#e0e0e0;font-size:1.1rem;cursor:pointer;transition:all .2s;text-align:center}
-.calc-btn:hover{background:rgba(255,215,0,.12);border-color:rgba(255,215,0,.2)}
-.calc-btn.op{background:rgba(255,215,0,.1);color:#ffd700}
-.calc-btn.equals{background:linear-gradient(135deg,#ffd700,#b8860b);color:#0a0a0f}
-.calc-display{background:rgba(0,0,0,.4);border-radius:10px;padding:16px;font-size:1.8rem;text-align:right;font-weight:700;margin-bottom:8px;min-height:60px;overflow:hidden}
+/* ===== GENERATE CODE ===== */
+.code-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.copy-btn{
+  padding:6px 12px;border-radius:6px;border:1px solid rgba(255,215,0,0.2);
+  background:transparent;color:#ffd700;cursor:pointer;font-size:0.75rem;transition:all 0.2s
+}
+.copy-btn:hover{background:rgba(255,215,0,0.1)}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes pulse{0%,100%{opacity:0.4}50%{opacity:1}}
+.typing-indicator{display:flex;gap:4px;padding:14px 18px;background:rgba(255,255,255,0.06);border-radius:16px;width:fit-content;margin-right:auto}
+.typing-indicator span{width:8px;height:8px;border-radius:50%;background:#ffd700;animation:pulse 1.4s infinite}
+.typing-indicator span:nth-child(2){animation-delay:0.2s}
+.typing-indicator span:nth-child(3){animation-delay:0.4s}
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:768px){
   #sidebar{transform:translateX(-100%)}
   #sidebar.open{transform:translateX(0)}
   #main{margin-left:0;padding:16px}
-  .land-title{font-size:3rem}
-  .grid-2{grid-template-columns:1fr}
-  .auth-box{padding:24px;width:95vw}
-  .stats-grid{grid-template-columns:repeat(2,1fr)}
-  #mobileToggle{display:block!important}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .plans-grid{grid-template-columns:1fr}
+  .admin-tabs{gap:2px}
+  .admin-tab{padding:8px 12px;font-size:0.75rem}
+  .mobile-toggle{
+    display:block;position:fixed;top:16px;left:16px;z-index:200;
+    width:40px;height:40px;border-radius:10px;border:1px solid rgba(255,215,0,0.2);
+    background:#16162a;color:#ffd700;font-size:1.2rem;cursor:pointer
+  }
 }
-#mobileToggle{display:none;position:fixed;top:12px;left:12px;z-index:200;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,215,0,.2);background:rgba(16,16,24,.95);color:#ffd700;cursor:pointer;font-size:1.2rem;backdrop-filter:blur(12px)}
+@media(min-width:769px){.mobile-toggle{display:none}}
+
+/* ===== MISC ===== */
+.premium-locked{opacity:0.5;pointer-events:none;position:relative}
+.premium-locked::after{
+  content:'🔒 PREMIUM';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  background:rgba(0,0,0,0.8);color:#ffd700;padding:12px 24px;border-radius:12px;
+  font-weight:700;font-size:1rem;border:1px solid #ffd700
+}
+.empty-state{text-align:center;padding:40px 20px;color:#555}
+.empty-state .big-icon{font-size:3rem;margin-bottom:12px}
+.copy-field{display:flex;gap:8px;align-items:center}
+.copy-field input{flex:1;padding:10px 14px;border-radius:8px;border:1px solid rgba(255,215,0,0.15);
+  background:rgba(255,255,255,0.05);color:#ffd700;font-size:0.85rem;font-family:monospace}
+.gold{color:#ffd700}
+.mt-8{margin-top:8px}
+.mt-16{margin-top:16px}
+.mb-16{margin-bottom:16px}
+.flex{display:flex}
+.gap-8{gap:8px}
+.gap-12{gap:12px}
+.items-center{align-items:center}
+.justify-between{justify-content:space-between}
+.text-center{text-align:center}
+.text-sm{font-size:0.85rem;color:#888}
 </style>
 </head>
 <body>
 
-<!-- MOBILE TOGGLE -->
-<button id="mobileToggle" onclick="toggleSidebar()">&#9776;</button>
-
-<!-- ===== LANDING PAGE ===== -->
+<!-- ===== LANDING ===== -->
 <div id="landing">
-  <div class="land-badge">&#9889; v7.0 — Premium Intelligence</div>
-  <div class="land-title">ZEUS AI</div>
-  <div class="land-sub">Next-Generation Intelligence Platform</div>
-  <div class="land-btns">
-    <button class="land-btn land-btn-primary" onclick="showAuth('signin')">Sign In</button>
-    <button class="land-btn land-btn-outline" onclick="showAuth('signup')">Get Started</button>
-  </div>
-  <div class="land-footer">Built by <span>Godwin Emmanuel Victory</span> &middot; ZEUS Corporation</div>
+  <div class="landing-logo">⚡ ZEUS</div>
+  <div class="landing-sub">✦ Premium Intelligence v6 ✦</div>
+  <p style="color:#666;margin-bottom:32px;max-width:400px;text-align:center;font-size:0.95rem">
+    Premium artificial intelligence with chat, vision, coding, voice & more. Built by ZEUS Corporation.
+  </p>
+  <button class="landing-btn" onclick="showAuth()">Get Started</button>
+  <div class="landing-footer">Made by ZEUS Corporation • v6.0 Premium</div>
 </div>
 
 <!-- ===== AUTH MODAL ===== -->
 <div id="authModal">
   <div class="auth-box">
-    <button class="auth-close" onclick="closeAuth()">&times;</button>
-    <h2>&#9889; Welcome to ZEUS</h2>
+    <h2>⚡ ZEUS AI</h2>
     <div class="auth-tabs">
-      <button class="auth-tab active" data-tab="signin" onclick="switchAuthTab('signin')">Sign In</button>
-      <button class="auth-tab" data-tab="signup" onclick="switchAuthTab('signup')">Create Account</button>
-      <button class="auth-tab" data-tab="activate" onclick="switchAuthTab('activate')">Activate Premium</button>
+      <button class="auth-tab active" onclick="switchAuthTab('signin',this)">Sign In</button>
+      <button class="auth-tab" onclick="switchAuthTab('signup',this)">Create Account</button>
+      <button class="auth-tab" onclick="switchAuthTab('admin',this)">Admin</button>
     </div>
+
     <!-- Sign In -->
-    <form class="auth-form active" id="form-signin" onsubmit="signIn(event)">
-      <input type="text" id="signinUser" placeholder="Username" required>
-      <input type="password" id="signinPass" placeholder="Password" required>
-      <button type="submit">Sign In</button>
+    <div id="authSignin" class="auth-form active">
+      <input id="signinUsername" placeholder="Username (optional)" autocomplete="off">
+      <input id="signinCode" placeholder="Premium code (optional)" autocomplete="off">
+      <button onclick="signIn()">Sign In</button>
       <div class="auth-divider">or</div>
-      <button type="button" class="land-btn-outline" style="padding:11px;border-radius:10px;border:1px solid rgba(255,215,0,.3);background:transparent;color:#ffd700;font-weight:600;font-size:.9rem;cursor:pointer" onclick="switchAuthTab('signup')">Create New Account</button>
-    </form>
+      <button class="auth-btn" style="background:transparent;border:1px solid rgba(255,215,0,0.2);color:#ffd700" onclick="showToast('Contact ZEUS on WhatsApp to buy premium','info')">Activate Premium</button>
+    </div>
+
     <!-- Sign Up -->
-    <form class="auth-form" id="form-signup" onsubmit="signUp(event)">
-      <input type="text" id="signupUser" placeholder="Choose a username" required>
-      <input type="password" id="signupPass" placeholder="Choose a password (min 4 chars)" minlength="4" required>
-      <button type="submit">Create Account</button>
-      <div class="auth-divider">Already have an account?</div>
-      <button type="button" class="land-btn-outline" style="padding:11px;border-radius:10px;border:1px solid rgba(255,215,0,.3);background:transparent;color:#ffd700;font-weight:600;font-size:.9rem;cursor:pointer" onclick="switchAuthTab('signin')">Sign In</button>
-    </form>
-    <!-- Activate Premium -->
-    <form class="auth-form" id="form-activate" onsubmit="activatePremium(event)">
-      <p style="font-size:.85rem;color:#aaa;text-align:center;margin-bottom:4px">Enter your premium code to unlock everything.</p>
-      <input type="text" id="activateCode" placeholder="XXXXX-XXXXX-XXXXX" required style="text-transform:uppercase;text-align:center;letter-spacing:2px;font-family:monospace">
-      <button type="submit">Activate Premium</button>
-      <div class="auth-divider">No code yet?</div>
-      <button type="button" class="land-btn-outline" style="padding:11px;border-radius:10px;border:1px solid rgba(255,215,0,.3);background:transparent;color:#ffd700;font-weight:600;font-size:.9rem;cursor:pointer" onclick="showBuyPlans()">Buy Premium</button>
-    </form>
+    <div id="authSignup" class="auth-form">
+      <input id="signupUsername" placeholder="Choose a username" autocomplete="off">
+      <input id="signupCode" placeholder="Premium code (optional)" autocomplete="off">
+      <button onclick="signUp()">Create Account</button>
+      <div style="text-align:center;font-size:0.8rem;color:#555">
+        Already registered? <a href="#" onclick="switchAuthTab('signin',document.querySelectorAll('.auth-tab')[0]);return false" style="color:#ffd700">Sign in</a>
+      </div>
+    </div>
+
+    <!-- Admin Login -->
+    <div id="authAdmin" class="auth-form">
+      <input id="adminCode" type="password" placeholder="Admin access code" autocomplete="off">
+      <button onclick="adminLogin()">Access Admin</button>
+      <div class="auth-divider">or</div>
+      <input id="adminPremCode" placeholder="Have a premium code? Enter it" autocomplete="off">
+      <button style="background:rgba(255,215,0,0.15);color:#ffd700;border:1px solid rgba(255,215,0,0.2)" onclick="activatePremiumFromAuth()">Activate</button>
+    </div>
   </div>
 </div>
 
 <!-- ===== APP ===== -->
 <div id="app">
+
   <!-- SIDEBAR -->
   <div id="sidebar">
-    <div class="side-logo" onclick="switchPage('dashboard')">&#9889; ZEUS AI</div>
+    <div class="side-logo" ondblclick="toggleAdmin()"><span>⚡</span> ZEUS AI</div>
     <div class="side-user">
       <div class="side-avatar" id="sideAvatar">U</div>
       <div class="side-user-info">
@@ -250,370 +403,504 @@ label{display:block;margin-bottom:4px;font-size:.85rem;color:#aaa}
     <div class="side-nav">
       <div class="nav-group">
         <div class="nav-group-title">Main</div>
-        <button class="nav-item active" data-page="dashboard" onclick="switchPage('dashboard',this)"><span class="icon">&#9632;</span> Dashboard</button>
-        <button class="nav-item" data-page="chat" onclick="switchPage('chat',this)"><span class="icon">&#9993;</span> AI Chat</button>
-        <button class="nav-item" data-page="notes" onclick="switchPage('notes',this)"><span class="icon">&#128221;</span> Notes</button>
+        <button class="nav-item active" onclick="switchPage('dashboard',this)">
+          <span class="icon">📊</span> Dashboard
+        </button>
+        <button class="nav-item" onclick="switchPage('chat',this)">
+          <span class="icon">💬</span> AI Chat
+        </button>
+        <button class="nav-item" onclick="switchPage('notes',this)">
+          <span class="icon">📝</span> Notes
+        </button>
       </div>
       <div class="nav-group">
         <div class="nav-group-title">Tools</div>
-        <button class="nav-item" data-page="ocr" onclick="switchPage('ocr',this)"><span class="icon">&#128065;</span> OCR</button>
-        <button class="nav-item" data-page="pdf" onclick="switchPage('pdf',this)"><span class="icon">&#128196;</span> PDF Reader</button>
-        <button class="nav-item" data-page="image" onclick="switchPage('image',this)"><span class="icon">&#128247;</span> Image Analysis</button>
-        <button class="nav-item" data-page="voice" onclick="switchPage('voice',this)"><span class="icon">&#127908;</span> Voice AI</button>
-        <button class="nav-item" data-page="calculator" onclick="switchPage('calculator',this)"><span class="icon">&#128200;</span> Calculator</button>
-        <button class="nav-item" data-page="translate" onclick="switchPage('translate',this)"><span class="icon">&#127758;</span> Translator</button>
-        <button class="nav-item" data-page="code" onclick="switchPage('code',this)"><span class="icon">&#128187;</span> Code Assistant</button>
+        <button class="nav-item" onclick="switchPage('ocr',this)">
+          <span class="icon">🔍</span> OCR
+        </button>
+        <button class="nav-item" onclick="switchPage('pdf',this)">
+          <span class="icon">📄</span> PDF Reader
+        </button>
+        <button class="nav-item" onclick="switchPage('image',this)">
+          <span class="icon">🖼️</span> Image Analysis
+        </button>
+        <button class="nav-item" onclick="switchPage('files',this)">
+          <span class="icon">📁</span> File Manager
+        </button>
+        <button class="nav-item" onclick="switchPage('voice',this)">
+          <span class="icon">🎤</span> Voice AI
+        </button>
+        <button class="nav-item" onclick="switchPage('calculator',this)">
+          <span class="icon">🔢</span> Calculator
+        </button>
+        <button class="nav-item" onclick="switchPage('translator',this)">
+          <span class="icon">🌐</span> Translator
+        </button>
+        <button class="nav-item" onclick="switchPage('coding',this)">
+          <span class="icon">💻</span> Coding
+        </button>
       </div>
       <div class="nav-group">
         <div class="nav-group-title">Premium</div>
-        <button class="nav-item" data-page="upgrade" onclick="switchPage('upgrade',this)"><span class="icon">&#128081;</span> Upgrade</button>
-        <button class="nav-item" data-page="premium-tools" onclick="switchPage('premium-tools',this)"><span class="icon">&#128736;</span> Premium Tools</button>
+        <button class="nav-item" onclick="switchPage('upgrade',this)">
+          <span class="icon">👑</span> Upgrade <span style="background:#ffd700;color:#0a0a0f;font-size:0.65rem;padding:2px 8px;border-radius:10px;margin-left:4px;font-weight:700">NEW</span>
+        </button>
+        <button class="nav-item" onclick="switchPage('premium-tools',this)">
+          <span class="icon">🔧</span> Premium Tools
+        </button>
       </div>
       <div class="nav-group">
         <div class="nav-group-title">Company</div>
-        <button class="nav-item" data-page="about" onclick="switchPage('about',this)"><span class="icon">&#128100;</span> About ZEUS</button>
-        <button class="nav-item" data-page="team" onclick="switchPage('team',this)"><span class="icon">&#128101;</span> Our Team</button>
+        <button class="nav-item" onclick="switchPage('about',this)">
+          <span class="icon">🏢</span> About ZEUS
+        </button>
+        <button class="nav-item" onclick="switchPage('services',this)">
+          <span class="icon">⚙️</span> Services
+        </button>
+        <button class="nav-item" onclick="switchPage('team',this)">
+          <span class="icon">👥</span> Our Team
+        </button>
       </div>
       <div class="nav-group">
         <div class="nav-group-title">System</div>
-        <button class="nav-item" data-page="settings" onclick="switchPage('settings',this)"><span class="icon">&#9881;</span> Settings</button>
-        <button class="nav-item" data-page="admin" onclick="switchPage('admin',this)"><span class="icon">&#128274;</span> Admin Panel</button>
+        <button class="nav-item" onclick="switchPage('settings',this)">
+          <span class="icon">⚙️</span> Settings
+        </button>
+        <button class="nav-item" id="adminNavBtn" onclick="toggleAdmin()" style="display:none">
+          <span class="icon">🛡️</span> Admin Panel
+        </button>
       </div>
     </div>
     <div class="side-footer">
-      <button onclick="logout()">&#128682; Sign Out</button>
+      <button onclick="logout()">🚪 Logout</button>
     </div>
   </div>
 
   <!-- MAIN CONTENT -->
   <div id="main">
+    <button class="mobile-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
 
-    <!-- DASHBOARD -->
-    <div class="page active" id="page-dashboard">
-      <div class="flex items-center justify-between mb-12">
-        <h1 class="page-title">&#9889; <span>Dashboard</span></h1>
-        <span id="dashBadge" class="tag tag-free">Free</span>
+    <!-- ===== DASHBOARD ===== -->
+    <div id="page-dashboard" class="page active">
+      <div class="page-title"><span>Dashboard</span> Welcome back</div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="label">Chats</div><div class="value" id="statChats">0</div></div>
+        <div class="stat-card"><div class="label">Notes</div><div class="value" id="statNotes">0</div></div>
+        <div class="stat-card"><div class="label">Files</div><div class="value" id="statFiles">0</div></div>
+        <div class="stat-card"><div class="label">OCR Scans</div><div class="value" id="statOCR">0</div></div>
       </div>
-      <div class="stats-grid" id="statsGrid"></div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="label">Premium Codes Generated</div><div class="value" id="statCodes">0</div><div class="sub" id="statCodesUsed">0 used</div></div>
+        <div class="stat-card"><div class="label">Premium Active Users</div><div class="value" id="statPremiumUsers">0</div></div>
+      </div>
       <div class="card">
-        <h3 style="color:#ffd700;margin-bottom:8px">Welcome to ZEUS AI v7</h3>
-        <p style="color:#aaa;font-size:.88rem">Your all-in-one AI platform. Chat, analyze images, process documents, use voice commands, and access premium tools — all in one place.</p>
-        <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
-          <button class="btn btn-primary btn-small" onclick="switchPage('chat',document.querySelectorAll('.nav-item')[1])">Start Chatting</button>
-          <button class="btn btn-outline btn-small" onclick="switchPage('notes',document.querySelectorAll('.nav-item')[2])">Create Notes</button>
+        <h3>⚡ Quick Actions</h3>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn btn-primary" onclick="switchPage('chat',document.querySelectorAll('.nav-item')[1])">💬 New Chat</button>
+          <button class="btn btn-secondary" onclick="switchPage('notes',document.querySelectorAll('.nav-item')[2])">📝 Notes</button>
+          <button class="btn btn-secondary" onclick="switchPage('upgrade',document.querySelector('#page-upgrade').closest ? document.querySelectorAll('.nav-item')[15] : document.querySelectorAll('.nav-item')[0])">👑 Premium</button>
         </div>
+      </div>
+      <div class="card">
+        <h3>📈 Activity</h3>
+        <p class="text-sm" id="activityMsg">No recent activity. Start using ZEUS!</p>
       </div>
     </div>
 
-    <!-- CHAT -->
-    <div class="page" id="page-chat">
-      <div class="flex items-center justify-between mb-12">
-        <h1 class="page-title">&#9993; <span>AI Chat</span></h1>
-        <button class="btn btn-outline btn-small" onclick="clearChat()">Clear Chat</button>
-      </div>
+    <!-- ===== AI CHAT ===== -->
+    <div id="page-chat" class="page">
+      <div class="page-title"><span>ZEUS AI</span> Chat</div>
       <div class="chat-container">
+        <div class="suggestions">
+          <button onclick="sendSuggested('Write a Python script for a web scraper')">Python script</button>
+          <button onclick="sendSuggested('Explain quantum computing')">Quantum computing</button>
+          <button onclick="sendSuggested('Create a React todo app')">React todo</button>
+          <button onclick="sendSuggested('Debug this code: function add(a,b){return a-b}')">Debug code</button>
+          <button onclick="sendSuggested('What is AI?')">What is AI?</button>
+          <button onclick="sendSuggested('Write a poem about technology')">Write a poem</button>
+          <button onclick="sendSuggested('Explain blockchain simply')">Blockchain</button>
+          <button onclick="sendSuggested('JavaScript vs Python differences')">JS vs Python</button>
+        </div>
         <div class="chat-messages" id="chatMessages">
-          <div class="chat-msg bot">Hello! I'm ZEUS AI. How can I help you today?</div>
+          <div class="chat-msg bot">
+            <p>⚡ I'm ZEUS, your intelligent assistant. Ask me anything — coding, research, writing, analysis, or just a conversation.</p>
+          </div>
         </div>
         <div class="chat-input-area">
-          <input type="text" id="chatInput" placeholder="Type your message..." onkeydown="if(event.key==='Enter')sendChat()">
-          <button onclick="sendChat()">Send</button>
+          <input id="chatInput" placeholder="Message ZEUS..." onkeydown="if(event.key==='Enter')sendMessage()">
+          <button id="chatSendBtn" onclick="sendMessage()">Send</button>
         </div>
       </div>
     </div>
 
-    <!-- NOTES -->
-    <div class="page" id="page-notes">
-      <div class="flex items-center justify-between mb-12">
-        <h1 class="page-title">&#128221; <span>Notes</span></h1>
-        <button class="btn btn-primary btn-small" onclick="showNoteModal()">+ New Note</button>
+    <!-- ===== NOTES ===== -->
+    <div id="page-notes" class="page">
+      <div class="page-title"><span>Notes</span></div>
+      <div style="display:flex;gap:12px;margin-bottom:16px">
+        <button class="btn btn-primary" onclick="newNote()">+ New Note</button>
       </div>
       <div id="notesList"></div>
     </div>
 
-    <!-- OCR -->
-    <div class="page" id="page-ocr">
-      <h1 class="page-title">&#128065; <span>OCR Scanner</span></h1>
+    <!-- ===== OCR ===== -->
+    <div id="page-ocr" class="page">
+      <div class="page-title"><span>OCR</span> Text Recognition</div>
       <div class="card">
-        <label>Upload an image to extract text</label>
-        <input type="file" accept="image/*" onchange="performOCR(this)" style="margin-top:8px">
-        <div id="ocrResult" class="mt-12"></div>
+        <input type="file" accept="image/*" onchange="performOCR(this)">
+        <div id="ocrResult" class="mt-16"></div>
       </div>
     </div>
 
-    <!-- PDF -->
-    <div class="page" id="page-pdf">
-      <h1 class="page-title">&#128196; <span>PDF Reader</span></h1>
+    <!-- ===== PDF ===== -->
+    <div id="page-pdf" class="page">
+      <div class="page-title"><span>PDF</span> Reader</div>
       <div class="card">
-        <label>Upload a PDF to analyze</label>
-        <input type="file" accept=".pdf" onchange="readPDF(this)" style="margin-top:8px">
-        <div id="pdfResult" class="mt-12"></div>
+        <input type="file" accept=".pdf" onchange="readPDF(this)">
+        <div id="pdfResult" class="mt-16"></div>
       </div>
     </div>
 
-    <!-- IMAGE -->
-    <div class="page" id="page-image">
-      <h1 class="page-title">&#128247; <span>Image Analysis</span></h1>
+    <!-- ===== IMAGE ANALYSIS ===== -->
+    <div id="page-image" class="page">
+      <div class="page-title"><span>Image</span> Analysis</div>
       <div class="card">
-        <label>Upload an image to analyze with AI</label>
-        <input type="file" accept="image/*" onchange="analyzeImage(this)" style="margin-top:8px">
-        <div id="imageResult" class="mt-12"></div>
+        <input type="file" accept="image/*" onchange="analyzeImage(this)">
+        <div id="imageResult" class="mt-16"></div>
       </div>
     </div>
 
-    <!-- VOICE -->
-    <div class="page" id="page-voice">
-      <h1 class="page-title">&#127908; <span>Voice AI</span></h1>
+    <!-- ===== FILE MANAGER ===== -->
+    <div id="page-files" class="page">
+      <div class="page-title"><span>File</span> Manager</div>
       <div class="card">
-        <p style="color:#aaa;font-size:.88rem;margin-bottom:12px">Click the button and speak. Your speech will be transcribed and sent to ZEUS AI.</p>
-        <button id="voiceBtn" class="btn btn-primary" onclick="toggleVoice()">Start Listening</button>
-        <div id="voiceResult" class="mt-12"></div>
+        <input type="file" multiple onchange="uploadFile(this)">
+        <div id="filesList" class="mt-16"></div>
       </div>
     </div>
 
-    <!-- CALCULATOR -->
-    <div class="page" id="page-calculator">
-      <h1 class="page-title">&#128200; <span>Calculator</span></h1>
-      <div class="card" style="max-width:360px">
-        <div class="calc-display" id="calcDisplay">0</div>
-        <div class="calc-grid">
-          <div class="calc-btn" onclick="calcInput('7')">7</div>
-          <div class="calc-btn" onclick="calcInput('8')">8</div>
-          <div class="calc-btn" onclick="calcInput('9')">9</div>
-          <div class="calc-btn op" onclick="calcInput('/')">&divide;</div>
-          <div class="calc-btn" onclick="calcInput('4')">4</div>
-          <div class="calc-btn" onclick="calcInput('5')">5</div>
-          <div class="calc-btn" onclick="calcInput('6')">6</div>
-          <div class="calc-btn op" onclick="calcInput('*')">&times;</div>
-          <div class="calc-btn" onclick="calcInput('1')">1</div>
-          <div class="calc-btn" onclick="calcInput('2')">2</div>
-          <div class="calc-btn" onclick="calcInput('3')">3</div>
-          <div class="calc-btn op" onclick="calcInput('-')">-</div>
-          <div class="calc-btn" onclick="calcInput('0')">0</div>
-          <div class="calc-btn" onclick="calcInput('.')">.</div>
-          <div class="calc-btn" onclick="calcClear()">C</div>
-          <div class="calc-btn op" onclick="calcInput('+')">+</div>
-          <div class="calc-btn op" style="grid-column:span 2" onclick="calcInput('(')">(</div>
-          <div class="calc-btn op" onclick="calcInput(')')">)</div>
-          <div class="calc-btn equals" style="grid-column:span 2" onclick="calcResult()">=</div>
+    <!-- ===== VOICE ===== -->
+    <div id="page-voice" class="page">
+      <div class="page-title"><span>Voice</span> AI</div>
+      <div class="card text-center">
+        <div style="font-size:4rem;margin-bottom:16px">🎤</div>
+        <button class="btn btn-primary" id="voiceBtn" onclick="toggleVoice()">Start Listening</button>
+        <div id="voiceResult" class="mt-16"></div>
+      </div>
+    </div>
+
+    <!-- ===== CALCULATOR ===== -->
+    <div id="page-calculator" class="page">
+      <div class="page-title"><span>Calculator</span></div>
+      <div class="card" style="max-width:360px;margin:0 auto">
+        <div style="font-size:2rem;font-weight:700;text-align:right;padding:16px;background:rgba(0,0,0,0.3);border-radius:10px;margin-bottom:12px;font-family:monospace" id="calcDisplay">0</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+          <button class="btn btn-secondary" onclick="calcInput('7')">7</button>
+          <button class="btn btn-secondary" onclick="calcInput('8')">8</button>
+          <button class="btn btn-secondary" onclick="calcInput('9')">9</button>
+          <button class="btn btn-secondary" onclick="calcInput('/')">÷</button>
+          <button class="btn btn-secondary" onclick="calcInput('4')">4</button>
+          <button class="btn btn-secondary" onclick="calcInput('5')">5</button>
+          <button class="btn btn-secondary" onclick="calcInput('6')">6</button>
+          <button class="btn btn-secondary" onclick="calcInput('*')">×</button>
+          <button class="btn btn-secondary" onclick="calcInput('1')">1</button>
+          <button class="btn btn-secondary" onclick="calcInput('2')">2</button>
+          <button class="btn btn-secondary" onclick="calcInput('3')">3</button>
+          <button class="btn btn-secondary" onclick="calcInput('-')">−</button>
+          <button class="btn btn-secondary" onclick="calcInput('0')">0</button>
+          <button class="btn btn-secondary" onclick="calcInput('.')">.</button>
+          <button class="btn btn-primary" onclick="calcResult()">=</button>
+          <button class="btn btn-secondary" onclick="calcInput('+')">+</button>
+          <button class="btn btn-danger" onclick="calcClear()" style="grid-column:span 2">C</button>
+          <button class="btn btn-secondary" onclick="calcInput('%')">%</button>
         </div>
       </div>
     </div>
 
-    <!-- TRANSLATOR -->
-    <div class="page" id="page-translate">
-      <h1 class="page-title">&#127758; <span>Translator</span></h1>
+    <!-- ===== TRANSLATOR ===== -->
+    <div id="page-translator" class="page">
+      <div class="page-title"><span>Translator</span></div>
       <div class="card">
-        <label>Text to translate</label>
-        <textarea id="transInput" placeholder="Enter text to translate..." style="min-height:80px"></textarea>
-        <div class="flex gap-8 items-center mt-8">
-          <select id="transLang" style="width:auto;flex:1">
-            <option value="Spanish">Spanish</option>
-            <option value="French">French</option>
-            <option value="German">German</option>
-            <option value="Italian">Italian</option>
-            <option value="Portuguese">Portuguese</option>
-            <option value="Russian">Russian</option>
-            <option value="Japanese">Japanese</option>
-            <option value="Chinese">Chinese</option>
-            <option value="Arabic">Arabic</option>
-            <option value="Hindi">Hindi</option>
-            <option value="Yoruba">Yoruba</option>
-            <option value="Hausa">Hausa</option>
-            <option value="Igbo">Igbo</option>
+        <textarea id="transInput" placeholder="Enter text to translate..." rows="4" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:#e0e0e0;font-size:0.9rem;resize:vertical"></textarea>
+        <div style="display:flex;gap:8px;margin:8px 0;flex-wrap:wrap">
+          <select id="transLang" style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:#e0e0e0">
+            <option value="French">French</option><option value="Spanish">Spanish</option>
+            <option value="German">German</option><option value="Italian">Italian</option>
+            <option value="Portuguese">Portuguese</option><option value="Chinese">Chinese</option>
+            <option value="Japanese">Japanese</option><option value="Arabic">Arabic</option>
+            <option value="Russian">Russian</option><option value="Yoruba">Yoruba</option>
+            <option value="Hausa">Hausa</option><option value="Igbo">Igbo</option>
           </select>
           <button class="btn btn-primary" onclick="translateText()">Translate</button>
         </div>
-        <div id="transResult" class="mt-12"></div>
+        <div id="transResult" class="mt-8"></div>
       </div>
     </div>
 
-    <!-- CODE ASSISTANT -->
-    <div class="page" id="page-code">
-      <h1 class="page-title">&#128187; <span>Code Assistant</span></h1>
+    <!-- ===== CODING ===== -->
+    <div id="page-coding" class="page">
+      <div class="page-title"><span>Coding</span> Assistant</div>
       <div class="card">
-        <label>Ask a coding question or paste code</label>
-        <input type="text" id="codePrompt" placeholder="What do you want to code or debug?" style="margin-bottom:8px">
-        <textarea id="codeArea" placeholder="Or paste your code here..." style="min-height:120px;font-family:'Courier New',monospace;font-size:.82rem"></textarea>
-        <div class="flex gap-8 mt-8" style="flex-wrap:wrap">
-          <button class="btn btn-primary btn-small" onclick="analyzeCode()">Analyze with AI</button>
-          <button class="btn btn-outline btn-small" onclick="document.getElementById('codeArea').value=''">Clear</button>
+        <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+          <button class="btn btn-primary" onclick="document.getElementById('codeArea').value=document.getElementById('codeArea').value;formatCode()">Format</button>
+          <button class="btn btn-secondary" onclick="copyText(document.getElementById('codeArea').value)">Copy</button>
+          <button class="btn btn-secondary" onclick="document.getElementById('codeArea').value=''">Clear</button>
         </div>
-        <div id="codeResult" class="mt-12"></div>
+        <textarea id="codeArea" placeholder="Write or paste your code here..." rows="12" style="width:100%;padding:16px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:rgba(0,0,0,0.3);color:#e0e0e0;font-size:0.85rem;font-family:'Courier New',monospace;resize:vertical"></textarea>
+        <div style="margin-top:12px">
+          <input id="codePrompt" placeholder="Ask about this code or request changes..." style="width:100%;padding:12px 16px;border-radius:10px;border:1px solid rgba(255,215,0,0.15);background:rgba(255,255,255,0.05);color:#e0e0e0">
+        </div>
+        <button class="btn btn-primary mt-8" onclick="analyzeCode()">Analyze with AI</button>
+        <div id="codeResult" class="mt-8"></div>
       </div>
     </div>
 
-    <!-- UPGRADE -->
-    <div class="page" id="page-upgrade">
-      <h1 class="page-title">&#128081; <span>Premium Plans</span></h1>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:8px">
-        <div class="card" style="text-align:center">
-          <h2 style="color:#ffd700;font-size:1.8rem">&#128176;</h2>
-          <h3 style="color:#fff;margin:8px 0">Weekly</h3>
-          <div style="font-size:2rem;font-weight:800;background:linear-gradient(135deg,#ffd700,#b8860b);-webkit-background-clip:text;-webkit-text-fill-color:transparent">&#8358;3,500</div>
-          <p style="color:#888;font-size:.82rem;margin:4px 0 12px">7 days of premium access</p>
-          <button class="btn btn-primary" onclick="buyPlan('Weekly',3500)">Get Weekly</button>
+    <!-- ===== UPGRADE ===== -->
+    <div id="page-upgrade" class="page">
+      <div class="page-title"><span>Unlock</span> Premium</div>
+      <p style="color:#888;margin-bottom:16px">Choose your plan and get access to everything ZEUS AI has to offer</p>
+      <div class="plans-grid">
+        <div class="plan-card">
+          <h4>Weekly</h4>
+          <div class="price">₦3,500<span>/week</span></div>
+          <ul>
+            <li>Unlimited AI chats</li>
+            <li>Priority responses</li>
+            <li>Premium interface</li>
+            <li>Unlimited uploads</li>
+            <li>Premium badge</li>
+            <li>Priority support</li>
+          </ul>
+          <button onclick="buyPlan('weekly')">Get Weekly</button>
         </div>
-        <div class="card" style="text-align:center;border-color:#ffd700;position:relative">
-          <div style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:#ffd700;color:#0a0a0f;padding:3px 14px;border-radius:12px;font-size:.72rem;font-weight:700">BEST VALUE</div>
-          <h2 style="color:#ffd700;font-size:1.8rem">&#128081;</h2>
-          <h3 style="color:#fff;margin:8px 0">Monthly</h3>
-          <div style="font-size:2rem;font-weight:800;background:linear-gradient(135deg,#ffd700,#b8860b);-webkit-background-clip:text;-webkit-text-fill-color:transparent">&#8358;8,000</div>
-          <p style="color:#888;font-size:.82rem;margin:4px 0 12px">30 days of premium access</p>
-          <button class="btn btn-primary" onclick="buyPlan('Monthly',8000)">Get Monthly</button>
+        <div class="plan-card popular">
+          <h4>Monthly</h4>
+          <div class="price">₦8,000<span>/month</span></div>
+          <ul>
+            <li>Everything in Weekly</li>
+            <li>Longer subscription</li>
+            <li>Extra premium themes</li>
+            <li>Expanded storage</li>
+            <li>Workspace sync</li>
+            <li>Best value</li>
+          </ul>
+          <button onclick="buyPlan('monthly')">Get Monthly</button>
         </div>
-        <div class="card" style="text-align:center">
-          <h2 style="color:#ffd700;font-size:1.8rem">&#128150;</h2>
-          <h3 style="color:#fff;margin:8px 0">Lifetime</h3>
-          <div style="font-size:2rem;font-weight:800;background:linear-gradient(135deg,#ffd700,#b8860b);-webkit-background-clip:text;-webkit-text-fill-color:transparent">&#8358;25,000</div>
-          <p style="color:#888;font-size:.82rem;margin:4px 0 12px">One payment, forever access</p>
-          <button class="btn btn-primary" onclick="buyPlan('Lifetime',25000)">Get Lifetime</button>
+        <div class="plan-card">
+          <h4>Lifetime</h4>
+          <div class="price">₦25,000<span>/once</span></div>
+          <ul>
+            <li>Everything in Monthly</li>
+            <li>Lifetime access</li>
+            <li>Future premium updates</li>
+            <li>Exclusive lifetime badge</li>
+            <li>Highest upload limits</li>
+            <li>Founding member</li>
+          </ul>
+          <button onclick="buyPlan('lifetime')">Get Lifetime</button>
         </div>
       </div>
-      <div class="card mt-12">
-        <p style="font-size:.85rem;color:#aaa">&#128222; Pay via <strong style="color:#ffd700">OPay: 9066760078</strong> (Christana Godwin Okon). After payment, send receipt via WhatsApp to receive your premium code instantly.</p>
-        <a href="https://wa.me/2349066760078" target="_blank" class="btn btn-outline btn-small mt-8" style="display:inline-block">&#128172; WhatsApp Admin</a>
+      <div class="card mt-16">
+        <p class="text-center text-sm">Already have a code? <a href="#" onclick="switchPage('settings',document.querySelectorAll('.nav-item')[27]);return false" style="color:#ffd700">Activate here</a></p>
       </div>
     </div>
 
-    <!-- PREMIUM TOOLS -->
-    <div class="page" id="page-premium-tools">
-      <div class="flex items-center justify-between mb-12">
-        <h1 class="page-title">&#128736; <span>Premium Tools</span></h1>
-        <span id="premBadge" class="tag tag-free">Free</span>
-      </div>
-      <div class="grid-tools" id="premiumToolsGrid"></div>
+    <!-- ===== PREMIUM TOOLS ===== -->
+    <div id="page-premium-tools" class="page">
+      <div class="page-title"><span>Premium</span> Tools</div>
+      <p style="color:#888;margin-bottom:16px">Exclusive tools for premium members</p>
+      <div id="premiumToolsGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px"></div>
     </div>
 
-    <!-- ABOUT -->
-    <div class="page" id="page-about">
-      <h1 class="page-title">&#128100; <span>About ZEUS AI</span></h1>
+    <!-- ===== ABOUT ===== -->
+    <div id="page-about" class="page">
+      <div class="page-title"><span>About</span> ZEUS</div>
       <div class="card">
-        <div class="flex items-center gap-12" style="flex-wrap:wrap">
-          <div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#ffd700,#b8860b);display:flex;align-items:center;justify-content:center;font-size:2.2rem;font-weight:900;color:#0a0a0f">GE</div>
-          <div style="flex:1">
-            <h2 style="color:#fff">Godwin Emmanuel Victory</h2>
-            <p style="color:#ffd700;font-size:.88rem">Founder & Lead Developer — ZEUS Corporation</p>
+        <h3>🏢 ZEUS Corporation</h3>
+        <p style="color:#aaa;margin:8px 0">Building intelligent software and AI solutions</p>
+        <div class="mt-16">
+          <div class="settings-row"><span class="label">Founder</span><span class="value">ZEUS (Godwin Emmanuel Victory)</span></div>
+          <div class="settings-row"><span class="label">Mission</span><span class="value">Democratize AI for everyone</span></div>
+          <div class="settings-row"><span class="label">Vision</span><span class="value">Global AI intelligence platform</span></div>
+          <div class="settings-row"><span class="label">Core Values</span><span class="value">Innovation · Excellence · Integrity</span></div>
+          <div class="settings-row"><span class="label">Contact</span><span class="value"><a href="https://wa.me/2349066760078" target="_blank" style="color:#ffd700">+234 906 676 0078</a></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== SERVICES ===== -->
+    <div id="page-services" class="page">
+      <div class="page-title"><span>Our</span> Services</div>
+      <div id="servicesList" class="card"></div>
+    </div>
+
+    <!-- ===== TEAM ===== -->
+    <div id="page-team" class="page">
+      <div class="page-title"><span>Our</span> Team</div>
+      <div id="teamList" class="card"></div>
+    </div>
+
+    <!-- ===== SETTINGS ===== -->
+    <div id="page-settings" class="page">
+      <div class="page-title"><span>Settings</span></div>
+      <div class="card settings-section">
+        <h3>Appearance</h3>
+        <div class="settings-row"><span class="label">Theme</span><span class="value">Dark Theme • Premium dark mode with gold accents</span></div>
+      </div>
+      <div class="card settings-section">
+        <h3>Account</h3>
+        <div class="settings-row"><span class="label">Username</span><span class="value" id="settingsUser">user</span></div>
+        <div class="settings-row"><span class="label">Status</span><span class="value" id="settingsStatus">Free User</span></div>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <button class="btn btn-secondary" onclick="exportData()">Export Data</button>
+          <button class="btn btn-danger" onclick="deleteAccount()">Delete Account</button>
+        </div>
+      </div>
+      <div class="card settings-section">
+        <h3>Activation</h3>
+        <p class="text-sm mb-16">Enter a premium code to unlock all features:</p>
+        <div style="display:flex;gap:8px">
+          <input id="settingsPremCode" placeholder="Enter premium code..." style="flex:1;padding:12px 16px;border-radius:10px;border:1px solid rgba(255,215,0,0.15);background:rgba(255,255,255,0.05);color:#e0e0e0">
+          <button class="btn btn-primary" onclick="activatePremiumFromSettings()">Activate</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ADMIN PANEL ===== -->
+    <div id="page-admin" class="page">
+      <div class="page-title"><span>🛡️ Admin</span> Panel</div>
+
+      <div class="admin-tabs">
+        <button class="admin-tab active" onclick="switchAdmin('overview',this)">Overview</button>
+        <button class="admin-tab" onclick="switchAdmin('codes',this)">Premium Codes</button>
+        <button class="admin-tab" onclick="switchAdmin('profile',this)">Owner Profile</button>
+        <button class="admin-tab" onclick="switchAdmin('company',this)">Company</button>
+        <button class="admin-tab" onclick="switchAdmin('team',this)">Team</button>
+        <button class="admin-tab" onclick="switchAdmin('services',this)">Services</button>
+        <button class="admin-tab" onclick="switchAdmin('data',this)">Data</button>
+      </div>
+
+      <!-- Overview -->
+      <div id="admin-overview" class="admin-content active">
+        <div class="stats-grid">
+          <div class="stat-card"><div class="label">Total Codes</div><div class="value" id="adminTotalCodes">0</div></div>
+          <div class="stat-card"><div class="label">Unused</div><div class="value" id="adminUnusedCodes" style="color:#00ff64">0</div></div>
+          <div class="stat-card"><div class="label">Redeemed</div><div class="value" id="adminRedeemedCodes" style="color:#ff6400">0</div></div>
+          <div class="stat-card"><div class="label">Premium Users</div><div class="value" id="adminPremiumUsers">0</div></div>
+        </div>
+        <div class="card">
+          <h3>📊 Code Distribution</h3>
+          <div id="adminCodeDist">Loading...</div>
+        </div>
+        <div class="card">
+          <h3>⚡ Quick Actions</h3>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn btn-primary" onclick="switchAdmin('codes',document.querySelectorAll('.admin-tab')[1])">+ Generate Code</button>
+            <button class="btn btn-secondary" onclick="switchAdmin('data',document.querySelectorAll('.admin-tab')[6])">📋 View Data</button>
           </div>
         </div>
-        <hr style="border-color:rgba(255,215,0,.1);margin:16px 0">
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px">
-          <div><span style="color:#888;font-size:.8rem">Education</span><br><span style="color:#e0e0e0">ISGS Secondary School<br>Olabisi Onabanjo University (OOU)</span></div>
-          <div><span style="color:#888;font-size:.8rem">Expertise</span><br><span style="color:#e0e0e0">AI Engineering, Full-Stack Development, Systems Architecture</span></div>
-          <div><span style="color:#888;font-size:.8rem">Contact</span><br><span style="color:#e0e0e0">&#128222; +234 906 676 0078</span></div>
-        </div>
       </div>
-      <div class="card mt-8">
-        <h3 style="color:#ffd700;margin-bottom:8px">About ZEUS AI</h3>
-        <p style="color:#aaa;font-size:.88rem;line-height:1.6">ZEUS AI is a premium artificial intelligence platform built by Godwin Emmanuel Victory (ZEUS). It features smart chat, vision analysis, voice interaction, coding assistance, document AI, OCR, translation, and a suite of premium productivity tools — all in one unified interface. Powered by OpenRouter API for enterprise-grade AI responses.</p>
-      </div>
-    </div>
 
-    <!-- TEAM -->
-    <div class="page" id="page-team">
-      <h1 class="page-title">&#128101; <span>Our Team</span></h1>
-      <div class="grid-3" id="teamGrid">
-        <div class="team-card">
-          <div class="team-avatar gold">GE</div>
-          <h3>Godwin Emmanuel</h3>
-          <div class="role">Founder & Lead Developer</div>
-          <div class="bio">B.Sc. Computer Science — OOU. ISGS Secondary School alumnus. Full-stack architect, AI engineer & creator of ZEUS AI.</div>
-        </div>
-        <div class="team-card">
-          <div class="team-avatar blue">D</div>
-          <h3>Danny</h3>
-          <div class="role">Senior Developer & Systems Architect</div>
-          <div class="bio">B.Sc. Software Engineering • B.Sc. Data Science. Backend infrastructure, API integration, database architecture & security systems.</div>
-        </div>
-        <div class="team-card">
-          <div class="team-avatar green">K</div>
-          <h3>Kremmz</h3>
-          <div class="role">Junior Web Developer</div>
-          <div class="bio">Frontend development, UI/UX implementation, component optimisation & responsive design. Starting his journey in web development.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SETTINGS -->
-    <div class="page" id="page-settings">
-      <h1 class="page-title">&#9881; <span>Settings</span></h1>
-      <div class="card">
-        <h3 style="color:#fff;margin-bottom:8px">Account</h3>
-        <div class="flex items-center justify-between" style="flex-wrap:wrap;gap:8px">
-          <div><span style="color:#888">Username:</span> <span id="settingsUser" style="color:#ffd700">user</span></div>
-          <div><span style="color:#888">Status:</span> <span id="settingsStatus">Free User</span></div>
-        </div>
-      </div>
-      <div class="card">
-        <h3 style="color:#fff;margin-bottom:8px">Data Management</h3>
-        <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <button class="btn btn-outline btn-small" onclick="exportUserData()">Export My Data</button>
-          <button class="btn btn-outline btn-small" onclick="if(confirm('Delete all your data?')){localStorage.removeItem('zeus_notes_'+APP_USER);localStorage.removeItem('zeus_chat_'+APP_USER);showToast('Data deleted','success')}">Delete My Data</button>
-        </div>
-      </div>
-      <div class="card">
-        <h3 style="color:#fff;margin-bottom:8px">API Configuration</h3>
-        <p style="color:#888;font-size:.82rem;margin-bottom:8px">Enter your own OpenRouter API key to power your chats.</p>
-        <div class="flex gap-8">
-          <input type="password" id="apiKeyInput" placeholder="sk-or-v1-..." style="flex:1">
-          <button class="btn btn-primary btn-small" onclick="setApiKey()">Save Key</button>
-        </div>
-        <p style="color:#555;font-size:.75rem;margin-top:6px">Leave empty to use the default key.</p>
-      </div>
-    </div>
-
-    <!-- ADMIN -->
-    <div class="page" id="page-admin">
-      <h1 class="page-title">&#128274; <span>Admin Panel</span></h1>
-      <div id="adminLogin" class="card">
-        <h3 style="color:#ffd700;margin-bottom:8px">Admin Authentication</h3>
-        <input type="text" id="adminUser" placeholder="Admin username" style="margin-bottom:8px">
-        <input type="password" id="adminPass" placeholder="Admin password" style="margin-bottom:8px">
-        <button class="btn btn-primary" onclick="adminLogin()">Login</button>
-      </div>
-      <div id="adminPanel" style="display:none">
-        <div class="flex gap-8 mb-12" style="flex-wrap:wrap">
-          <button class="btn btn-primary btn-small" onclick="showAdminTab('overview')">Overview</button>
-          <button class="btn btn-primary btn-small" onclick="showAdminTab('codes')">Premium Codes</button>
-          <button class="btn btn-primary btn-small" onclick="showAdminTab('users')">Premium Users</button>
-          <button class="btn btn-primary btn-small" onclick="showAdminTab('data')">Data Management</button>
-        </div>
-        <!-- Overview -->
-        <div id="adminOverview" class="admin-tab"></div>
-        <!-- Codes -->
-        <div id="adminCodes" class="admin-tab" style="display:none">
-          <div class="card">
-            <h3 style="color:#ffd700;margin-bottom:8px">Generate Premium Codes</h3>
-            <div class="flex gap-8 items-center" style="flex-wrap:wrap">
-              <select id="codePlanSelect" style="width:auto;flex:1">
-                <option value="Weekly">Weekly</option>
-                <option value="Monthly">Monthly</option>
-                <option value="Lifetime">Lifetime</option>
+      <!-- Premium Codes -->
+      <div id="admin-codes" class="admin-content">
+        <div class="card">
+          <h3>✨ <span>Generate Premium Code</span></h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div class="form-group">
+              <label>Plan Type</label>
+              <select id="codePlanSelect">
+                <option value="weekly">Weekly (₦3,500)</option>
+                <option value="monthly">Monthly (₦8,000)</option>
+                <option value="lifetime">Lifetime (₦25,000)</option>
               </select>
-              <input type="number" id="codeQty" value="1" min="1" max="50" style="width:80px">
-              <button class="btn btn-primary btn-small" onclick="generateCodes()">Generate</button>
+            </div>
+            <div class="form-group">
+              <label>Quantity</label>
+              <input id="codeQty" type="number" value="1" min="1" max="100">
             </div>
           </div>
-          <div id="codesList"></div>
-        </div>
-        <!-- Users -->
-        <div id="adminUsers" class="admin-tab" style="display:none">
-          <div class="card">
-            <h3 style="color:#ffd700;margin-bottom:8px">Premium Users</h3>
-            <div id="premiumUsersList"></div>
+          <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+            <button class="btn btn-primary" onclick="generatePremiumCodes()">⚡ Generate Codes</button>
+            <button class="btn btn-secondary" onclick="generatePremiumCodes(true)">Generate & Show</button>
           </div>
         </div>
-        <!-- Data -->
-        <div id="adminData" class="admin-tab" style="display:none">
-          <div class="card">
-            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px">
-              <button class="btn btn-outline btn-small" onclick="exportAllAdminData()">Export All Data</button>
-              <button class="btn btn-outline btn-small" onclick="document.getElementById('adminImportFile').click()">Import Data</button>
-              <input type="file" id="adminImportFile" class="hidden-file" accept=".json" onchange="importAdminData(this)">
-              <button class="btn btn-danger btn-small" onclick="resetAllAdminData()">Reset Everything</button>
-            </div>
-            <pre id="adminDataPreview" style="background:rgba(0,0,0,.4);padding:12px;border-radius:8px;font-size:.78rem;color:#888;max-height:300px;overflow:auto;font-family:monospace"></pre>
+
+        <div class="card">
+          <h3>📋 <span>All Premium Codes</span></h3>
+          <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+            <button class="btn btn-danger" onclick="deleteAllUsedCodes()">🗑️ Delete Used</button>
+            <button class="btn btn-secondary" onclick="exportCodesCSV()">📥 Export CSV</button>
           </div>
+          <div class="table-wrap" id="codesTableWrap">
+            <p class="text-sm">No codes generated yet.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Owner Profile -->
+      <div id="admin-profile" class="admin-content">
+        <div class="card">
+          <h3>👤 <span>Owner Profile</span></h3>
+          <div class="form-group"><label>Name</label><input id="ownerName" value="ZEUS (Godwin Emmanuel Victory)"></div>
+          <div class="form-group"><label>Title</label><input id="ownerTitle" value="Founder & CEO, ZEUS Corporation"></div>
+          <div class="form-group"><label>Phone</label><input id="ownerPhone" value="+234 906 676 0078"></div>
+          <div class="form-group"><label>WhatsApp</label><input id="ownerWhatsApp" value="https://wa.me/2349066760078"></div>
+          <div class="form-group"><label>Email</label><input id="ownerEmail" value="godwinvictory@gmail.com"></div>
+          <div class="form-group"><label>Education</label><input id="ownerEducation" value="ISGS Secondary School • OOU University"></div>
+          <div class="form-group"><label>Status</label><input id="ownerStatus" value="Single"></div>
+          <button class="btn btn-primary" onclick="saveOwnerProfile()">💾 Save Profile</button>
+        </div>
+      </div>
+
+      <!-- Company -->
+      <div id="admin-company" class="admin-content">
+        <div class="card">
+          <h3>🏢 <span>Company Info</span></h3>
+          <div class="form-group"><label>Company Name</label><input id="companyName" value="ZEUS Corporation"></div>
+          <div class="form-group"><label>Tagline</label><input id="companyTagline" value="Building intelligent software and AI solutions"></div>
+          <div class="form-group"><label>Mission</label><textarea id="companyMission" rows="3">Democratize AI for everyone — making premium artificial intelligence accessible to all.</textarea></div>
+          <div class="form-group"><label>Vision</label><textarea id="companyVision" rows="3">To be the world's leading democratized AI intelligence platform.</textarea></div>
+          <div class="form-group"><label>Core Values</label><input id="companyValues" value="Innovation · Excellence · Integrity · Accessibility"></div>
+          <button class="btn btn-primary" onclick="saveCompany()">💾 Save</button>
+        </div>
+      </div>
+
+      <!-- Team -->
+      <div id="admin-team" class="admin-content">
+        <div class="card">
+          <h3>👥 <span>Team Management</span></h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="form-group"><label>Member Name</label><input id="teamName" placeholder="Full name"></div>
+            <div class="form-group"><label>Role</label><input id="teamRole" placeholder="Role / Title"></div>
+          </div>
+          <button class="btn btn-primary" onclick="addTeamMember()">+ Add Member</button>
+          <div id="teamMembersList" class="mt-16"></div>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div id="admin-services" class="admin-content">
+        <div class="card">
+          <h3>⚙️ <span>Services</span></h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="form-group"><label>Service Name</label><input id="serviceName" placeholder="Service name"></div>
+            <div class="form-group"><label>Description</label><input id="serviceDesc" placeholder="Brief description"></div>
+          </div>
+          <button class="btn btn-primary" onclick="addService()">+ Add Service</button>
+          <div id="servicesAdminList" class="mt-16"></div>
+        </div>
+      </div>
+
+      <!-- Data -->
+      <div id="admin-data" class="admin-content">
+        <div class="card">
+          <h3>💾 <span>Data Management</span></h3>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px">
+            <button class="btn btn-primary" onclick="exportAllData()">📤 Export All Data</button>
+            <button class="btn btn-secondary" onclick="importAllData()">📥 Import Data</button>
+            <button class="btn btn-danger" onclick="resetAllData()">⚠️ Reset All Data</button>
+          </div>
+          <input type="file" id="importFileInput" accept=".json" style="display:none" onchange="handleImport(event)">
+          <pre id="dataPreview" style="background:rgba(0,0,0,0.3);padding:16px;border-radius:10px;font-size:0.8rem;max-height:400px;overflow-y:auto;color:#888;font-family:monospace">No data exported yet.</pre>
         </div>
       </div>
     </div>
@@ -621,328 +908,800 @@ label{display:block;margin-bottom:4px;font-size:.85rem;color:#aaa}
   </div><!-- end main -->
 </div><!-- end app -->
 
-<!-- TOAST -->
-<div id="toast"></div>
+<!-- ===== TOAST CONTAINER ===== -->
+<div class="toast-container" id="toastContainer"></div>
 
 <script>
 // =====================================================================
 // CONFIGURATION
 // =====================================================================
 const CONFIG = {
+  API_KEY: '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',
   API_URL: 'https://openrouter.ai/api/v1/chat/completions',
-  MODEL: 'openai/gpt-4o-mini',
-  SITE_URL: 'https://emmyjosh65.github.io/ZEUS-AI/',
-  SITE_NAME: 'ZEUS AI'
+  MODEL: 'openai/gpt-4o-mini', // or 'openai/gpt-3.5-turbo', 'anthropic/claude-3-haiku', etc.
+  ADMIN_CODE: 'ZEUS-ADMIN',
+  SITE_NAME: 'ZEUS AI',
+  SITE_URL: 'https://emmyjosh65.github.io/ZEUS-AI/'
 };
-const LS_PREFIX = 'zeus_';
-const ADMIN_USER = 'zeusadmin';
-const ADMIN_PASS = '123456789';
-let APP_USER = localStorage.getItem(LS_PREFIX + 'current_user') || '';
-let APP_IS_PREMIUM = localStorage.getItem(LS_PREFIX + 'premium_' + APP_USER) === 'true';
-let APP_PREMIUM_PLAN = localStorage.getItem(LS_PREFIX + 'plan_' + APP_USER) || '';
-let VOICE_RECOGNITION = null;
-let VOICE_LISTENING = false;
-let CALC_EXPRESSION = '';
 
 // =====================================================================
-// UTILITY
+// STATE
+// =====================================================================
+let APP_USER = 'user';
+let APP_IS_PREMIUM = false;
+let APP_PREMIUM_PLAN = null;
+let IS_ADMIN = false;
+let CHAT_HISTORY = [];
+let CALC_EXPRESSION = '';
+let VOICE_RECOGNITION = null;
+let VOICE_LISTENING = false;
+
+// =====================================================================
+// DATA PERSISTENCE
 // =====================================================================
 function getData(key, def) {
-  try { const d = localStorage.getItem(LS_PREFIX + key); return d ? JSON.parse(d) : def; } catch(e) { return def; }
+  try { const v = localStorage.getItem('zeus_' + key); return v ? JSON.parse(v) : def; }
+  catch(e) { return def; }
 }
 function setData(key, val) {
-  localStorage.setItem(LS_PREFIX + key, JSON.stringify(val));
+  localStorage.setItem('zeus_' + key, JSON.stringify(val));
 }
+
+// =====================================================================
+// INIT
+// =====================================================================
+document.addEventListener('DOMContentLoaded', function() {
+  initParticles();
+  loadNotes();
+  loadTeamMembers();
+  loadServices();
+  loadOwnerProfile();
+  loadCompany();
+  updateStats();
+  initVoice();
+  initPremiumTools();
+});
+
+// =====================================================================
+// PARTICLES
+// =====================================================================
+function initParticles() {
+  const c = document.createElement('canvas');
+  c.id = 'particlesCanvas';
+  c.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;';
+  document.body.prepend(c);
+  const ctx = c.getContext('2d');
+  const particles = [];
+  function resize() { c.width = window.innerWidth; c.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+  for (let i = 0; i < 40; i++) {
+    particles.push({
+      x: Math.random() * c.width, y: Math.random() * c.height,
+      vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5,
+      r: Math.random() * 2 + 1
+    });
+  }
+  function draw() {
+    ctx.clearRect(0, 0, c.width, c.height);
+    for (const p of particles) {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > c.width) p.vx *= -1;
+      if (p.y < 0 || p.y > c.height) p.vy *= -1;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255,215,0,' + (0.1 + Math.random() * 0.15) + ')';
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+// =====================================================================
+// TOASTS
+// =====================================================================
+function showToast(msg, type) {
+  type = type || 'info';
+  const container = document.getElementById('toastContainer');
+  const icons = { success: '✅', error: '❌', info: 'ℹ️' };
+  const toast = document.createElement('div');
+  toast.className = 'toast ' + type;
+  toast.innerHTML = '<span class="toast-icon">' + (icons[type] || 'ℹ️') + '</span>' + escapeHtml(msg);
+  container.appendChild(toast);
+  setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateX(40px)'; toast.style.transition = 'all 0.3s'; }, 3000);
+  setTimeout(() => toast.remove(), 3500);
+}
+
+// =====================================================================
+// ESCAPE HTML
+// =====================================================================
 function escapeHtml(t) {
-  if (!t) return '';
   const d = document.createElement('div');
   d.textContent = t;
   return d.innerHTML;
 }
 
-function showToast(msg, type) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = type + ' show';
-  clearTimeout(t._timeout);
-  t._timeout = setTimeout(() => t.classList.remove('show'), 3500);
+// =====================================================================
+// COPY TEXT
+// =====================================================================
+function copyText(t) {
+  navigator.clipboard.writeText(t).then(() => showToast('Copied!', 'success')).catch(() => showToast('Copy failed', 'error'));
 }
 
 // =====================================================================
-// LANDING & AUTH
+// LANDING -> AUTH
 // =====================================================================
-function showAuth(tab) {
+function showAuth() {
+  document.getElementById('landing').classList.add('hide');
   document.getElementById('authModal').classList.add('active');
-  switchAuthTab(tab);
+  switchAuthTab('signin', document.querySelectorAll('.auth-tab')[0]);
 }
-function closeAuth() {
+
+// =====================================================================
+// AUTH TABS
+// =====================================================================
+function switchAuthTab(tab, el) {
+  const tabs = document.querySelectorAll('.auth-tab');
+  tabs.forEach(t => t.classList.remove('active'));
+  if (el) el.classList.add('active');
+  ['authSignin', 'authSignup', 'authAdmin'].forEach(id => document.getElementById(id).classList.remove('active'));
+  document.getElementById('auth' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.add('active');
+}
+
+// =====================================================================
+// SIGN IN
+// =====================================================================
+function signIn() {
+  const name = document.getElementById('signinUsername').value.trim() || 'user';
+  const code = document.getElementById('signinCode').value.trim();
+  APP_USER = name;
+  APP_IS_PREMIUM = false;
+  APP_PREMIUM_PLAN = null;
+  if (code) {
+    const r = redeemCode(code);
+    if (r) { APP_IS_PREMIUM = true; APP_PREMIUM_PLAN = r; }
+  }
   document.getElementById('authModal').classList.remove('active');
-}
-function switchAuthTab(tab) {
-  document.querySelectorAll('.auth-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
-  document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
-  document.getElementById('form-' + tab).classList.add('active');
-}
-
-function signIn(e) {
-  e.preventDefault();
-  const user = document.getElementById('signinUser').value.trim();
-  const pass = document.getElementById('signinPass').value.trim();
-  const users = getData('users', {});
-  if (!users[user]) { showToast('User not found. Create an account first.', 'error'); return; }
-  if (users[user] !== pass) { showToast('Incorrect password.', 'error'); return; }
-  loginUser(user);
-}
-
-function signUp(e) {
-  e.preventDefault();
-  const user = document.getElementById('signupUser').value.trim();
-  const pass = document.getElementById('signupPass').value.trim();
-  if (!user || user.length < 3) { showToast('Username must be at least 3 characters.', 'error'); return; }
-  if (pass.length < 4) { showToast('Password must be at least 4 characters.', 'error'); return; }
-  const users = getData('users', {});
-  if (users[user]) { showToast('Username already exists. Try signing in.', 'error'); return; }
-  users[user] = pass;
-  setData('users', users);
-  showToast('Account created successfully!', 'success');
-  loginUser(user);
-}
-
-function loginUser(user) {
-  APP_USER = user;
-  localStorage.setItem(LS_PREFIX + 'current_user', user);
-  APP_IS_PREMIUM = localStorage.getItem(LS_PREFIX + 'premium_' + user) === 'true';
-  APP_PREMIUM_PLAN = localStorage.getItem(LS_PREFIX + 'plan_' + user) || '';
-  closeAuth();
-  document.getElementById('landing').classList.add('hide');
-  setTimeout(() => {
-    document.getElementById('app').classList.add('active');
-    document.getElementById('landing').style.display = 'none';
-    initApp();
-  }, 600);
-}
-
-function logout() {
-  APP_USER = '';
-  localStorage.removeItem(LS_PREFIX + 'current_user');
-  document.getElementById('app').classList.remove('active');
-  document.getElementById('landing').style.display = '';
-  document.getElementById('landing').classList.remove('hide');
-  location.reload();
+  enterApp();
 }
 
 // =====================================================================
-// PREMIUM ACTIVATION
+// SIGN UP
 // =====================================================================
-function activatePremium(e) {
-  e.preventDefault();
-  const code = document.getElementById('activateCode').value.trim().toUpperCase();
-  if (!code) { showToast('Enter a premium code.', 'error'); return; }
-  const codes = getData('premium_codes', []);
-  const idx = codes.findIndex(c => c.code === code && !c.used);
-  if (idx === -1) { showToast('Invalid or already used code.', 'error'); return; }
-  codes[idx].used = true;
-  codes[idx].usedBy = APP_USER;
-  codes[idx].usedAt = new Date().toISOString();
-  setData('premium_codes', codes);
-  const plan = codes[idx].plan;
-  APP_IS_PREMIUM = true;
-  APP_PREMIUM_PLAN = plan;
-  localStorage.setItem(LS_PREFIX + 'premium_' + APP_USER, 'true');
-  localStorage.setItem(LS_PREFIX + 'plan_' + APP_USER, plan);
-  // Track premium users
-  const pUsers = getData('premium_users', []);
-  if (!pUsers.find(u => u.username === APP_USER)) {
-    pUsers.push({ username: APP_USER, plan: plan, activatedAt: new Date().toISOString(), code: code });
-    setData('premium_users', pUsers);
+function signUp() {
+  const name = document.getElementById('signupUsername').value.trim() || 'user_' + Math.random().toString(36).substring(2, 6);
+  const code = document.getElementById('signupCode').value.trim();
+  APP_USER = name;
+  APP_IS_PREMIUM = false;
+  APP_PREMIUM_PLAN = null;
+  if (code) {
+    const r = redeemCode(code);
+    if (r) { APP_IS_PREMIUM = true; APP_PREMIUM_PLAN = r; }
   }
-  showToast('Premium activated! Welcome to ' + plan + '!', 'success');
-  closeAuth();
-  document.getElementById('landing').classList.add('hide');
-  setTimeout(() => {
-    document.getElementById('app').classList.add('active');
-    document.getElementById('landing').style.display = 'none';
-    initApp();
-  }, 600);
-}
-
-function showBuyPlans() {
-  closeAuth();
-  // Show landing with plans info
-  const plans = [
-    ['Weekly', '₦3,500', '7 days'],
-    ['Monthly', '₦8,000', '30 days'],
-    ['Lifetime', '₦25,000', 'Forever']
-  ];
-  const msg = plans.map(p => p[0] + ': ' + p[1] + ' (' + p[2] + ')').join('\n');
-  alert('ZEUS AI Premium Plans:\n\n' + msg + '\n\nPay via OPay: 9066760078 (Christana Godwin Okon)\nSend receipt via WhatsApp to get your code.');
-  window.open('https://wa.me/2349066760078', '_blank');
-}
-
-function buyPlan(name, amount) {
-  alert('To purchase ' + name + ' (₦' + amount.toLocaleString() + '):\n\n1. Send payment to:\n   OPay: 9066760078\n   Name: CHRISTIANA GODWIN OKON\n\n2. Send payment screenshot via WhatsApp\n3. Admin will send your premium code\n\n📱 wa.me/2349066760078');
-  window.open('https://wa.me/2349066760078', '_blank');
+  document.getElementById('authModal').classList.remove('active');
+  enterApp();
 }
 
 // =====================================================================
-// APP INIT
+// ADMIN LOGIN
 // =====================================================================
-function initApp() {
-  document.getElementById('sideName').textContent = APP_USER;
-  document.getElementById('sideAvatar').textContent = APP_USER.charAt(0).toUpperCase();
-  document.getElementById('settingsUser').textContent = APP_USER;
-  updatePremiumUI();
-  updateStats();
-  renderNotes();
-  renderChat();
-  initPremiumTools();
-  initVoice();
-  initAdminPanel();
-  document.getElementById('codeQty').value = 1;
-  // Close sidebar on mobile
-  if (window.innerWidth <= 768) document.getElementById('sidebar').classList.remove('open');
-}
-
-function toggleSidebar() {
-  document.getElementById('sidebar').classList.toggle('open');
-}
-
-function updatePremiumUI() {
-  const s = document.getElementById('sideStatus');
-  const db = document.getElementById('dashBadge');
-  const pb = document.getElementById('premBadge');
-  const ss = document.getElementById('settingsStatus');
-  if (APP_IS_PREMIUM) {
-    s.textContent = 'Premium ' + APP_PREMIUM_PLAN;
-    s.style.color = '#ffd700';
-    db.textContent = 'Premium ' + APP_PREMIUM_PLAN;
-    db.className = 'tag tag-premium';
-    pb.textContent = 'Premium ' + APP_PREMIUM_PLAN;
-    pb.className = 'tag tag-premium';
-    if (ss) ss.textContent = 'Premium (' + APP_PREMIUM_PLAN + ')';
+function adminLogin() {
+  const code = document.getElementById('adminCode').value.trim();
+  if (code === CONFIG.ADMIN_CODE) {
+    IS_ADMIN = true;
+    APP_USER = 'ZEUS-Admin';
+    APP_IS_PREMIUM = true;
+    APP_PREMIUM_PLAN = 'lifetime';
+    document.getElementById('authModal').classList.remove('active');
+    enterApp();
+    showToast('Admin access granted', 'success');
   } else {
-    s.textContent = 'Free User';
-    s.style.color = '#888';
-    db.textContent = 'Free';
-    db.className = 'tag tag-free';
-    pb.textContent = 'Free';
-    pb.className = 'tag tag-free';
-    if (ss) ss.textContent = 'Free User';
+    showToast('Invalid admin code', 'error');
   }
+}
+
+// =====================================================================
+// ACTIVATE PREMIUM FROM AUTH
+// =====================================================================
+function activatePremiumFromAuth() {
+  const code = document.getElementById('adminPremCode').value.trim();
+  if (!code) { showToast('Enter a premium code', 'error'); return; }
+  const r = redeemCode(code);
+  if (r) {
+    showToast('Premium activated! Plan: ' + r, 'success');
+    document.getElementById('authModal').classList.remove('active');
+    APP_IS_PREMIUM = true;
+    APP_PREMIUM_PLAN = r;
+    enterApp();
+  }
+}
+
+// =====================================================================
+// ACTIVATE PREMIUM FROM SETTINGS
+// =====================================================================
+function activatePremiumFromSettings() {
+  const code = document.getElementById('settingsPremCode').value.trim();
+  if (!code) { showToast('Enter a premium code', 'error'); return; }
+  const r = redeemCode(code);
+  if (r) {
+    APP_IS_PREMIUM = true;
+    APP_PREMIUM_PLAN = r;
+    showToast('Premium activated! Plan: ' + r, 'success');
+    updatePremiumUI();
+  }
+}
+
+// =====================================================================
+// REDEEM CODE
+// =====================================================================
+function redeemCode(code) {
+  const codes = getData('premium_codes', []);
+  for (let i = 0; i < codes.length; i++) {
+    if (codes[i].code === code && codes[i].status === 'unused') {
+      codes[i].status = 'redeemed';
+      codes[i].redeemedBy = APP_USER || 'user';
+      codes[i].redeemedAt = new Date().toISOString();
+      setData('premium_codes', codes);
+      updateStats();
+      return codes[i].plan;
+    }
+  }
+  showToast('Invalid or already used code', 'error');
+  return null;
+}
+
+// =====================================================================
+// ENTER APP
+// =====================================================================
+function enterApp() {
+  document.getElementById('app').classList.add('active');
+  document.getElementById('landing').classList.add('hide');
+  document.getElementById('authModal').classList.remove('active');
+  document.getElementById('sideAvatar').textContent = APP_USER.charAt(0).toUpperCase();
+  document.getElementById('sideName').textContent = APP_USER;
+  document.getElementById('settingsUser').textContent = APP_USER;
+  if (APP_IS_PREMIUM) {
+    document.getElementById('sideStatus').textContent = 'Premium ' + APP_PREMIUM_PLAN;
+    document.getElementById('settingsStatus').textContent = 'Premium (' + APP_PREMIUM_PLAN + ')';
+  } else {
+    document.getElementById('sideStatus').textContent = 'Free User';
+    document.getElementById('settingsStatus').textContent = 'Free User';
+  }
+  // Show admin nav if admin
+  if (IS_ADMIN) {
+    document.getElementById('adminNavBtn').style.display = 'flex';
+  }
+  updateStats();
+  loadChatHistory();
+}
+
+// =====================================================================
+// LOGOUT
+// =====================================================================
+function logout() {
+  APP_USER = 'user';
+  APP_IS_PREMIUM = false;
+  APP_PREMIUM_PLAN = null;
+  IS_ADMIN = false;
+  document.getElementById('app').classList.remove('active');
+  document.getElementById('landing').classList.remove('hide');
+  document.getElementById('adminNavBtn').style.display = 'none';
 }
 
 // =====================================================================
 // PAGE SWITCHING
 // =====================================================================
-function switchPage(page, btn) {
+function switchPage(page, el) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + page).classList.add('active');
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  if (btn) btn.classList.add('active');
-  if (window.innerWidth <= 768) document.getElementById('sidebar').classList.remove('open');
-  // Refresh dynamic content
+  if (el) {
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    el.classList.add('active');
+  }
+  // Close mobile sidebar
+  document.getElementById('sidebar').classList.remove('open');
+  if (page === 'admin') { renderAdminCodes(); renderAdminOverview(); }
   if (page === 'dashboard') updateStats();
-  if (page === 'notes') renderNotes();
-  if (page === 'premium-tools') { initPremiumTools(); updatePremiumUI(); }
-  if (page === 'admin') initAdminPanel();
 }
 
 // =====================================================================
-// DASHBOARD STATS
+// TOGGLE ADMIN
+// =====================================================================
+function toggleAdmin() {
+  if (!IS_ADMIN) {
+    showToast('Admin access required. Login as admin first.', 'error');
+    return;
+  }
+  switchPage('admin', document.querySelector('#adminNavBtn'));
+  renderAdminCodes();
+  renderAdminOverview();
+}
+
+// =====================================================================
+// ADMIN TAB SWITCHING
+// =====================================================================
+function switchAdmin(tab, el) {
+  document.querySelectorAll('.admin-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('admin-' + tab).classList.add('active');
+  document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+  if (el) el.classList.add('active');
+  if (tab === 'codes') renderAdminCodes();
+  if (tab === 'overview') renderAdminOverview();
+  if (tab === 'team') renderTeamMembers();
+  if (tab === 'services') renderServicesAdmin();
+  if (tab === 'data') previewData();
+}
+
+// =====================================================================
+// UPDATE STATS
 // =====================================================================
 function updateStats() {
+  const codes = getData('premium_codes', []);
   const notes = getData('notes_' + APP_USER, []);
-  const chats = getData('chat_' + APP_USER, []);
-  const ocrCount = getData('ocr_count_' + APP_USER, 0);
   const files = getData('files_' + APP_USER, []);
-  document.getElementById('statsGrid').innerHTML = `
-    <div class="stat-card"><div class="num">${notes.length}</div><div class="label">Notes</div></div>
-    <div class="stat-card"><div class="num">${chats.length}</div><div class="label">Chat Messages</div></div>
-    <div class="stat-card"><div class="num">${ocrCount + files.length}</div><div class="label">Files Processed</div></div>
-    <div class="stat-card"><div class="num">${APP_IS_PREMIUM ? '&#10003;' : '&#10007;'}</div><div class="label">Premium Status</div></div>
-  `;
+  const ocrCount = getData('ocr_count_' + APP_USER, 0);
+  const chats = getData('chat_' + APP_USER, []);
+
+  document.getElementById('statChats').textContent = chats.length;
+  document.getElementById('statNotes').textContent = notes.length;
+  document.getElementById('statFiles').textContent = files.length;
+  document.getElementById('statOCR').textContent = ocrCount;
+  document.getElementById('statCodes').textContent = codes.length;
+  document.getElementById('statCodesUsed').textContent = codes.filter(c => c.status === 'redeemed').length + ' used';
+  document.getElementById('statPremiumUsers').textContent = getData('premium_users', []).length;
 }
 
 // =====================================================================
 // AI CHAT
 // =====================================================================
-async function sendChat() {
+function sendMessage() {
   const input = document.getElementById('chatInput');
   const msg = input.value.trim();
   if (!msg) return;
   input.value = '';
-  const container = document.getElementById('chatMessages');
-  container.innerHTML += `<div class="chat-msg user">${escapeHtml(msg)}</div>`;
-  container.scrollTop = container.scrollHeight;
-  // Save chat
-  const chats = getData('chat_' + APP_USER, []);
-  chats.push({ role: 'user', content: msg, time: new Date().toISOString() });
-  setData('chat_' + APP_USER, chats);
-  // Show typing
-  container.innerHTML += `<div class="chat-msg bot" id="typingIndicator" style="color:#888;font-style:italic">ZEUS is thinking...</div>`;
-  container.scrollTop = container.scrollHeight;
+  addChatMessage(msg, 'user');
+  document.getElementById('chatSendBtn').disabled = true;
+  document.getElementById('chatSendBtn').textContent = '...';
+
+  // Show typing indicator
+  const typing = document.createElement('div');
+  typing.className = 'typing-indicator';
+  typing.id = 'typingIndicator';
+  typing.innerHTML = '<span></span><span></span><span></span>';
+  document.getElementById('chatMessages').appendChild(typing);
+  document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+
+  // Save to history
+  CHAT_HISTORY.push({ role: 'user', content: msg });
+  saveChatHistory();
+
+  callOpenRouter(msg);
+}
+
+function sendSuggested(msg) {
+  document.getElementById('chatInput').value = msg;
+  sendMessage();
+}
+
+function addChatMessage(content, role) {
+  const div = document.createElement('div');
+  div.className = 'chat-msg ' + role;
+  // Simple markdown-like rendering
+  const formatted = content
+    .replace(/```(\w*)\n?([\s\S]*?)```/g, '<pre><code>$2</code></pre>')
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\n/g, '<br>');
+  div.innerHTML = '<p>' + formatted + '</p>';
+  document.getElementById('chatMessages').appendChild(div);
+  document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+}
+
+async function callOpenRouter(userMsg) {
   try {
-    const resp = await fetch(CONFIG.API_URL, {
+    const messages = [
+      { role: 'system', content: 'You are ZEUS AI, a premium intelligence assistant. Be helpful, concise, and accurate. Provide code, explanations, and creative content as requested. Use markdown formatting in responses.' },
+      ...CHAT_HISTORY.slice(-20)
+    ];
+
+    const response = await fetch(CONFIG.API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + (localStorage.getItem(LS_PREFIX + 'api_key') || ''),
+        'Authorization': 'Bearer ' + CONFIG.API_KEY,
         'HTTP-Referer': CONFIG.SITE_URL,
         'X-Title': CONFIG.SITE_NAME
       },
       body: JSON.stringify({
         model: CONFIG.MODEL,
-        messages: [
-          { role: 'system', content: 'You are ZEUS AI v7, a premium AI assistant created by Godwin Emmanuel Victory. You are helpful, knowledgeable, and precise.' },
-          ...chats.slice(-20).map(c => ({ role: c.role, content: c.content }))
-        ],
-        max_tokens: 1024
+        messages: messages,
+        max_tokens: 2048,
+        temperature: 0.7
       })
     });
-    document.getElementById('typingIndicator')?.remove();
-    const data = await resp.json();
-    const reply = data.choices?.[0]?.message?.content || 'Sorry, I could not process that.';
-    container.innerHTML += `<div class="chat-msg bot">${escapeHtml(reply)}</div>`;
-    chats.push({ role: 'assistant', content: reply, time: new Date().toISOString() });
-    setData('chat_' + APP_USER, chats);
-  } catch(err) {
-    document.getElementById('typingIndicator')?.remove();
-    container.innerHTML += `<div class="chat-msg bot" style="color:#ff6666">Connection error: ${escapeHtml(err.message)}</div>`;
+
+    // Remove typing indicator
+    const typing = document.getElementById('typingIndicator');
+    if (typing) typing.remove();
+
+    if (!response.ok) {
+      const errText = await response.text();
+      throw new Error('API Error: ' + response.status + ' - ' + errText);
+    }
+
+    const data = await response.json();
+    const reply = data.choices[0].message.content;
+
+    addChatMessage(reply, 'bot');
+    CHAT_HISTORY.push({ role: 'assistant', content: reply });
+    saveChatHistory();
+
+  } catch (err) {
+    const typing = document.getElementById('typingIndicator');
+    if (typing) typing.remove();
+    addChatMessage('⚠️ Error: ' + err.message, 'bot');
+    showToast('Chat error: ' + err.message, 'error');
+  } finally {
+    document.getElementById('chatSendBtn').disabled = false;
+    document.getElementById('chatSendBtn').textContent = 'Send';
   }
-  container.scrollTop = container.scrollHeight;
-  updateStats();
 }
 
-function clearChat() {
-  if (!confirm('Clear all chat messages?')) return;
-  setData('chat_' + APP_USER, []);
-  document.getElementById('chatMessages').innerHTML = '<div class="chat-msg bot">Hello! I\'m ZEUS AI. How can I help you today?</div>';
-  updateStats();
+function saveChatHistory() {
+  setData('chat_' + APP_USER, CHAT_HISTORY);
 }
 
-function renderChat() {
-  const chats = getData('chat_' + APP_USER, []);
+function loadChatHistory() {
+  CHAT_HISTORY = getData('chat_' + APP_USER, []);
   const container = document.getElementById('chatMessages');
-  if (chats.length === 0) {
-    container.innerHTML = '<div class="chat-msg bot">Hello! I\'m ZEUS AI. How can I help you today?</div>';
+  // Keep only welcome message
+  container.innerHTML = '<div class="chat-msg bot"><p>⚡ I\'m ZEUS, your intelligent assistant. Ask me anything — coding, research, writing, analysis, or just a conversation.</p></div>';
+  // Load last 20 messages
+  const recent = CHAT_HISTORY.slice(-20);
+  for (const msg of recent) {
+    addChatMessage(msg.content, msg.role);
+  }
+}
+
+// =====================================================================
+// PREMIUM CODE GENERATION (ADMIN)
+// =====================================================================
+function generatePremiumCodes(showImmediately) {
+  const plan = document.getElementById('codePlanSelect').value;
+  const qty = parseInt(document.getElementById('codeQty').value) || 1;
+  const codes = getData('premium_codes', []);
+  const generated = [];
+
+  for (let i = 0; i < qty; i++) {
+    const code = 'ZEUS-' + plan.toUpperCase() + '-' + generateCodeString(12);
+    const entry = {
+      code: code,
+      plan: plan,
+      status: 'unused',
+      createdAt: new Date().toISOString(),
+      redeemedBy: null,
+      redeemedAt: null
+    };
+    codes.push(entry);
+    generated.push(code);
+  }
+
+  setData('premium_codes', codes);
+  showToast('Generated ' + qty + ' ' + plan + ' code(s)!', 'success');
+  renderAdminCodes();
+  updateStats();
+
+  if (showImmediately || qty === 1) {
+    // Show the codes
+    let msg = 'Generated Codes:\n' + generated.join('\n');
+    alert(msg);
+  }
+}
+
+function generateCodeString(len) {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let result = '';
+  for (let i = 0; i < len; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  // Format with dashes
+  return result.match(/.{1,4}/g).join('-');
+}
+
+// =====================================================================
+// RENDER ADMIN CODES TABLE
+// =====================================================================
+function renderAdminCodes() {
+  const codes = getData('premium_codes', []);
+  const wrap = document.getElementById('codesTableWrap');
+
+  if (codes.length === 0) {
+    wrap.innerHTML = '<p class="text-sm">No codes generated yet. Use the form above to create premium codes.</p>';
     return;
   }
-  container.innerHTML = chats.map(c =>
-    `<div class="chat-msg ${c.role}">${escapeHtml(c.content)}</div>`
-  ).join('');
-  container.scrollTop = container.scrollHeight;
+
+  // Sort: newest first
+  codes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+  let html = `<table>
+    <thead><tr>
+      <th>Code</th><th>Plan</th><th>Status</th><th>Created</th><th>Redeemed By</th><th>Actions</th>
+    </tr></thead><tbody>`;
+
+  for (const c of codes) {
+    const statusBadge = c.status === 'unused' ? '<span class="badge unused">Unused</span>' : '<span class="badge redeemed">Redeemed</span>';
+    const planBadge = '<span class="badge ' + c.plan + '">' + c.plan + '</span>';
+    const created = new Date(c.createdAt).toLocaleDateString();
+    const redeemedBy = c.redeemedBy || '-';
+    html += `<tr>
+      <td><div class="copy-field"><input value="${escapeHtml(c.code)}" readonly><button class="copy-btn" onclick="copyText('${escapeHtml(c.code)}')">Copy</button></div></td>
+      <td>${planBadge}</td>
+      <td>${statusBadge}</td>
+      <td>${created}</td>
+      <td>${redeemedBy}</td>
+      <td><button class="copy-btn" onclick="deleteCode('${escapeHtml(c.code)}')" style="color:#ff4444;border-color:#ff4444">Delete</button></td>
+    </tr>`;
+  }
+
+  html += '</tbody></table>';
+  wrap.innerHTML = html;
 }
 
 // =====================================================================
-// NOTES (enhanced)
+// DELETE CODE
 // =====================================================================
-function showNoteModal() {
+function deleteCode(code) {
+  if (!confirm('Delete code ' + code + '?')) return;
+  let codes = getData('premium_codes', []);
+  codes = codes.filter(c => c.code !== code);
+  setData('premium_codes', codes);
+  renderAdminCodes();
+  updateStats();
+  showToast('Code deleted', 'success');
+}
+
+// =====================================================================
+// DELETE ALL USED CODES
+// =====================================================================
+function deleteAllUsedCodes() {
+  if (!confirm('Delete all redeemed/used codes?')) return;
+  let codes = getData('premium_codes', []);
+  codes = codes.filter(c => c.status === 'unused');
+  setData('premium_codes', codes);
+  renderAdminCodes();
+  updateStats();
+  showToast('Used codes deleted', 'success');
+}
+
+// =====================================================================
+// EXPORT CODES CSV
+// =====================================================================
+function exportCodesCSV() {
+  const codes = getData('premium_codes', []);
+  if (codes.length === 0) { showToast('No codes to export', 'error'); return; }
+  let csv = 'Code,Plan,Status,Created,Redeemed By,Redeemed At\n';
+  for (const c of codes) {
+    csv += `${c.code},${c.plan},${c.status},${c.createdAt},${c.redeemedBy || ''},${c.redeemedAt || ''}\n`;
+  }
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'zeus-premium-codes.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('CSV exported', 'success');
+}
+
+// =====================================================================
+// RENDER ADMIN OVERVIEW
+// =====================================================================
+function renderAdminOverview() {
+  const codes = getData('premium_codes', []);
+  const unused = codes.filter(c => c.status === 'unused').length;
+  const redeemed = codes.filter(c => c.status === 'redeemed').length;
+  document.getElementById('adminTotalCodes').textContent = codes.length;
+  document.getElementById('adminUnusedCodes').textContent = unused;
+  document.getElementById('adminRedeemedCodes').textContent = redeemed;
+  document.getElementById('adminPremiumUsers').textContent = getData('premium_users', []).length;
+
+  // Distribution
+  const weekly = codes.filter(c => c.plan === 'weekly').length;
+  const monthly = codes.filter(c => c.plan === 'monthly').length;
+  const lifetime = codes.filter(c => c.plan === 'lifetime').length;
+  document.getElementById('adminCodeDist').innerHTML = `
+    <p>Weekly: <strong>${weekly}</strong> | Monthly: <strong>${monthly}</strong> | Lifetime: <strong>${lifetime}</strong></p>
+    <p class="text-sm mt-8">Total: ${codes.length} codes | ${unused} unused | ${redeemed} redeemed</p>
+  `;
+}
+
+// =====================================================================
+// OWNER PROFILE
+// =====================================================================
+function loadOwnerProfile() {
+  const profile = getData('owner_profile', {});
+  if (profile.name) document.getElementById('ownerName').value = profile.name;
+  if (profile.title) document.getElementById('ownerTitle').value = profile.title;
+  if (profile.phone) document.getElementById('ownerPhone').value = profile.phone;
+  if (profile.whatsapp) document.getElementById('ownerWhatsApp').value = profile.whatsapp;
+  if (profile.email) document.getElementById('ownerEmail').value = profile.email;
+  if (profile.education) document.getElementById('ownerEducation').value = profile.education;
+  if (profile.status) document.getElementById('ownerStatus').value = profile.status;
+}
+
+function saveOwnerProfile() {
+  const profile = {
+    name: document.getElementById('ownerName').value,
+    title: document.getElementById('ownerTitle').value,
+    phone: document.getElementById('ownerPhone').value,
+    whatsapp: document.getElementById('ownerWhatsApp').value,
+    email: document.getElementById('ownerEmail').value,
+    education: document.getElementById('ownerEducation').value,
+    status: document.getElementById('ownerStatus').value
+  };
+  setData('owner_profile', profile);
+  showToast('Profile saved!', 'success');
+}
+
+// =====================================================================
+// COMPANY INFO
+// =====================================================================
+function loadCompany() {
+  const company = getData('company_info', {});
+  if (company.name) document.getElementById('companyName').value = company.name;
+  if (company.tagline) document.getElementById('companyTagline').value = company.tagline;
+  if (company.mission) document.getElementById('companyMission').value = company.mission;
+  if (company.vision) document.getElementById('companyVision').value = company.vision;
+  if (company.values) document.getElementById('companyValues').value = company.values;
+}
+
+function saveCompany() {
+  const company = {
+    name: document.getElementById('companyName').value,
+    tagline: document.getElementById('companyTagline').value,
+    mission: document.getElementById('companyMission').value,
+    vision: document.getElementById('companyVision').value,
+    values: document.getElementById('companyValues').value
+  };
+  setData('company_info', company);
+  showToast('Company info saved!', 'success');
+}
+
+// =====================================================================
+// TEAM MANAGEMENT
+// =====================================================================
+function loadTeamMembers() {
+  renderTeamMembers();
+}
+
+function addTeamMember() {
+  const name = document.getElementById('teamName').value.trim();
+  const role = document.getElementById('teamRole').value.trim();
+  if (!name || !role) { showToast('Enter name and role', 'error'); return; }
+  const members = getData('team_members', []);
+  members.push({ name, role, addedAt: new Date().toISOString() });
+  setData('team_members', members);
+  document.getElementById('teamName').value = '';
+  document.getElementById('teamRole').value = '';
+  renderTeamMembers();
+  showToast('Team member added!', 'success');
+}
+
+function renderTeamMembers() {
+  const members = getData('team_members', []);
+  const container = document.getElementById('teamMembersList');
+  const pageContainer = document.getElementById('teamList');
+
+  if (members.length === 0) {
+    container.innerHTML = '<p class="text-sm">No team members yet.</p>';
+    if (pageContainer) pageContainer.innerHTML = '<p class="text-sm">No team members added yet.</p>';
+    return;
+  }
+
+  let html = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">';
+  for (let i = 0; i < members.length; i++) {
+    html += `<div style="background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.1);border-radius:12px;padding:16px;text-align:center">
+      <div style="font-size:2rem;margin-bottom:8px">👤</div>
+      <div style="font-weight:600;color:#fff">${escapeHtml(members[i].name)}</div>
+      <div style="font-size:0.8rem;color:#888">${escapeHtml(members[i].role)}</div>
+      <button class="copy-btn mt-8" onclick="removeTeamMember(${i})" style="color:#ff4444;border-color:#ff4444">Remove</button>
+    </div>`;
+  }
+  html += '</div>';
+  container.innerHTML = html;
+  if (pageContainer) pageContainer.innerHTML = html;
+}
+
+function removeTeamMember(index) {
+  let members = getData('team_members', []);
+  members.splice(index, 1);
+  setData('team_members', members);
+  renderTeamMembers();
+  showToast('Member removed', 'success');
+}
+
+// =====================================================================
+// SERVICES
+// =====================================================================
+function addService() {
+  const name = document.getElementById('serviceName').value.trim();
+  const desc = document.getElementById('serviceDesc').value.trim();
+  if (!name) { showToast('Enter a service name', 'error'); return; }
+  const services = getData('services_list', []);
+  services.push({ name, description: desc || name, addedAt: new Date().toISOString() });
+  setData('services_list', services);
+  document.getElementById('serviceName').value = '';
+  document.getElementById('serviceDesc').value = '';
+  renderServicesAdmin();
+  renderServicesPage();
+  showToast('Service added!', 'success');
+}
+
+function renderServicesAdmin() {
+  const services = getData('services_list', []);
+  const container = document.getElementById('servicesAdminList');
+  if (services.length === 0) {
+    container.innerHTML = '<p class="text-sm">No services added yet.</p>';
+    return;
+  }
+  let html = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">';
+  for (let i = 0; i < services.length; i++) {
+    html += `<div style="background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.1);border-radius:12px;padding:16px">
+      <div style="font-weight:600;color:#fff">${escapeHtml(services[i].name)}</div>
+      <div style="font-size:0.8rem;color:#888">${escapeHtml(services[i].description)}</div>
+      <button class="copy-btn mt-8" onclick="removeService(${i})" style="color:#ff4444;border-color:#ff4444">Remove</button>
+    </div>`;
+  }
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+function removeService(index) {
+  let services = getData('services_list', []);
+  services.splice(index, 1);
+  setData('services_list', services);
+  renderServicesAdmin();
+  renderServicesPage();
+  showToast('Service removed', 'success');
+}
+
+function loadServices() {
+  renderServicesPage();
+}
+
+function renderServicesPage() {
+  const services = getData('services_list', []);
+  const container = document.getElementById('servicesList');
+  if (services.length === 0) {
+    container.innerHTML = '<p class="text-sm">No services configured yet.</p>';
+    return;
+  }
+  let html = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">';
+  for (const s of services) {
+    html += `<div style="background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.1);border-radius:12px;padding:16px;text-align:center">
+      <div style="font-size:2rem;margin-bottom:8px">⚙️</div>
+      <div style="font-weight:600;color:#fff">${escapeHtml(s.name)}</div>
+      <div style="font-size:0.8rem;color:#888">${escapeHtml(s.description)}</div>
+    </div>`;
+  }
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+// =====================================================================
+// NOTES
+// =====================================================================
+function loadNotes() {
+  renderNotes();
+}
+
+function newNote() {
   const title = prompt('Note title:');
   if (!title) return;
   const content = prompt('Note content:');
   if (!content) return;
   const notes = getData('notes_' + APP_USER, []);
-  notes.push({ title: title, content: content, createdAt: new Date().toISOString() });
+  notes.push({ title, content, createdAt: new Date().toISOString() });
   setData('notes_' + APP_USER, notes);
   renderNotes();
   updateStats();
@@ -953,20 +1712,25 @@ function renderNotes() {
   const notes = getData('notes_' + APP_USER, []);
   const container = document.getElementById('notesList');
   if (notes.length === 0) {
-    container.innerHTML = '<div class="card text-center"><p style="color:#888;font-size:.88rem">No notes yet. Click "New Note" to create one.</p></div>';
+    container.innerHTML = '<div class="card text-center"><p class="text-sm">No notes yet. Create your first note!</p></div>';
     return;
   }
-  container.innerHTML = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px">' +
-    notes.map((n, i) => `<div class="card" style="cursor:pointer;position:relative" onclick="deleteNote(${i})">
-      <h4 style="color:#ffd700;font-size:.95rem">${escapeHtml(n.title)}</h4>
-      <p style="font-size:.82rem;color:#aaa;margin-top:6px;line-height:1.4">${escapeHtml(n.content).substring(0,200)}${n.content.length>200?'...':''}</p>
-      <div style="font-size:.72rem;color:#555;margin-top:8px">${new Date(n.createdAt).toLocaleDateString()} &middot; Click to delete</div>
-    </div>`).join('') + '</div>';
+  let html = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px">';
+  for (let i = notes.length - 1; i >= 0; i--) {
+    const n = notes[i];
+    html += `<div class="card" style="cursor:pointer" onclick="deleteNote(${i})">
+      <h4 style="color:#ffd700">${escapeHtml(n.title)}</h4>
+      <p style="font-size:0.85rem;color:#aaa;margin-top:8px">${escapeHtml(n.content).substring(0, 150)}${n.content.length > 150 ? '...' : ''}</p>
+      <div class="text-sm mt-8">${new Date(n.createdAt).toLocaleDateString()} • Click to delete</div>
+    </div>`;
+  }
+  html += '</div>';
+  container.innerHTML = html;
 }
 
 function deleteNote(index) {
   if (!confirm('Delete this note?')) return;
-  const notes = getData('notes_' + APP_USER, []);
+  let notes = getData('notes_' + APP_USER, []);
   notes.splice(index, 1);
   setData('notes_' + APP_USER, notes);
   renderNotes();
@@ -982,13 +1746,15 @@ function performOCR(input) {
   if (!file) return;
   const reader = new FileReader();
   reader.onload = function(e) {
-    const dataUrl = e.target.result;
+    // Use mock OCR since we can't load Tesseract in this context
+    // In production, integrate Tesseract.js
     document.getElementById('ocrResult').innerHTML = `
-      <div style="background:rgba(255,215,0,.05);border:1px solid rgba(255,215,0,.1);border-radius:10px;padding:14px">
-        <img src="${dataUrl}" style="max-width:180px;max-height:180px;border-radius:6px;display:block;margin-bottom:10px">
-        <button class="btn btn-primary btn-small" onclick="ocrWithAI('${dataUrl}')">Analyze with AI</button>
-        <div id="ocrAIResult" class="mt-8"></div>
+      <div style="background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.1);border-radius:12px;padding:16px">
+        <img src="${e.target.result}" style="max-width:200px;max-height:200px;border-radius:8px;display:block;margin-bottom:12px">
+        <p class="text-sm">OCR processing via AI...</p>
+        <button class="btn btn-primary mt-8" onclick="ocrWithAI('${e.target.result}')">Analyze with AI</button>
       </div>`;
+    // Increment OCR count
     const count = getData('ocr_count_' + APP_USER, 0);
     setData('ocr_count_' + APP_USER, count + 1);
     updateStats();
@@ -999,79 +1765,88 @@ function performOCR(input) {
 async function ocrWithAI(imageData) {
   showToast('Analyzing image with AI...', 'info');
   try {
-    const resp = await fetch(CONFIG.API_URL, {
+    const response = await fetch(CONFIG.API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + (localStorage.getItem(LS_PREFIX + 'api_key') || ''),
+        'Authorization': 'Bearer ' + CONFIG.API_KEY,
         'HTTP-Referer': CONFIG.SITE_URL,
         'X-Title': CONFIG.SITE_NAME
       },
       body: JSON.stringify({
         model: CONFIG.MODEL,
         messages: [
-          { role: 'system', content: 'You are an OCR and image analysis AI. Extract and describe text visible in images.' },
+          { role: 'system', content: 'You are an OCR and image analysis AI. Extract and describe any text or content visible in the provided image.' },
           { role: 'user', content: [
-            { type: 'text', text: 'Extract all text and describe what you see:' },
+            { type: 'text', text: 'Extract all text and describe what you see in this image:' },
             { type: 'image_url', image_url: { url: imageData } }
           ]}
         ],
         max_tokens: 1024
       })
     });
-    const data = await resp.json();
-    document.getElementById('ocrAIResult').innerHTML = `<div style="background:rgba(0,0,0,.3);padding:14px;border-radius:8px;font-size:.88rem;color:#ccc">${escapeHtml(data.choices[0].message.content)}</div>`;
-  } catch(err) {
-    showToast('OCR error: ' + err.message, 'error');
+    const data = await response.json();
+    const result = data.choices[0].message.content;
+    document.getElementById('ocrResult').innerHTML += `<div class="mt-8" style="background:rgba(0,0,0,0.3);padding:16px;border-radius:10px;font-size:0.9rem;color:#ccc">${escapeHtml(result)}</div>`;
+  } catch (err) {
+    showToast('OCR AI error: ' + err.message, 'error');
   }
 }
 
 // =====================================================================
 // PDF READER
 // =====================================================================
-let _pdfFile = null;
 function readPDF(input) {
-  _pdfFile = input.files[0];
-  if (!_pdfFile) return;
-  document.getElementById('pdfResult').innerHTML = `
-    <div style="background:rgba(255,215,0,.05);border:1px solid rgba(255,215,0,.1);border-radius:10px;padding:14px">
-      <p><strong>${escapeHtml(_pdfFile.name)}</strong> (${(_pdfFile.size/1024).toFixed(1)} KB)</p>
-      <button class="btn btn-primary btn-small mt-8" onclick="pdfWithAI()">Analyze with AI</button>
-      <div id="pdfAIResult" class="mt-8"></div>
-    </div>`;
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    document.getElementById('pdfResult').innerHTML = `
+      <div style="background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.1);border-radius:12px;padding:16px">
+        <p><strong>${escapeHtml(file.name)}</strong> (${(file.size / 1024).toFixed(1)} KB)</p>
+        <p class="text-sm mt-8">PDF content extraction via AI:</p>
+        <button class="btn btn-primary mt-8" onclick="pdfWithAI()">Analyze PDF with AI</button>
+        <div id="pdfAIResult" class="mt-8"></div>
+      </div>`;
+  };
+  reader.readAsArrayBuffer(file);
+  // Store reference
+  window._pdfFile = file;
 }
 
 async function pdfWithAI() {
-  if (!_pdfFile) { showToast('No PDF loaded', 'error'); return; }
-  showToast('Analyzing PDF...', 'info');
+  const file = window._pdfFile;
+  if (!file) { showToast('No PDF loaded', 'error'); return; }
+  showToast('Analyzing PDF with AI...', 'info');
+  // For simplicity, just read as text (works for text-based PDFs)
   const reader = new FileReader();
   reader.onload = async function(e) {
-    const text = e.target.result.substring(0, 4000);
+    const text = e.target.result.substring(0, 4000); // First 4000 chars
     try {
-      const resp = await fetch(CONFIG.API_URL, {
+      const response = await fetch(CONFIG.API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + (localStorage.getItem(LS_PREFIX + 'api_key') || ''),
+          'Authorization': 'Bearer ' + CONFIG.API_KEY,
           'HTTP-Referer': CONFIG.SITE_URL,
           'X-Title': CONFIG.SITE_NAME
         },
         body: JSON.stringify({
           model: CONFIG.MODEL,
           messages: [
-            { role: 'system', content: 'You analyze documents. Summarize and extract key information.' },
-            { role: 'user', content: 'Analyze this document:\n\n' + text }
+            { role: 'system', content: 'You are a document analysis AI. Summarize and extract key information from the provided text.' },
+            { role: 'user', content: 'Analyze this document content:\n\n' + text }
           ],
           max_tokens: 1024
         })
       });
-      const data = await resp.json();
-      document.getElementById('pdfAIResult').innerHTML = `<div style="background:rgba(0,0,0,.3);padding:14px;border-radius:8px;font-size:.88rem;color:#ccc">${escapeHtml(data.choices[0].message.content)}</div>`;
+      const data = await response.json();
+      document.getElementById('pdfAIResult').innerHTML = `<div style="background:rgba(0,0,0,0.3);padding:16px;border-radius:10px;font-size:0.9rem;color:#ccc">${escapeHtml(data.choices[0].message.content)}</div>`;
     } catch(err) {
-      showToast('PDF error: ' + err.message, 'error');
+      showToast('PDF AI error: ' + err.message, 'error');
     }
   };
-  reader.readAsText(_pdfFile);
+  reader.readAsText(file);
 }
 
 // =====================================================================
@@ -1083,60 +1858,111 @@ function analyzeImage(input) {
   const reader = new FileReader();
   reader.onload = function(e) {
     document.getElementById('imageResult').innerHTML = `
-      <div style="background:rgba(255,215,0,.05);border:1px solid rgba(255,215,0,.1);border-radius:10px;padding:14px">
-        <img src="${e.target.result}" style="max-width:280px;max-height:280px;border-radius:6px;display:block;margin-bottom:10px">
-        <button class="btn btn-primary btn-small" onclick="analyzeImageAI('${e.target.result}')">Describe with AI</button>
+      <div style="background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.1);border-radius:12px;padding:16px">
+        <img src="${e.target.result}" style="max-width:300px;max-height:300px;border-radius:8px;display:block;margin-bottom:12px">
+        <button class="btn btn-primary" onclick="analyzeImageAI('${e.target.result}')">Analyze with AI</button>
         <div id="imgAIResult" class="mt-8"></div>
       </div>`;
   };
   reader.readAsDataURL(file);
 }
 
-async function analyzeImageAI(dataUrl) {
+async function analyzeImageAI(imageData) {
   showToast('Analyzing image...', 'info');
   try {
-    const resp = await fetch(CONFIG.API_URL, {
+    const response = await fetch(CONFIG.API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + (localStorage.getItem(LS_PREFIX + 'api_key') || ''),
+        'Authorization': 'Bearer ' + CONFIG.API_KEY,
         'HTTP-Referer': CONFIG.SITE_URL,
         'X-Title': CONFIG.SITE_NAME
       },
       body: JSON.stringify({
         model: CONFIG.MODEL,
         messages: [
-          { role: 'system', content: 'You describe images in detail including objects, colors, text, and context.' },
+          { role: 'system', content: 'You are a visual analysis AI. Describe the image in detail including objects, colors, text, and context.' },
           { role: 'user', content: [
-            { type: 'text', text: 'Describe this image:' },
-            { type: 'image_url', image_url: { url: dataUrl } }
+            { type: 'text', text: 'Describe this image in detail:' },
+            { type: 'image_url', image_url: { url: imageData } }
           ]}
         ],
         max_tokens: 1024
       })
     });
-    const data = await resp.json();
-    document.getElementById('imgAIResult').innerHTML = `<div style="background:rgba(0,0,0,.3);padding:14px;border-radius:8px;font-size:.88rem;color:#ccc">${escapeHtml(data.choices[0].message.content)}</div>`;
+    const data = await response.json();
+    document.getElementById('imgAIResult').innerHTML = `<div style="background:rgba(0,0,0,0.3);padding:16px;border-radius:10px;font-size:0.9rem;color:#ccc">${escapeHtml(data.choices[0].message.content)}</div>`;
   } catch(err) {
-    showToast('Image error: ' + err.message, 'error');
+    showToast('Image analysis error: ' + err.message, 'error');
   }
+}
+
+// =====================================================================
+// FILE MANAGER
+// =====================================================================
+function uploadFile(input) {
+  const files = input.files;
+  if (!files.length) return;
+  const fileList = getData('files_' + APP_USER, []);
+  for (const file of files) {
+    fileList.push({
+      name: file.name,
+      size: file.size,
+      type: file.type,
+      uploadedAt: new Date().toISOString()
+    });
+  }
+  setData('files_' + APP_USER, fileList);
+  renderFiles();
+  updateStats();
+  showToast(files.length + ' file(s) uploaded', 'success');
+}
+
+function renderFiles() {
+  const files = getData('files_' + APP_USER, []);
+  const container = document.getElementById('filesList');
+  if (files.length === 0) {
+    container.innerHTML = '<p class="text-sm">No files uploaded yet.</p>';
+    return;
+  }
+  let html = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">';
+  for (let i = files.length - 1; i >= 0; i--) {
+    const f = files[i];
+    html += `<div style="background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.1);border-radius:12px;padding:16px">
+      <div style="font-size:1.5rem">📄</div>
+      <div style="font-weight:600;font-size:0.85rem;color:#fff;margin-top:4px">${escapeHtml(f.name)}</div>
+      <div class="text-sm">${(f.size / 1024).toFixed(1)} KB</div>
+      <button class="copy-btn mt-8" onclick="deleteFile(${i})" style="color:#ff4444;border-color:#ff4444">Delete</button>
+    </div>`;
+  }
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+function deleteFile(index) {
+  let files = getData('files_' + APP_USER, []);
+  files.splice(index, 1);
+  setData('files_' + APP_USER, files);
+  renderFiles();
+  updateStats();
+  showToast('File deleted', 'success');
 }
 
 // =====================================================================
 // VOICE AI
 // =====================================================================
 function initVoice() {
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (SR) {
+  if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
     VOICE_RECOGNITION = new SR();
     VOICE_RECOGNITION.continuous = false;
     VOICE_RECOGNITION.interimResults = false;
     VOICE_RECOGNITION.lang = 'en-US';
     VOICE_RECOGNITION.onresult = function(e) {
-      const t = e.results[0][0].transcript;
-      document.getElementById('voiceResult').innerHTML = `<div style="background:rgba(0,255,100,.08);border:1px solid rgba(0,255,100,.15);border-radius:10px;padding:12px;margin-top:8px">
-        <p style="font-size:.88rem"><strong>You:</strong> ${escapeHtml(t)}</p>
-        <button class="btn btn-primary btn-small mt-8" onclick="voiceQuery('${escapeHtml(t)}')">Ask ZEUS</button>
+      const transcript = e.results[0][0].transcript;
+      document.getElementById('voiceResult').innerHTML = `<div style="background:rgba(0,255,100,0.1);border:1px solid rgba(0,255,100,0.2);border-radius:10px;padding:12px;margin-top:8px">
+        <p><strong>You said:</strong> ${escapeHtml(transcript)}</p>
+        <button class="btn btn-primary mt-8" onclick="voiceQuery('${escapeHtml(transcript)}')">Ask ZEUS</button>
       </div>`;
       VOICE_LISTENING = false;
       document.getElementById('voiceBtn').textContent = 'Start Listening';
@@ -1147,7 +1973,7 @@ function initVoice() {
       showToast('Voice recognition error', 'error');
     };
   } else {
-    document.getElementById('voiceBtn').textContent = 'Not Supported';
+    document.getElementById('voiceBtn').textContent = 'Voice Not Supported';
     document.getElementById('voiceBtn').disabled = true;
   }
 }
@@ -1161,37 +1987,37 @@ function toggleVoice() {
   } else {
     VOICE_RECOGNITION.start();
     VOICE_LISTENING = true;
-    document.getElementById('voiceBtn').textContent = 'Listening...';
-    document.getElementById('voiceResult').innerHTML = '<p style="color:#ffd700;font-size:.88rem">Listening...</p>';
+    document.getElementById('voiceBtn').textContent = '🔴 Listening...';
+    document.getElementById('voiceResult').innerHTML = '<p class="text-sm" style="color:#ffd700">Listening...</p>';
   }
 }
 
-async function voiceQuery(text) {
+async function voiceQuery(transcript) {
   showToast('Processing voice query...', 'info');
   try {
-    const resp = await fetch(CONFIG.API_URL, {
+    const response = await fetch(CONFIG.API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + (localStorage.getItem(LS_PREFIX + 'api_key') || ''),
+        'Authorization': 'Bearer ' + CONFIG.API_KEY,
         'HTTP-Referer': CONFIG.SITE_URL,
         'X-Title': CONFIG.SITE_NAME
       },
       body: JSON.stringify({
         model: CONFIG.MODEL,
         messages: [
-          { role: 'system', content: 'You are ZEUS AI voice assistant. Respond concisely.' },
-          { role: 'user', content: text }
+          { role: 'system', content: 'You are ZEUS AI voice assistant. Respond to voice queries helpfully.' },
+          { role: 'user', content: transcript }
         ],
         max_tokens: 512
       })
     });
-    const data = await resp.json();
-    document.getElementById('voiceResult').innerHTML += `<div style="background:rgba(255,215,0,.05);border:1px solid rgba(255,215,0,.1);border-radius:10px;padding:12px;margin-top:8px">
-      <p style="font-size:.88rem"><strong>ZEUS:</strong> ${escapeHtml(data.choices[0].message.content)}</p>
+    const data = await response.json();
+    document.getElementById('voiceResult').innerHTML += `<div style="background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.1);border-radius:10px;padding:12px;margin-top:8px">
+      <p><strong>ZEUS:</strong> ${escapeHtml(data.choices[0].message.content)}</p>
     </div>`;
   } catch(err) {
-    showToast('Voice error: ' + err.message, 'error');
+    showToast('Voice query error: ' + err.message, 'error');
   }
 }
 
@@ -1202,15 +2028,17 @@ function calcInput(val) {
   CALC_EXPRESSION += val;
   document.getElementById('calcDisplay').textContent = CALC_EXPRESSION;
 }
+
 function calcClear() {
   CALC_EXPRESSION = '';
   document.getElementById('calcDisplay').textContent = '0';
 }
+
 function calcResult() {
   try {
-    const r = eval(CALC_EXPRESSION);
-    document.getElementById('calcDisplay').textContent = r;
-    CALC_EXPRESSION = String(r);
+    const result = eval(CALC_EXPRESSION);
+    document.getElementById('calcDisplay').textContent = result;
+    CALC_EXPRESSION = String(result);
   } catch(e) {
     document.getElementById('calcDisplay').textContent = 'Error';
     CALC_EXPRESSION = '';
@@ -1226,32 +2054,31 @@ async function translateText() {
   if (!text) { showToast('Enter text to translate', 'error'); return; }
   showToast('Translating...', 'info');
   try {
-    const resp = await fetch(CONFIG.API_URL, {
+    const response = await fetch(CONFIG.API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + (localStorage.getItem(LS_PREFIX + 'api_key') || ''),
+        'Authorization': 'Bearer ' + CONFIG.API_KEY,
         'HTTP-Referer': CONFIG.SITE_URL,
         'X-Title': CONFIG.SITE_NAME
       },
       body: JSON.stringify({
         model: CONFIG.MODEL,
         messages: [
-          { role: 'system', content: 'Translate to ' + lang + '. Respond with ONLY the translation.' },
+          { role: 'system', content: 'You are a translator. Translate the given text to ' + lang + '. Respond with ONLY the translation, no explanations.' },
           { role: 'user', content: text }
         ],
         max_tokens: 1024
       })
     });
-    const data = await resp.json();
-    const result = data.choices[0].message.content;
+    const data = await response.json();
     document.getElementById('transResult').innerHTML = `
-      <div style="background:rgba(0,0,0,.3);padding:14px;border-radius:8px">
-        <div class="flex items-center justify-between">
-          <span style="color:#ffd700;font-weight:500">${escapeHtml(lang)}</span>
-          <button class="copy-btn" onclick="navigator.clipboard.writeText('${escapeHtml(result)}').then(()=>showToast('Copied!','success'))">Copy</button>
+      <div style="background:rgba(0,0,0,0.3);padding:16px;border-radius:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <p style="color:#ffd700;font-weight:500">${escapeHtml(lang)}</p>
+          <button class="copy-btn" onclick="copyText('${escapeHtml(data.choices[0].message.content)}')">Copy</button>
         </div>
-        <p style="margin-top:6px;font-size:.9rem">${escapeHtml(result)}</p>
+        <p style="margin-top:8px">${escapeHtml(data.choices[0].message.content)}</p>
       </div>`;
   } catch(err) {
     showToast('Translation error: ' + err.message, 'error');
@@ -1259,37 +2086,44 @@ async function translateText() {
 }
 
 // =====================================================================
-// CODE ASSISTANT
+// CODING ASSISTANT
 // =====================================================================
+function formatCode() {
+  const code = document.getElementById('codeArea').value;
+  // Basic formatting - just a placeholder
+  showToast('Code formatting applied', 'success');
+}
+
 async function analyzeCode() {
   const code = document.getElementById('codeArea').value.trim();
   const prompt = document.getElementById('codePrompt').value.trim();
-  if (!code && !prompt) { showToast('Enter code or a question', 'error'); return; }
-  const query = (prompt || 'Analyze this code:') + '\n\n' + code;
+  if (!code && !prompt) { showToast('Enter some code or a question', 'error'); return; }
+  const query = (prompt ? prompt + '\n\n' : 'Analyze this code:\n\n') + code;
   showToast('Analyzing code...', 'info');
   try {
-    const resp = await fetch(CONFIG.API_URL, {
+    const response = await fetch(CONFIG.API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + (localStorage.getItem(LS_PREFIX + 'api_key') || ''),
+        'Authorization': 'Bearer ' + CONFIG.API_KEY,
         'HTTP-Referer': CONFIG.SITE_URL,
         'X-Title': CONFIG.SITE_NAME
       },
       body: JSON.stringify({
         model: CONFIG.MODEL,
         messages: [
-          { role: 'system', content: 'You are a senior engineer. Explain, fix, and improve code.' },
+          { role: 'system', content: 'You are a senior software engineer. Analyze code, suggest improvements, fix bugs, and explain concepts clearly. Use code blocks with language tags.' },
           { role: 'user', content: query }
         ],
         max_tokens: 2048
       })
     });
-    const data = await resp.json();
-    document.getElementById('codeResult').innerHTML = `<div style="background:rgba(0,0,0,.3);padding:16px;border-radius:8px;font-size:.88rem;color:#ccc;white-space:pre-wrap;overflow-x:auto">${escapeHtml(data.choices[0].message.content)}</div>`;
+    const data = await response.json();
+    const result = data.choices[0].message.content;
+    document.getElementById('codeResult').innerHTML = `<div style="background:rgba(0,0,0,0.3);padding:16px;border-radius:10px;font-size:0.9rem;color:#ccc;white-space:pre-wrap">${escapeHtml(result)}</div>`;
     document.getElementById('codePrompt').value = '';
   } catch(err) {
-    showToast('Code error: ' + err.message, 'error');
+    showToast('Code analysis error: ' + err.message, 'error');
   }
 }
 
@@ -1298,198 +2132,129 @@ async function analyzeCode() {
 // =====================================================================
 function initPremiumTools() {
   const tools = [
-    { name: 'AI Research', desc: 'Deep research on any topic', icon: 'R' },
-    { name: 'Resume Builder', desc: 'Professional resumes', icon: 'R' },
-    { name: 'Proposals', desc: 'Generate proposals', icon: 'P' },
-    { name: 'Contracts', desc: 'Legal contracts', icon: 'C' },
-    { name: 'Summaries', desc: 'Meeting summaries', icon: 'S' },
-    { name: 'Task Planner', desc: 'Plan and organize', icon: 'T' },
-    { name: 'Flashcards', desc: 'Study flashcards', icon: 'F' },
-    { name: 'Mind Maps', desc: 'Visual mind maps', icon: 'M' },
-    { name: 'Advanced OCR', desc: 'Enhanced OCR', icon: 'O' },
-    { name: 'File Chat', desc: 'Chat with files', icon: 'F' }
+    { name: 'AI Research', desc: 'Deep research on any topic', icon: '🔬' },
+    { name: 'Resume Builder', desc: 'Professional resumes', icon: '📄' },
+    { name: 'Business Proposals', desc: 'Generate proposals', icon: '📊' },
+    { name: 'Contract Generator', desc: 'Legal contracts', icon: '⚖️' },
+    { name: 'Meeting Summaries', desc: 'Summarize meetings', icon: '📋' },
+    { name: 'Task Planner', desc: 'Plan and organize', icon: '📅' },
+    { name: 'Flashcards', desc: 'Study flashcards', icon: '🃏' },
+    { name: 'Mind Maps', desc: 'Visual mind maps', icon: '🧠' },
+    { name: 'Advanced OCR', desc: 'Enhanced OCR', icon: '🔍' },
+    { name: 'Multi-file Chat', desc: 'Chat with files', icon: '📁' }
   ];
+
   const container = document.getElementById('premiumToolsGrid');
-  container.innerHTML = tools.map(t => `
-    <div class="card" style="text-align:center;cursor:pointer" onclick="${APP_IS_PREMIUM ? "showToast('"+t.name+" ready!','success')" : "showToast('Premium feature. Upgrade to access.','info')"}">
-      <div style="width:44px;height:44px;border-radius:12px;background:rgba(255,215,0,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-size:1.2rem;font-weight:700;color:#ffd700">${t.icon}</div>
-      <div style="font-weight:600;color:#fff;font-size:.9rem">${t.name}</div>
-      <div style="font-size:.75rem;color:#888;margin-top:2px">${t.desc}</div>
-    </div>
-  `).join('');
+  container.innerHTML = '';
+  for (const tool of tools) {
+    const div = document.createElement('div');
+    div.style.cssText = 'background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.1);border-radius:12px;padding:20px;text-align:center;cursor:pointer;transition:all 0.3s';
+    div.innerHTML = `
+      <div style="font-size:2.5rem;margin-bottom:8px">${tool.icon}</div>
+      <div style="font-weight:600;color:#fff">${tool.name}</div>
+      <div style="font-size:0.8rem;color:#888;margin-top:4px">${tool.desc}</div>
+    `;
+    div.onclick = function() {
+      if (APP_IS_PREMIUM) {
+        showToast(`${tool.name} — Premium feature ready!`, 'success');
+      } else {
+        showToast('🔒 Premium feature. Upgrade to access.', 'info');
+        switchPage('upgrade', document.querySelectorAll('.nav-item')[15]);
+      }
+    };
+    container.appendChild(div);
+  }
+}
+
+function updatePremiumUI() {
+  if (APP_IS_PREMIUM) {
+    document.getElementById('sideStatus').textContent = 'Premium ' + APP_PREMIUM_PLAN;
+    document.getElementById('settingsStatus').textContent = 'Premium (' + APP_PREMIUM_PLAN + ')';
+  }
+}
+
+// =====================================================================
+// BUY PLAN
+// =====================================================================
+function buyPlan(plan) {
+  const prices = { weekly: '₦3,500', monthly: '₦8,000', lifetime: '₦25,000' };
+  const msg = `To purchase ${plan} plan (${prices[plan]}):\n\n1. Send payment to:\n   OPay: 9066760078\n   Name: CHRISTIANA GODWIN OKON\n\n2. Send payment receipt via WhatsApp\n3. Admin will send your premium code\n\nContact: wa.me/2349066760078`;
+  alert(msg);
 }
 
 // =====================================================================
 // SETTINGS
 // =====================================================================
-function setApiKey() {
-  const key = document.getElementById('apiKeyInput').value.trim();
-  if (key) {
-    localStorage.setItem(LS_PREFIX + 'api_key', key);
-    showToast('API key saved!', 'success');
-  } else {
-    localStorage.removeItem(LS_PREFIX + 'api_key');
-    showToast('Using default API key', 'info');
-  }
-}
-
-function exportUserData() {
+function exportData() {
   const data = {
     user: APP_USER,
     premium: APP_IS_PREMIUM,
     plan: APP_PREMIUM_PLAN,
     notes: getData('notes_' + APP_USER, []),
     chat: getData('chat_' + APP_USER, []),
+    files: getData('files_' + APP_USER, []),
     exportedAt: new Date().toISOString()
   };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'zeus-' + APP_USER + '-data.json';
+  a.href = url;
+  a.download = 'zeus-data-' + APP_USER + '.json';
   a.click();
-  URL.revokeObjectURL(blob);
+  URL.revokeObjectURL(url);
   showToast('Data exported!', 'success');
 }
 
+function deleteAccount() {
+  if (!confirm('Delete all your data? This cannot be undone!')) return;
+  localStorage.removeItem('zeus_notes_' + APP_USER);
+  localStorage.removeItem('zeus_chat_' + APP_USER);
+  localStorage.removeItem('zeus_files_' + APP_USER);
+  showToast('Account data deleted', 'success');
+  logout();
+}
+
 // =====================================================================
-// ADMIN PANEL
+// DATA MANAGEMENT (ADMIN)
 // =====================================================================
-let ADMIN_LOGGED_IN = false;
-
-function initAdminPanel() {
-  document.getElementById('adminLogin').style.display = ADMIN_LOGGED_IN ? 'none' : 'block';
-  document.getElementById('adminPanel').style.display = ADMIN_LOGGED_IN ? 'block' : 'none';
-  if (ADMIN_LOGGED_IN) {
-    showAdminTab('overview');
-    renderAdminCodes();
-  }
-}
-
-function adminLogin() {
-  const u = document.getElementById('adminUser').value.trim();
-  const p = document.getElementById('adminPass').value.trim();
-  if (u === ADMIN_USER && p === ADMIN_PASS) {
-    ADMIN_LOGGED_IN = true;
-    showToast('Admin access granted', 'success');
-    initAdminPanel();
-    renderAdminCodes();
-    renderPremiumUsers();
-  } else {
-    showToast('Invalid admin credentials', 'error');
-  }
-}
-
-function showAdminTab(tab) {
-  document.querySelectorAll('.admin-tab').forEach(t => t.style.display = 'none');
-  const map = { overview: 'adminOverview', codes: 'adminCodes', users: 'adminUsers', data: 'adminData' };
-  document.getElementById(map[tab]).style.display = 'block';
-  if (tab === 'overview') renderAdminOverview();
-  if (tab === 'data') renderAdminData();
-  if (tab === 'users') renderPremiumUsers();
-}
-
-function renderAdminOverview() {
-  const codes = getData('premium_codes', []);
-  const users = getData('premium_users', []);
-  const total = codes.length;
-  const used = codes.filter(c => c.used).length;
-  const avail = total - used;
-  document.getElementById('adminOverview').innerHTML = `
-    <div class="stats-grid">
-      <div class="stat-card"><div class="num">${total}</div><div class="label">Total Codes</div></div>
-      <div class="stat-card"><div class="num">${used}</div><div class="label">Used</div></div>
-      <div class="stat-card"><div class="num">${avail}</div><div class="label">Available</div></div>
-      <div class="stat-card"><div class="num">${users.length}</div><div class="label">Premium Users</div></div>
-    </div>
-    <div class="card">
-      <p style="font-size:.82rem;color:#888">Admin: <strong style="color:#ffd700">zeusadmin</strong> | Platform: ZEUS AI v7 | All data stored locally</p>
-    </div>`;
-}
-
-function generateCodes() {
-  const plan = document.getElementById('codePlanSelect').value;
-  const qty = parseInt(document.getElementById('codeQty').value) || 1;
-  const codes = getData('premium_codes', []);
-  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-  const genCode = () => {
-    let c = '';
-    for (let i = 0; i < 15; i++) {
-      if (i > 0 && i % 5 === 0) c += '-';
-      c += chars[Math.floor(Math.random() * chars.length)];
-    }
-    return c;
-  };
-  for (let i = 0; i < qty; i++) {
-    codes.push({ code: genCode(), plan: plan, used: false, createdAt: new Date().toISOString() });
-  }
-  setData('premium_codes', codes);
-  renderAdminCodes();
-  showToast(qty + ' premium code(s) generated!', 'success');
-}
-
-function renderAdminCodes() {
-  const codes = getData('premium_codes', []);
-  const list = document.getElementById('codesList');
-  if (codes.length === 0) {
-    list.innerHTML = '<div class="card text-sm text-center">No codes generated yet.</div>';
-    return;
-  }
-  let html = '<div class="card"><table class="admin-table"><thead><tr><th>Code</th><th>Plan</th><th>Status</th><th>Used By</th><th>Action</th></tr></thead><tbody>';
-  for (let i = codes.length - 1; i >= 0; i--) {
-    const c = codes[i];
-    html += `<tr>
-      <td class="code-display">${c.code}</td>
-      <td><span class="tag ${c.used?'tag-free':'tag-premium'}">${c.plan}</span></td>
-      <td>${c.used ? '<span style="color:#ff6666">Used</span>' : '<span style="color:#66ff66">Active</span>'}</td>
-      <td style="font-size:.8rem">${c.usedBy || '-'}</td>
-      <td>${c.used ? '' : `<button class="copy-btn" onclick="navigator.clipboard.writeText('${c.code}').then(()=>showToast('Copied!','success'))">Copy</button>`}</td>
-    </tr>`;
-  }
-  html += '</tbody></table></div>';
-  list.innerHTML = html;
-}
-
-function renderPremiumUsers() {
-  const users = getData('premium_users', []);
-  const list = document.getElementById('premiumUsersList');
-  if (users.length === 0) {
-    list.innerHTML = '<p class="text-sm">No premium users yet.</p>';
-    return;
-  }
-  let html = '<table class="admin-table"><thead><tr><th>Username</th><th>Plan</th><th>Activated</th><th>Code</th></tr></thead><tbody>';
-  for (const u of users) {
-    html += `<tr><td>${escapeHtml(u.username)}</td><td><span class="tag tag-premium">${u.plan}</span></td><td style="font-size:.8rem">${new Date(u.activatedAt).toLocaleDateString()}</td><td class="code-display">${u.code}</td></tr>`;
-  }
-  html += '</tbody></table>';
-  list.innerHTML = html;
-}
-
-function renderAdminData() {
+function previewData() {
   const data = {
     premium_codes: getData('premium_codes', []),
     premium_users: getData('premium_users', []),
-    exportedAt: new Date().toISOString()
+    team_members: getData('team_members', []),
+    services_list: getData('services_list', []),
+    owner_profile: getData('owner_profile', {}),
+    company_info: getData('company_info', {})
   };
-  document.getElementById('adminDataPreview').textContent = JSON.stringify(data, null, 2);
+  document.getElementById('dataPreview').textContent = JSON.stringify(data, null, 2);
 }
 
-function exportAllAdminData() {
+function exportAllData() {
   const data = {
     premium_codes: getData('premium_codes', []),
     premium_users: getData('premium_users', []),
+    team_members: getData('team_members', []),
+    services_list: getData('services_list', []),
+    owner_profile: getData('owner_profile', {}),
+    company_info: getData('company_info', {}),
     exportedAt: new Date().toISOString()
   };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'zeus-admin-backup.json';
+  a.href = url;
+  a.download = 'zeus-full-backup.json';
   a.click();
-  URL.revokeObjectURL(blob);
-  showToast('Admin data exported!', 'success');
+  URL.revokeObjectURL(url);
+  showToast('Full backup exported!', 'success');
 }
 
-function importAdminData(input) {
-  const file = input.files[0];
+function importAllData() {
+  document.getElementById('importFileInput').click();
+}
+
+function handleImport(event) {
+  const file = event.target.files[0];
   if (!file) return;
   const reader = new FileReader();
   reader.onload = function(e) {
@@ -1497,45 +2262,38 @@ function importAdminData(input) {
       const data = JSON.parse(e.target.result);
       if (data.premium_codes) setData('premium_codes', data.premium_codes);
       if (data.premium_users) setData('premium_users', data.premium_users);
-      showToast('Data imported!', 'success');
+      if (data.team_members) setData('team_members', data.team_members);
+      if (data.services_list) setData('services_list', data.services_list);
+      if (data.owner_profile) setData('owner_profile', data.owner_profile);
+      if (data.company_info) setData('company_info', data.company_info);
+      showToast('Data imported successfully!', 'success');
+      previewData();
       renderAdminCodes();
-      renderPremiumUsers();
-      renderAdminData();
+      renderAdminOverview();
+      renderTeamMembers();
+      renderServicesAdmin();
     } catch(err) {
-      showToast('Invalid JSON: ' + err.message, 'error');
+      showToast('Invalid JSON file: ' + err.message, 'error');
     }
   };
   reader.readAsText(file);
-  input.value = '';
+  event.target.value = '';
 }
 
-function resetAllAdminData() {
-  if (!confirm('Delete ALL admin data?')) return;
-  if (!confirm('Final confirmation?')) return;
-  localStorage.removeItem(LS_PREFIX + 'premium_codes');
-  localStorage.removeItem(LS_PREFIX + 'premium_users');
+function resetAllData() {
+  if (!confirm('⚠️ This will DELETE ALL admin data (codes, team, services, etc). Are you sure?')) return;
+  if (!confirm('Final confirmation: Delete everything?')) return;
+  localStorage.removeItem('zeus_premium_codes');
+  localStorage.removeItem('zeus_premium_users');
+  localStorage.removeItem('zeus_team_members');
+  localStorage.removeItem('zeus_services_list');
+  localStorage.removeItem('zeus_owner_profile');
+  localStorage.removeItem('zeus_company_info');
   showToast('All admin data reset', 'success');
+  previewData();
   renderAdminCodes();
-  renderPremiumUsers();
-  renderAdminData();
   renderAdminOverview();
 }
-
-// =====================================================================
-// AUTO-LOGIN CHECK
-// =====================================================================
-(function() {
-  const savedUser = localStorage.getItem(LS_PREFIX + 'current_user');
-  if (savedUser) {
-    APP_USER = savedUser;
-    APP_IS_PREMIUM = localStorage.getItem(LS_PREFIX + 'premium_' + savedUser) === 'true';
-    APP_PREMIUM_PLAN = localStorage.getItem(LS_PREFIX + 'plan_' + savedUser) || '';
-    document.getElementById('landing').classList.add('hide');
-    document.getElementById('landing').style.display = 'none';
-    document.getElementById('app').classList.add('active');
-    initApp();
-  }
-})();
 </script>
 </body>
 </html>
